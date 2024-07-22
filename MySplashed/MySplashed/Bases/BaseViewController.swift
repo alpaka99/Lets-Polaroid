@@ -10,6 +10,10 @@ import UIKit
 class BaseViewController<T: BaseView>: UIViewController {
     private let baseView: T
     
+    override func loadView() {
+        self.view = baseView
+    }
+    
     init(baseView: T) {
         self.baseView = baseView
         super.init(nibName: nil, bundle: nil)
