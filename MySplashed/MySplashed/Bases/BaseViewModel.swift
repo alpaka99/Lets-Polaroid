@@ -110,7 +110,9 @@ class TestClass {
          */
         viewModel.react(.basicAction, value: "123")
         viewModel.reduce(\.input.value, into: "456")
-        let test = \Self.viewModel.input.input
+        viewModel(\.input).bind { _ in
+            // bind closure
+        }
     }
 }
 
