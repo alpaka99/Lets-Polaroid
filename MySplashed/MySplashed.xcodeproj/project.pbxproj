@@ -15,6 +15,7 @@
 		CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B972C4E4B0F00327314 /* BaseView.swift */; };
 		CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B992C4E4B9600327314 /* BaseViewController.swift */; };
 		CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B9C2C4E4E9000327314 /* Observable.swift */; };
+		CEB45B9F2C4E50AB00327314 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B9E2C4E50AB00327314 /* BaseViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CEB45B972C4E4B0F00327314 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		CEB45B992C4E4B9600327314 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CEB45B9C2C4E4E9000327314 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		CEB45B9E2C4E50AB00327314 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				CEB45B972C4E4B0F00327314 /* BaseView.swift */,
 				CEB45B992C4E4B9600327314 /* BaseViewController.swift */,
+				CEB45B9E2C4E50AB00327314 /* BaseViewModel.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */,
 				CEB45B7E2C4E3D0400327314 /* ViewController.swift in Sources */,
 				CEB45B7A2C4E3D0400327314 /* AppDelegate.swift in Sources */,
+				CEB45B9F2C4E50AB00327314 /* BaseViewModel.swift in Sources */,
 				CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */,
 				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
