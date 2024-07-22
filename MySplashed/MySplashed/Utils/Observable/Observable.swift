@@ -6,12 +6,20 @@
 //
 
 final class Observable<T> {
-    var value: T
+    private var value: T
 
-    var closure: ((T)->Void)?
+    private var closure: ((T)->Void)?
     
     init(_ value: T) {
         self.value = value
+    }
+    
+    func setValue(_ value: T) {
+        self.value = value
+    }
+    
+    func getValue() -> T {
+        return self.value
     }
     
     func bind(_ closure: @escaping (T)->Void) {
