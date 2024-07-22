@@ -9,8 +9,8 @@ import Foundation
 
 
 protocol ViewModel<Input, Output>: AnyObject {
-    associatedtype Input: Equatable // Input Data Struct
-    associatedtype Output: Equatable // Output Data Struct
+    associatedtype Input: Equatable, ViewModelState // Input Data Struct
+    associatedtype Output: Equatable, ViewModelState // Output Data Struct
     
     var input: Input { get set }
     var output: Output { get set }
@@ -25,18 +25,21 @@ protocol ViewModel<Input, Output>: AnyObject {
     func react<U: Equatable>(_ action: Action, value: U)
 }
 
+protocol ViewModelState { }
+
 
 extension ViewModel {
     // callAsFunction의 경우, 정적으로 호출 가능한(statically callable value)의 값을 직접 호출할 수 있게 해줌
-    func callAsFunction<T: Equatable>(_ path: KeyPath<Input, T>) -> T {
-        return self.input[keyPath: path]
+    func callAsFunction<T: Equatable>(_ keyPath: KeyPath<Input, T>) -> T {
+        return self.input[keyPath: keyPath]
     }
     
-    func callAsFunction<T: Equatable>(_ path: KeyPath<Output, T>) -> T {
-        return self.output[keyPath: path]
+    func callAsFunction<T: Equatable>(_ keyPath: KeyPath<Output, T>) -> T {
+        return self.output[keyPath: keyPath]
     }
     
     //react 메서드를 통해 Input 혹은 Output 데이터의 변형이 일어나는 경우, 이 reduce 메서드들을 거쳐서 일어남
+    
     @discardableResult
     func reduce<T: Equatable, U: Equatable>(
         _ keyPath: WritableKeyPath<Input, T>,
@@ -67,12 +70,12 @@ extension ViewModel {
 }
 
 
-class BasicViewModel: ViewModel {
-    struct Input: Equatable {
+final class BasicViewModel: ViewModel {
+    struct Input: Equatable, ViewModelState {
         let input = Observable("")
     }
     
-    struct Output: Equatable {
+    struct Output: Equatable, ViewModelState {
         let output = Observable(1)
     }
     
@@ -84,43 +87,18 @@ class BasicViewModel: ViewModel {
     }
     
     func react<T>(_ action: Action, value: T) where T : Equatable {
-        
+//        switch action {
+//        case .basicAction:
+//            reduce(\.input.value, into: "sad")
+//        }
     }
 }
-
-final class ChildViewModel: ViewModel {
-    struct Input: Equatable {
-        let childInput = Observable(42.195)
-    }
-    
-    struct Output: Equatable {
-        let childOutput = Observable(123)
-    }
-    
-    var input = Input()
-    var output = Output()
-    
-    enum Action: String {
-        case childAction
-    }
-    
-    func react<T>(_ action: Action, value: T) where T : Equatable {
-        switch action {
-        case .childAction:
-//            reduce(\.childInput.value, into: value)
-            break
-        }
-    }
-    
-}
-
 
 /*
  사용법(Usage):
  */
 class TestClass {
     let viewModel = BasicViewModel()
-    let childViewModel = ChildViewModel()
     
     func test() {
         /*
@@ -131,8 +109,9 @@ class TestClass {
          근데 bind는 그냥 가능하게 하고 싶으니까 일단 private(set)으로 해놓고, reduce는 BaseViewModel의 메서드로 구현해놔야할듯하네요?
          */
         viewModel.react(.basicAction, value: "123")
+//        viewModel.reduce(\.input.value, into: "456")
         
-        childViewModel.react(.childAction, value: "123")
+        
         
     }
 }
