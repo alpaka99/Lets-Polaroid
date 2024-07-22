@@ -6,7 +6,7 @@
 //
 
 final class Observable<T: Equatable> {
-    private(set) var value: T {
+    var value: T {
         didSet {
             closure?(value)
         }
