@@ -12,7 +12,6 @@
 		CEB45B7E2C4E3D0400327314 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B7D2C4E3D0400327314 /* ViewController.swift */; };
 		CEB45B832C4E3D0600327314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB45B822C4E3D0600327314 /* Assets.xcassets */; };
 		CEB45B862C4E3D0600327314 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CEB45B852C4E3D0600327314 /* Base */; };
-		CEB45B8E2C4E3D1900327314 /* .gitIgnore in Resources */ = {isa = PBXBuildFile; fileRef = CEB45B8D2C4E3D1900327314 /* .gitIgnore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +22,6 @@
 		CEB45B822C4E3D0600327314 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEB45B852C4E3D0600327314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEB45B872C4E3D0600327314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEB45B8D2C4E3D1900327314 /* .gitIgnore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitIgnore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +38,6 @@
 		CEB45B6D2C4E3D0400327314 = {
 			isa = PBXGroup;
 			children = (
-				CEB45B8D2C4E3D1900327314 /* .gitIgnore */,
 				CEB45B782C4E3D0400327314 /* MySplashed */,
 				CEB45B772C4E3D0400327314 /* Products */,
 			);
@@ -165,7 +162,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEB45B8E2C4E3D1900327314 /* .gitIgnore in Resources */,
 				CEB45B832C4E3D0600327314 /* Assets.xcassets in Resources */,
 				CEB45B862C4E3D0600327314 /* Base in Resources */,
 			);
