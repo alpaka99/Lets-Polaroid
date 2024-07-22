@@ -34,13 +34,13 @@ protocol ViewModelState { }
 
 class BaseViewModel: ViewModel {
     struct Input {
-        let input: String = ""
+        let input = Observable("")
     }
     
     private var input = Input()
     
     struct Output {
-        let output: Int = 0
+        let output = Observable(1)
     }
     
     private var output = Output()
@@ -78,17 +78,28 @@ final class TestViewModel: BaseViewModel {
         let testInput: String = ""
     }
     
+    private var input = Input()
+    
     struct Output {
         let testOutput: Int = 123
     }
+    
+    private var output = Output()
 }
 class TestClass {
-    let viewModel = BaseViewModel()
+    let viewModel = TestViewModel()
     
     
     func test() {
-        let input = viewModel(\.input)
-        let output = viewModel(\.output)
+        let input = viewModel(\.input).getValue()
+        /*
+        extension이 BaseViewModel에선언되어 있어서 baseViewModel의 keyPath만 읽어오는 문제
+         그렇다고 input과 output을 protocol에 명시해놓으면 접근을 할 수 있게 되어버리는데...
+         private(set)으로 읽기는 가능하지만 쓰기는 못하게 해야하려나...
+         더불어서 reduce() 메서드도 접근 가능하네 흠... react만 접근 가능해져야하는데 말이지...
+         근데 bind는 그냥 가능하게 하고 싶으니까 일단 private(set)으로 해놓고, reduce는 BaseViewModel의 메서드로 구현해놔야할듯하네요?
+         */
+        let output = viewModel(\.output).getValue()
         
         viewModel.react(.test, value: 123)
     }
