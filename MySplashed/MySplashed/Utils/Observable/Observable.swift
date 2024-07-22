@@ -5,7 +5,7 @@
 //  Created by user on 7/22/24.
 //
 
-final class Observable<T> {
+final class Observable<T: Equatable> {
     private var value: T
 
     private var closure: ((T)->Void)?
@@ -29,5 +29,11 @@ final class Observable<T> {
     func actionBind(_ closure: @escaping (T)->Void) {
         closure(value)
         self.closure = closure
+    }
+}
+
+extension Observable: Equatable {
+    static func == (lhs: Observable<T>, rhs: Observable<T>) -> Bool {
+        return lhs.value == rhs.value
     }
 }
