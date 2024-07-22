@@ -9,89 +9,120 @@ import Foundation
 
 
 protocol ViewModel<Input, Output>: AnyObject {
-    // Input Data Struct
-    associatedtype Input
+    associatedtype Input: Equatable // Input Data Struct
+    associatedtype Output: Equatable // Output Data Struct
     
-    // Output Data Struct
-    associatedtype Output
+    var input: Input { get set }
+    var output: Output { get set }
     
     // User Action을 Enum으로 표현
-    // 현재 버전에서는 일단 String을 rawValue로 가지는 enum
+    // 현재 버전에서는 일단 String을 rawValue로 가지는 enum,
+    // 그리고 associatedValue를 받지 않고, value로 따로 받음
+    // TODO: wrapping한 enum 타입이 associatedValue를 받은 다음에 한번 변환하면 되는거 아닐까?
     associatedtype Action: RawRepresentable where Action.RawValue == String
     
-    // callAsFunction의 경우, 정적으로 호출 가능한(statically callable value)의 값을 직접 호출할 수 있게 해줌
-//    func callAsFunction<T: Equatable>(_ path: KeyPath<ViewModelState, T>) -> T
-    
     // react 메서드의 내부는 switch-case로 구현되어 가독성을 높히고, 명확하게 action에 따른 logic을 실행 할 수 있게 함
-    func react<T: Equatable>(_ action: Action, value: T)
-    
-    //react 메서드를 통해 Input 혹은 Output 데이터의 변형이 일어나는 경우, 이 reduce 메서드를 거쳐서 일어남
-    func reduce<T: Equatable>(_ path: WritableKeyPath<ViewModelState, T>, into newValue: T)
+    func react<U: Equatable>(_ action: Action, value: U)
 }
 
-protocol ViewModelState { }
 
-
-class BaseViewModel: ViewModel {
-    struct Input {
-        let input = Observable("")
-    }
-    
-    private var input = Input()
-    
-    struct Output {
-        let output = Observable(1)
-    }
-    
-    private var output = Output()
-    
-    enum Action: String {
-        case test
-    }
-    
-}
-
-extension BaseViewModel {
-    func reduce<T: Equatable>(_ path: WritableKeyPath<ViewModelState, T>, into newValue: T) {
-        
-    }
-    
+extension ViewModel {
+    // callAsFunction의 경우, 정적으로 호출 가능한(statically callable value)의 값을 직접 호출할 수 있게 해줌
     func callAsFunction<T: Equatable>(_ path: KeyPath<Input, T>) -> T {
         return self.input[keyPath: path]
     }
     
-    func callAsFunction<T>(_ path: KeyPath<Output, T>) -> T where T : Equatable {
+    func callAsFunction<T: Equatable>(_ path: KeyPath<Output, T>) -> T {
         return self.output[keyPath: path]
     }
     
-    func react<T: Equatable>(_ action: Action, value: T) {
+    //react 메서드를 통해 Input 혹은 Output 데이터의 변형이 일어나는 경우, 이 reduce 메서드들을 거쳐서 일어남
+    @discardableResult
+    func reduce<T: Equatable, U: Equatable>(
+        _ keyPath: WritableKeyPath<Input, T>,
+        into newValue: U) -> Bool
+    {
+        if let convertedValue = newValue as? T {
+            self.input[keyPath: keyPath] = convertedValue
+            print(self.input[keyPath: keyPath])
+            return true
+        }
+        print("Failed")
+        return false
+    }
+    
+    @discardableResult
+    func reduce<T: Equatable, U: Equatable>(
+        _ keyPath: WritableKeyPath<Output, T>,
+        into newValue: U) -> Bool
+    {
+        if let convertedValue = newValue as? T {
+            self.output[keyPath: keyPath] = convertedValue
+            print(self.output[keyPath: keyPath])
+            return true
+        }
+        print("Failed")
+        return false
+    }
+}
+
+
+class BasicViewModel: ViewModel {
+    struct Input: Equatable {
+        let input = Observable("")
+    }
+    
+    struct Output: Equatable {
+        let output = Observable(1)
+    }
+    
+    var input = Input()
+    var output = Output()
+    
+    enum Action: String {
+        case basicAction
+    }
+    
+    func react<T>(_ action: Action, value: T) where T : Equatable {
         
     }
+}
+
+final class ChildViewModel: ViewModel {
+    struct Input: Equatable {
+        let childInput = Observable(42.195)
+    }
+    
+    struct Output: Equatable {
+        let childOutput = Observable(123)
+    }
+    
+    var input = Input()
+    var output = Output()
+    
+    enum Action: String {
+        case childAction
+    }
+    
+    func react<T>(_ action: Action, value: T) where T : Equatable {
+        switch action {
+        case .childAction:
+//            reduce(\.childInput.value, into: value)
+            break
+        }
+    }
+    
 }
 
 
 /*
  사용법(Usage):
  */
-final class TestViewModel: BaseViewModel {
-    struct Input {
-        let testInput: String = ""
-    }
-    
-    private var input = Input()
-    
-    struct Output {
-        let testOutput: Int = 123
-    }
-    
-    private var output = Output()
-}
 class TestClass {
-    let viewModel = TestViewModel()
-    
+    let viewModel = BasicViewModel()
+    let childViewModel = ChildViewModel()
     
     func test() {
-        let input = viewModel(\.input).getValue()
         /*
         extension이 BaseViewModel에선언되어 있어서 baseViewModel의 keyPath만 읽어오는 문제
          그렇다고 input과 output을 protocol에 명시해놓으면 접근을 할 수 있게 되어버리는데...
@@ -99,8 +130,9 @@ class TestClass {
          더불어서 reduce() 메서드도 접근 가능하네 흠... react만 접근 가능해져야하는데 말이지...
          근데 bind는 그냥 가능하게 하고 싶으니까 일단 private(set)으로 해놓고, reduce는 BaseViewModel의 메서드로 구현해놔야할듯하네요?
          */
-        let output = viewModel(\.output).getValue()
+        viewModel.react(.basicAction, value: "123")
         
-        viewModel.react(.test, value: 123)
+        childViewModel.react(.childAction, value: "123")
+        
     }
 }

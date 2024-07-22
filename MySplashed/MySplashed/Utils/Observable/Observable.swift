@@ -6,13 +6,13 @@
 //
 
 final class Observable<T: Equatable> {
-    var value: T {
+    private(set) var value: T {
         didSet {
             closure?(value)
         }
     }
 
-    var closure: ((T)->Void)?
+    private var closure: ((T)->Void)?
     
     init(_ value: T) {
         self.value = value
