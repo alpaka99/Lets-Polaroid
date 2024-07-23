@@ -33,7 +33,7 @@ final class SplashView: BaseView {
         return label
     }()
     
-    private let startButton = {
+    private(set) var startButton = {
         let button = UIButton()
             .title("시작하기")
             .backgroundColor(MSColor.blue.color ?? .systemBlue)
