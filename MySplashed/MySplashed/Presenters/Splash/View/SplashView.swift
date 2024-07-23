@@ -12,8 +12,9 @@ import SnapKit
 final class SplashView: BaseView {
     private let launchTitle = {
         let label = UILabel()
-        label.text = "HELLO.\nMY SPLASHED"
+        label.text = "HELLO.\nMY SPLASHED🎨"
         label.numberOfLines = 0
+        label.textColor = MSColor.blue.color
         label.font = UIFont.systemFont(ofSize: 40, weight: .heavy)
         return label
     }()
@@ -27,14 +28,18 @@ final class SplashView: BaseView {
     private let developerName = {
         let label = UILabel()
         label.text = "고석환"
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.textColor = MSColor.black.color
+        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         return label
     }()
     
     private let startButton = {
         let button = UIButton()
-        button.setTitle("시작하기", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
+            .title("시작하기")
+            .backgroundColor(MSColor.blue.color ?? .systemBlue)
+            .font(ofSize: 24, weight: .heavy)
+            .cornerStyle(.capsule)
+        button.tintColor = .white
         return button
     }()
     
@@ -62,7 +67,7 @@ final class SplashView: BaseView {
         }
         developerName.snp.makeConstraints { label in
             label.top.equalTo(launchImage.snp.bottom)
-                .offset(20)
+                .offset(12)
             label.centerX.equalTo(self.safeAreaLayoutGuide)
         }
         startButton.snp.makeConstraints { button in
@@ -71,6 +76,8 @@ final class SplashView: BaseView {
             button.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
                 .inset(20)
             button.bottom.equalTo(self.safeAreaLayoutGuide)
+                .inset(20)
+            button.height.equalTo(44)
         }
     }
 }

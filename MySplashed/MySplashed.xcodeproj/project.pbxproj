@@ -20,6 +20,10 @@
 		CEB45BDB2C4FE05900327314 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BDA2C4FE05900327314 /* SplashView.swift */; };
 		CEB45BDD2C4FE05E00327314 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BDC2C4FE05E00327314 /* SplashViewModel.swift */; };
 		CEB45BE32C4FE6C700327314 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEB45BE22C4FE6C700327314 /* SnapKit */; };
+		CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BE52C4FEBA600327314 /* MSColor.swift */; };
+		CEB45BE92C4FEDD000327314 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BE82C4FEDD000327314 /* String+.swift */; };
+		CEB45BEB2C4FEDF300327314 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BEA2C4FEDF300327314 /* UIColor+.swift */; };
+		CEB45BED2C4FF00800327314 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BEC2C4FF00800327314 /* UIButton+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,10 @@
 		CEB45BD82C4FE05300327314 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		CEB45BDA2C4FE05900327314 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		CEB45BDC2C4FE05E00327314 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		CEB45BE52C4FEBA600327314 /* MSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSColor.swift; sourceTree = "<group>"; };
+		CEB45BE82C4FEDD000327314 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		CEB45BEA2C4FEDF300327314 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		CEB45BEC2C4FF00800327314 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,8 @@
 		CEB45B922C4E488700327314 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CEB45BE42C4FEB9800327314 /* Constants */,
+				CEB45BE72C4FEDA800327314 /* Extensions */,
 				CEB45B9B2C4E4E8700327314 /* Observable */,
 				CEB45BD02C4FCF7D00327314 /* Protocols */,
 			);
@@ -173,6 +183,24 @@
 				CEB45BDC2C4FE05E00327314 /* SplashViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CEB45BE42C4FEB9800327314 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45BE52C4FEBA600327314 /* MSColor.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		CEB45BE72C4FEDA800327314 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45BE82C4FEDD000327314 /* String+.swift */,
+				CEB45BEA2C4FEDF300327314 /* UIColor+.swift */,
+				CEB45BEC2C4FF00800327314 /* UIButton+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +285,11 @@
 				CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */,
 				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
 				CEB45BDD2C4FE05E00327314 /* SplashViewModel.swift in Sources */,
+				CEB45BEB2C4FEDF300327314 /* UIColor+.swift in Sources */,
+				CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */,
+				CEB45BED2C4FF00800327314 /* UIButton+.swift in Sources */,
 				CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */,
+				CEB45BE92C4FEDD000327314 /* String+.swift in Sources */,
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
 				CEB45BD92C4FE05300327314 /* SplashViewController.swift in Sources */,
 				CEB45BDB2C4FE05900327314 /* SplashView.swift in Sources */,
