@@ -21,10 +21,10 @@ protocol ViewModel<Input, Output>: AnyObject {
     // TODO: wrapping한 enum 타입이 associatedValue를 받은 다음에 한번 변환하면 되는거 아닐까?
     associatedtype Action: RawRepresentable where Action.RawValue == String
     
-    init()
-    
     // react 메서드의 내부는 switch-case로 구현되어 가독성을 높히고, 명확하게 action에 따른 logic을 실행 할 수 있게 함
     func react<U: Equatable>(_ action: Action, value: U)
+    
+    func configureBind()
 }
 
 extension ViewModel {
@@ -47,7 +47,6 @@ extension ViewModel {
     {
         if let convertedValue = newValue as? T {
             self.input[keyPath: keyPath] = convertedValue
-            print(self.input[keyPath: keyPath])
             return true
         }
         print("Failed")
@@ -61,7 +60,6 @@ extension ViewModel {
     {
         if let convertedValue = newValue as? T {
             self.output[keyPath: keyPath] = convertedValue
-            print(self.output[keyPath: keyPath])
             return true
         }
         print("Failed")
@@ -104,6 +102,8 @@ final class BasicViewModel: ViewModel {
             reduce(\.input.value, into: "qwer")
         }
     }
+    
+    func configureBind() { }
 }
 
 
