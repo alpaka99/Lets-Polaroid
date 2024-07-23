@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CEB45B7A2C4E3D0400327314 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B792C4E3D0400327314 /* AppDelegate.swift */; };
 		CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B7B2C4E3D0400327314 /* SceneDelegate.swift */; };
-		CEB45B7E2C4E3D0400327314 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B7D2C4E3D0400327314 /* ViewController.swift */; };
 		CEB45B832C4E3D0600327314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB45B822C4E3D0600327314 /* Assets.xcassets */; };
 		CEB45B862C4E3D0600327314 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CEB45B852C4E3D0600327314 /* Base */; };
 		CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B972C4E4B0F00327314 /* BaseView.swift */; };
@@ -17,13 +16,15 @@
 		CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B9C2C4E4E9000327314 /* Observable.swift */; };
 		CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BD12C4FCFA100327314 /* ViewModel.swift */; };
 		CEB45BD62C4FD06500327314 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CEB45BD52C4FD06500327314 /* .gitignore */; };
+		CEB45BD92C4FE05300327314 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BD82C4FE05300327314 /* SplashViewController.swift */; };
+		CEB45BDB2C4FE05900327314 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BDA2C4FE05900327314 /* SplashView.swift */; };
+		CEB45BDD2C4FE05E00327314 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BDC2C4FE05E00327314 /* SplashViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CEB45B762C4E3D0400327314 /* MySplashed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySplashed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB45B792C4E3D0400327314 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEB45B7B2C4E3D0400327314 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CEB45B7D2C4E3D0400327314 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEB45B822C4E3D0600327314 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEB45B852C4E3D0600327314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEB45B872C4E3D0600327314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -32,6 +33,9 @@
 		CEB45B9C2C4E4E9000327314 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		CEB45BD12C4FCFA100327314 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		CEB45BD52C4FD06500327314 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		CEB45BD82C4FE05300327314 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		CEB45BDA2C4FE05900327314 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		CEB45BDC2C4FE05E00327314 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +118,7 @@
 		CEB45B942C4E49BA00327314 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				CEB45B7D2C4E3D0400327314 /* ViewController.swift */,
+				CEB45BD72C4FE04700327314 /* Splash */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -133,6 +137,40 @@
 				CEB45BD12C4FCFA100327314 /* ViewModel.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CEB45BD72C4FE04700327314 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45BE02C4FE0EA00327314 /* ViewModel */,
+				CEB45BDF2C4FE0E300327314 /* View */,
+				CEB45BDE2C4FE0DA00327314 /* ViewContoller */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		CEB45BDE2C4FE0DA00327314 /* ViewContoller */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45BD82C4FE05300327314 /* SplashViewController.swift */,
+			);
+			path = ViewContoller;
+			sourceTree = "<group>";
+		};
+		CEB45BDF2C4FE0E300327314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45BDA2C4FE05900327314 /* SplashView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEB45BE02C4FE0EA00327314 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45BDC2C4FE05E00327314 /* SplashViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,12 +245,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */,
-				CEB45B7E2C4E3D0400327314 /* ViewController.swift in Sources */,
 				CEB45B7A2C4E3D0400327314 /* AppDelegate.swift in Sources */,
 				CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */,
 				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
+				CEB45BDD2C4FE05E00327314 /* SplashViewModel.swift in Sources */,
 				CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */,
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
+				CEB45BD92C4FE05300327314 /* SplashViewController.swift in Sources */,
+				CEB45BDB2C4FE05900327314 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
