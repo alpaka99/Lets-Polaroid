@@ -37,7 +37,7 @@ final class SplashView: BaseView {
         let button = UIButton()
             .title("시작하기")
             .backgroundColor(MSColor.blue.color ?? .systemBlue)
-            .font(ofSize: 24, weight: .heavy)
+            .font(ofSize: 16, weight: .semibold)
             .cornerStyle(.capsule)
         button.tintColor = .white
         return button

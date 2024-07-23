@@ -47,7 +47,9 @@ extension UIButton {
             newValue.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
             return newValue
         }
+        
         config.titleTextAttributesTransformer = transformer
+        self.configuration = config
         return self
     }
     
