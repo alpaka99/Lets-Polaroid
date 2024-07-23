@@ -9,8 +9,8 @@ import Foundation
 
 
 protocol ViewModel<Input, Output>: AnyObject {
-    associatedtype Input // Input Data Struct
-    associatedtype Output // Output Data Struct
+    associatedtype Input: Equatable // Input Data Struct
+    associatedtype Output: Equatable // Output Data Struct
     
     var input: Input { get set }
     var output: Output { get set }
@@ -30,6 +30,7 @@ protocol ViewModelState { }
 
 extension ViewModel {
     // callAsFunction의 경우, 정적으로 호출 가능한(statically callable value)의 값을 직접 호출할 수 있게 해줌
+    // MARK: 추후에 @dynamicMemberLookUp을 통해 function syntax가 아닌, dot syntax로 바꿔줄 수 있을것 같음
     func callAsFunction<T: Equatable>(_ keyPath: KeyPath<Input, T>) -> T {
         return self.input[keyPath: keyPath]
     }
@@ -71,11 +72,11 @@ extension ViewModel {
 
 
 final class BasicViewModel: ViewModel {
-    struct Input {
+    struct Input: Equatable {
         let input = Observable("")
     }
     
-    struct Output {
+    struct Output: Equatable {
         let output = Observable(1)
     }
     
