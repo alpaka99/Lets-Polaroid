@@ -17,13 +17,11 @@ final class SplashViewController: BaseViewController<SplashView, SplashViewModel
         super.configureDataBinding()
         
         viewModel.bind(\.isShowOnboarding) {[weak self] _ in
-            self?.setNewViewController(
-                nextViewController: ProfileViewController(
-                    baseView: ProfileView(),
-                    viewModel: ProfileViewModel()
-                ),
-                isNavigation: true
+            let profileViewController = ProfileViewController(
+                baseView: ProfileView(),
+                viewModel: ProfileViewModel()
             )
+            self?.navigationController?.pushViewController(profileViewController, animated: true)
         }
     }
     
