@@ -7,15 +7,17 @@
 
 import UIKit
 
-class BaseViewController<T: BaseView>: UIViewController {
-    private let baseView: T
+class BaseViewController<V: BaseView, VM: ViewModel>: UIViewController {
+    private let baseView: V
+    private let viewModel: VM
     
     override func loadView() {
         self.view = baseView
     }
     
-    init(baseView: T) {
+    init(baseView: V, viewModel: VM) {
         self.baseView = baseView
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
