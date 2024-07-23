@@ -15,7 +15,8 @@
 		CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B972C4E4B0F00327314 /* BaseView.swift */; };
 		CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B992C4E4B9600327314 /* BaseViewController.swift */; };
 		CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B9C2C4E4E9000327314 /* Observable.swift */; };
-		CEB45B9F2C4E50AB00327314 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B9E2C4E50AB00327314 /* BaseViewModel.swift */; };
+		CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BD12C4FCFA100327314 /* ViewModel.swift */; };
+		CEB45BD62C4FD06500327314 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CEB45BD52C4FD06500327314 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +30,8 @@
 		CEB45B972C4E4B0F00327314 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		CEB45B992C4E4B9600327314 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CEB45B9C2C4E4E9000327314 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		CEB45B9E2C4E50AB00327314 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		CEB45BD12C4FCFA100327314 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		CEB45BD52C4FD06500327314 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 		CEB45B6D2C4E3D0400327314 = {
 			isa = PBXGroup;
 			children = (
+				CEB45BD52C4FD06500327314 /* .gitignore */,
 				CEB45B782C4E3D0400327314 /* MySplashed */,
 				CEB45B772C4E3D0400327314 /* Products */,
 			);
@@ -87,7 +90,6 @@
 			children = (
 				CEB45B972C4E4B0F00327314 /* BaseView.swift */,
 				CEB45B992C4E4B9600327314 /* BaseViewController.swift */,
-				CEB45B9E2C4E50AB00327314 /* BaseViewModel.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB45B9B2C4E4E8700327314 /* Observable */,
+				CEB45BD02C4FCF7D00327314 /* Protocols */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -122,6 +125,14 @@
 				CEB45B9C2C4E4E9000327314 /* Observable.swift */,
 			);
 			path = Observable;
+			sourceTree = "<group>";
+		};
+		CEB45BD02C4FCF7D00327314 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45BD12C4FCFA100327314 /* ViewModel.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB45B832C4E3D0600327314 /* Assets.xcassets in Resources */,
+				CEB45BD62C4FD06500327314 /* .gitignore in Resources */,
 				CEB45B862C4E3D0600327314 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,9 +209,9 @@
 				CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */,
 				CEB45B7E2C4E3D0400327314 /* ViewController.swift in Sources */,
 				CEB45B7A2C4E3D0400327314 /* AppDelegate.swift in Sources */,
-				CEB45B9F2C4E50AB00327314 /* BaseViewModel.swift in Sources */,
 				CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */,
 				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
+				CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */,
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
