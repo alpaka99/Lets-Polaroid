@@ -8,9 +8,5 @@
 import UIKit
 
 final class SplashViewController: BaseViewController<SplashView, SplashViewModel> {
-    override func configureNavigationItem() {
-        super.configureNavigationItem()
-        
-        navigationItem.title = "SplashView"
-    }
+    
 }
