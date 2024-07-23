@@ -8,7 +8,6 @@
 import Foundation
 
 final class SplashViewModel: ViewModel {
-    
     struct Input: Equatable {
         var startButtonTapped = Observable(false)
     }
@@ -20,12 +19,13 @@ final class SplashViewModel: ViewModel {
     var input = Input()
     var output = Output()
     
-    required init() {
-        bindStartButtonTapped()
-    }
-    
     enum Action: String {
         case startButtonTapped
+    }
+    
+    // MARK: 추후에 이 부분이 자동으로 등록되거나, protocol에서 required로 강제될 수 있도록 하기
+    init() {
+        configureBind()
     }
     
     func react<U>(_ action: Action, value: U) where U : Equatable {
@@ -44,5 +44,9 @@ final class SplashViewModel: ViewModel {
         self(\.startButtonTapped).bind { [weak self] value in
             self?.reduce(\.isShowOnboarding.value, into: value)
         }
+    }
+    
+    func configureBind() {
+        bindStartButtonTapped()
     }
 }
