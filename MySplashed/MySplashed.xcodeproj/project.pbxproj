@@ -12,7 +12,11 @@
 		CEB45B7E2C4E3D0400327314 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B7D2C4E3D0400327314 /* ViewController.swift */; };
 		CEB45B832C4E3D0600327314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB45B822C4E3D0600327314 /* Assets.xcassets */; };
 		CEB45B862C4E3D0600327314 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CEB45B852C4E3D0600327314 /* Base */; };
-		CEB45B8E2C4E3D1900327314 /* .gitIgnore in Resources */ = {isa = PBXBuildFile; fileRef = CEB45B8D2C4E3D1900327314 /* .gitIgnore */; };
+		CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B972C4E4B0F00327314 /* BaseView.swift */; };
+		CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B992C4E4B9600327314 /* BaseViewController.swift */; };
+		CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45B9C2C4E4E9000327314 /* Observable.swift */; };
+		CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BD12C4FCFA100327314 /* ViewModel.swift */; };
+		CEB45BD62C4FD06500327314 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CEB45BD52C4FD06500327314 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +27,11 @@
 		CEB45B822C4E3D0600327314 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEB45B852C4E3D0600327314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEB45B872C4E3D0600327314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEB45B8D2C4E3D1900327314 /* .gitIgnore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitIgnore; sourceTree = "<group>"; };
+		CEB45B972C4E4B0F00327314 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		CEB45B992C4E4B9600327314 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		CEB45B9C2C4E4E9000327314 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		CEB45BD12C4FCFA100327314 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		CEB45BD52C4FD06500327314 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +48,7 @@
 		CEB45B6D2C4E3D0400327314 = {
 			isa = PBXGroup;
 			children = (
-				CEB45B8D2C4E3D1900327314 /* .gitIgnore */,
+				CEB45BD52C4FD06500327314 /* .gitignore */,
 				CEB45B782C4E3D0400327314 /* MySplashed */,
 				CEB45B772C4E3D0400327314 /* Products */,
 			);
@@ -57,14 +65,74 @@
 		CEB45B782C4E3D0400327314 /* MySplashed */ = {
 			isa = PBXGroup;
 			children = (
+				CEB45B8F2C4E486D00327314 /* App */,
+				CEB45B902C4E487400327314 /* Bases */,
+				CEB45B942C4E49BA00327314 /* Presenters */,
+				CEB45B912C4E487A00327314 /* Resoureces */,
+				CEB45B922C4E488700327314 /* Utils */,
+			);
+			path = MySplashed;
+			sourceTree = "<group>";
+		};
+		CEB45B8F2C4E486D00327314 /* App */ = {
+			isa = PBXGroup;
+			children = (
 				CEB45B792C4E3D0400327314 /* AppDelegate.swift */,
 				CEB45B7B2C4E3D0400327314 /* SceneDelegate.swift */,
-				CEB45B7D2C4E3D0400327314 /* ViewController.swift */,
-				CEB45B822C4E3D0600327314 /* Assets.xcassets */,
 				CEB45B842C4E3D0600327314 /* LaunchScreen.storyboard */,
 				CEB45B872C4E3D0600327314 /* Info.plist */,
 			);
-			path = MySplashed;
+			path = App;
+			sourceTree = "<group>";
+		};
+		CEB45B902C4E487400327314 /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45B972C4E4B0F00327314 /* BaseView.swift */,
+				CEB45B992C4E4B9600327314 /* BaseViewController.swift */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
+		CEB45B912C4E487A00327314 /* Resoureces */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45B822C4E3D0600327314 /* Assets.xcassets */,
+			);
+			path = Resoureces;
+			sourceTree = "<group>";
+		};
+		CEB45B922C4E488700327314 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45B9B2C4E4E8700327314 /* Observable */,
+				CEB45BD02C4FCF7D00327314 /* Protocols */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		CEB45B942C4E49BA00327314 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45B7D2C4E3D0400327314 /* ViewController.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		CEB45B9B2C4E4E8700327314 /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45B9C2C4E4E9000327314 /* Observable.swift */,
+			);
+			path = Observable;
+			sourceTree = "<group>";
+		};
+		CEB45BD02C4FCF7D00327314 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45BD12C4FCFA100327314 /* ViewModel.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +193,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEB45B8E2C4E3D1900327314 /* .gitIgnore in Resources */,
 				CEB45B832C4E3D0600327314 /* Assets.xcassets in Resources */,
+				CEB45BD62C4FD06500327314 /* .gitignore in Resources */,
 				CEB45B862C4E3D0600327314 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +206,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */,
 				CEB45B7E2C4E3D0400327314 /* ViewController.swift in Sources */,
 				CEB45B7A2C4E3D0400327314 /* AppDelegate.swift in Sources */,
 				CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */,
+				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
+				CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */,
+				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +358,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CZH2CMCGCZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MySplashed/Info.plist;
+				INFOPLIST_FILE = MySplashed/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -318,7 +390,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CZH2CMCGCZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MySplashed/Info.plist;
+				INFOPLIST_FILE = MySplashed/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
