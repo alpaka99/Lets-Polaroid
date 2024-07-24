@@ -40,6 +40,7 @@ final class SplashView: BaseView {
             .font(ofSize: 16, weight: .semibold)
             .cornerStyle(.capsule)
         button.tintColor = .white
+        button.isHidden = true
         return button
     }()
     
@@ -78,6 +79,17 @@ final class SplashView: BaseView {
             button.bottom.equalTo(self.safeAreaLayoutGuide)
                 .inset(20)
             button.height.equalTo(44)
+        }
+    }
+    
+    override func configureUI() {
+        super.configureUI()
+        
+        self.alpha = 0
+        UIView.animate(withDuration: 2) { [weak self] in
+            self?.alpha = 1
+        } completion: { [weak self] _ in
+            self?.startButton.isHidden = false
         }
     }
 }
