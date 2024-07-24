@@ -17,12 +17,14 @@ final class ProfileSelectView: BaseView {
         imageView.showBadge()
         return imageView
     }()
-    lazy var profileCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+    lazy var profileCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.createLayout(absoluteRowHeight: 80, columns: 4, spacing: 10, direction: .horizontal))
     
     var dataSource: UICollectionViewDiffableDataSource<Section, ProfileImage>!
+    
     enum Section {
         case main
     }
+    
     var items = ProfileImage.allCases
     
     override init(frame: CGRect) {

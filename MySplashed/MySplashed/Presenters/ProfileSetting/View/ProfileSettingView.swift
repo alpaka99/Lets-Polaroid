@@ -28,6 +28,10 @@ final class ProfileSettingView: BaseView {
         label.text = "validation label"
         return label
     }()
+    private let mbtiView = {
+        let view = MBTIView()
+        return view
+    }()
     private(set) var completeButton = {
         let button = UIButton()
             .title("완료")
@@ -43,6 +47,7 @@ final class ProfileSettingView: BaseView {
         self.addSubview(profileImage)
         self.addSubview(nicknameTextField)
         self.addSubview(validationLabel)
+        self.addSubview(mbtiView)
         self.addSubview(completeButton)
     }
     
@@ -68,8 +73,14 @@ final class ProfileSettingView: BaseView {
                 .offset(16)
             label.horizontalEdges.equalTo(nicknameTextField.snp.horizontalEdges)
         }
+        mbtiView.snp.makeConstraints { view in
+            view.top.equalTo(validationLabel.snp.bottom)
+                .offset(16)
+            view.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+                .inset(16)
+        }
         completeButton.snp.makeConstraints { btn in
-            btn.top.greaterThanOrEqualTo(validationLabel.snp.bottom)
+            btn.top.greaterThanOrEqualTo(mbtiView.snp.bottom)
                 .offset(16)
             btn.horizontalEdges.equalTo(nicknameTextField.snp.horizontalEdges)
             btn.bottom.equalTo(self.safeAreaLayoutGuide)

@@ -37,6 +37,9 @@
 		CEB45C2F2C50F45100327314 /* ProfileSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C2E2C50F45100327314 /* ProfileSelectCell.swift */; };
 		CEB45C312C50F9F200327314 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C302C50F9F200327314 /* BaseCollectionViewCell.swift */; };
 		CEB45C332C51186E00327314 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C322C51186E00327314 /* ProfileImage.swift */; };
+		CEB45C352C511C0800327314 /* MBTIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C342C511C0800327314 /* MBTIView.swift */; };
+		CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C362C511FD600327314 /* UICollectionViewLayout+.swift */; };
+		CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C382C5139AC00327314 /* MBTIViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +74,9 @@
 		CEB45C2E2C50F45100327314 /* ProfileSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectCell.swift; sourceTree = "<group>"; };
 		CEB45C302C50F9F200327314 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEB45C322C51186E00327314 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		CEB45C342C511C0800327314 /* MBTIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTIView.swift; sourceTree = "<group>"; };
+		CEB45C362C511FD600327314 /* UICollectionViewLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+.swift"; sourceTree = "<group>"; };
+		CEB45C382C5139AC00327314 /* MBTIViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTIViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +238,7 @@
 				CEB45BEA2C4FEDF300327314 /* UIColor+.swift */,
 				CEB45BEC2C4FF00800327314 /* UIButton+.swift */,
 				CEB45BEE2C50081800327314 /* UIViewController+.swift */,
+				CEB45C362C511FD600327314 /* UICollectionViewLayout+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -250,6 +257,8 @@
 			isa = PBXGroup;
 			children = (
 				CEB45BF42C5009DD00327314 /* ProfileSettingView.swift */,
+				CEB45C342C511C0800327314 /* MBTIView.swift */,
+				CEB45C382C5139AC00327314 /* MBTIViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -392,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB45C002C502A5600327314 /* InternalPadding.swift in Sources */,
+				CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */,
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
 				CEB45C2B2C50ECCE00327314 /* ProfileSelectViewModel.swift in Sources */,
 				CEB45C332C51186E00327314 /* ProfileImage.swift in Sources */,
@@ -403,6 +413,7 @@
 				CEB45BEB2C4FEDF300327314 /* UIColor+.swift in Sources */,
 				CEB45C292C50ECBD00327314 /* ProfileSelectView.swift in Sources */,
 				CEB45BF52C5009DD00327314 /* ProfileSettingView.swift in Sources */,
+				CEB45C352C511C0800327314 /* MBTIView.swift in Sources */,
 				CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */,
 				CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */,
 				CEB45BED2C4FF00800327314 /* UIButton+.swift in Sources */,
@@ -416,6 +427,7 @@
 				CEB45BD92C4FE05300327314 /* SplashViewController.swift in Sources */,
 				CEB45BF72C5009F500327314 /* ProfileSettingViewModel.swift in Sources */,
 				CEB45BDB2C4FE05900327314 /* SplashView.swift in Sources */,
+				CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */,
 				CEB45BFC2C5020FB00327314 /* RoundImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
