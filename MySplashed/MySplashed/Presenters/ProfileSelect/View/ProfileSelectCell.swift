@@ -22,8 +22,10 @@ final class ProfileSelectCell: BaseCollectionViewCell {
     override func configureLayout() {
         super.configureLayout()
         
-        image.snp.makeConstraints { image in
-            image.edges.equalTo(self.safeAreaLayoutGuide)
+        image.snp.makeConstraints { view in
+            view.center.equalTo(self)
+            view.width.equalTo(self)
+            view.height.equalTo(image.snp.width)
         }
     }
 }

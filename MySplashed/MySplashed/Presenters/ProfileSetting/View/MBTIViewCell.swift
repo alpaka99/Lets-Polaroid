@@ -28,7 +28,6 @@ final class MBTIViewCell: BaseCollectionViewCell {
             view.width.equalTo(self.snp.width)
             view.height.equalTo(label.snp.width)
                 .multipliedBy(1)
-//            view.edges.equalTo(self)
         }
     }
     
@@ -38,7 +37,7 @@ final class MBTIViewCell: BaseCollectionViewCell {
     }
     
     func configureAlphabet(_ alphabet: String) {
-        label.text = alphabet
+        label.text = alphabet.uppercased()
     }
     
     func selected() {

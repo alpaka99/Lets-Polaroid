@@ -40,6 +40,8 @@
 		CEB45C352C511C0800327314 /* MBTIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C342C511C0800327314 /* MBTIView.swift */; };
 		CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C362C511FD600327314 /* UICollectionViewLayout+.swift */; };
 		CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C382C5139AC00327314 /* MBTIViewCell.swift */; };
+		CEB45C3B2C5153F300327314 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C3A2C5153F300327314 /* Sections.swift */; };
+		CEB45C3D2C51545700327314 /* MBTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C3C2C51545700327314 /* MBTI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +79,8 @@
 		CEB45C342C511C0800327314 /* MBTIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTIView.swift; sourceTree = "<group>"; };
 		CEB45C362C511FD600327314 /* UICollectionViewLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+.swift"; sourceTree = "<group>"; };
 		CEB45C382C5139AC00327314 /* MBTIViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTIViewCell.swift; sourceTree = "<group>"; };
+		CEB45C3A2C5153F300327314 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
+		CEB45C3C2C51545700327314 /* MBTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +231,8 @@
 			children = (
 				CEB45BE52C4FEBA600327314 /* MSColor.swift */,
 				CEB45C322C51186E00327314 /* ProfileImage.swift */,
+				CEB45C3A2C5153F300327314 /* Sections.swift */,
+				CEB45C3C2C51545700327314 /* MBTI.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -407,6 +413,7 @@
 				CEB45C332C51186E00327314 /* ProfileImage.swift in Sources */,
 				CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */,
 				CEB45B7A2C4E3D0400327314 /* AppDelegate.swift in Sources */,
+				CEB45C3D2C51545700327314 /* MBTI.swift in Sources */,
 				CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */,
 				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
 				CEB45BDD2C4FE05E00327314 /* SplashViewModel.swift in Sources */,
@@ -425,6 +432,7 @@
 				CEB45BFE2C50265A00327314 /* PaddingImageView.swift in Sources */,
 				CEB45C2F2C50F45100327314 /* ProfileSelectCell.swift in Sources */,
 				CEB45BD92C4FE05300327314 /* SplashViewController.swift in Sources */,
+				CEB45C3B2C5153F300327314 /* Sections.swift in Sources */,
 				CEB45BF72C5009F500327314 /* ProfileSettingViewModel.swift in Sources */,
 				CEB45BDB2C4FE05900327314 /* SplashView.swift in Sources */,
 				CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */,

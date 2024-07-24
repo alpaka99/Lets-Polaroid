@@ -17,9 +17,9 @@ final class MBTIView: BaseView {
         return label
     }()
     
-    let mbtiCollectionView  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.createLayout(rows: 2, columns: 4, spacing: 8, direction: .horizontal))
+    let mbtiCollectionView  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.createLayout(rows: 2, columns: 4, spacing: 8, groupDirection: .horizontal, scrollDirection: .vertical))
     
-    var dataSource: UICollectionViewDiffableDataSource<String, String>!
+    var dataSource: UICollectionViewDiffableDataSource<MBTISection, MBTI>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,7 +38,7 @@ final class MBTIView: BaseView {
     override func configureUI() {
         super.configureUI()
         
-        mbtiCollectionView.isScrollEnabled = false
+//        mbtiCollectionView.isScrollEnabled = false
     }
     
     override func configureLayout() {
@@ -61,24 +61,23 @@ final class MBTIView: BaseView {
     }
     
     func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<MBTIViewCell, String> { cell, indexPath, itemIdentifier in
+        let cellRegistration = UICollectionView.CellRegistration<MBTIViewCell, MBTI> { cell, indexPath, itemIdentifier in
             
         }
         
-        dataSource = UICollectionViewDiffableDataSource<String, String>(
+        dataSource = UICollectionViewDiffableDataSource<MBTISection, MBTI>(
             collectionView: mbtiCollectionView,
             cellProvider: { collectionView, indexPath, itemIdentifier in
                 let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-                cell.configureAlphabet(itemIdentifier)
+                cell.configureAlphabet(itemIdentifier.rawValue)
                 return cell
             })
     }
     
     func updateSnapShot() {
-        var snapShot = NSDiffableDataSourceSnapshot<String, String>()
-        snapShot.appendSections(["test"])
-        snapShot.appendItems(["E", "I", "S", "N", "T", "F", "J", "P"], toSection: "test")
+        var snapShot = NSDiffableDataSourceSnapshot<MBTISection, MBTI>()
+        snapShot.appendSections(MBTISection.allCases)
+        snapShot.appendItems(MBTI.allCases, toSection: .main)
         dataSource.apply(snapShot)
     }
-    
 }

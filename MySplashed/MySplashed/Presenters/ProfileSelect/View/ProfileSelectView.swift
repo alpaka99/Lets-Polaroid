@@ -17,7 +17,7 @@ final class ProfileSelectView: BaseView {
         imageView.showBadge()
         return imageView
     }()
-    lazy var profileCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.createLayout(absoluteRowHeight: 80, columns: 4, spacing: 10, direction: .horizontal))
+    lazy var profileCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.createLayout(rows: 4, columns: 4, spacing: 10, groupDirection: .horizontal, scrollDirection: .vertical))
     
     var dataSource: UICollectionViewDiffableDataSource<Section, ProfileImage>!
     
@@ -64,21 +64,6 @@ final class ProfileSelectView: BaseView {
         super.configureUI()
         
         profileCollectionView.isScrollEnabled = false
-    }
-    
-    func createLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/4), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(85))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.interItemSpacing = .fixed(10)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
-        
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
     }
     
     func configureDataSource() {
