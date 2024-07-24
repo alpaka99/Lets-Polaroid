@@ -10,6 +10,10 @@ import UIKit
 class BaseCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        configureHierarchy()
+        configureLayout()
+        configureUI()
     }
     
     @available(iOS, unavailable)
