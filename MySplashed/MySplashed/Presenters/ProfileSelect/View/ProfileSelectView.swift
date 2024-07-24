@@ -19,19 +19,17 @@ final class ProfileSelectView: BaseView {
     }()
     lazy var profileCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.createLayout(rows: 4, columns: 4, spacing: 10, groupDirection: .horizontal, scrollDirection: .vertical))
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, ProfileImage>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, ProfileImageData>!
     
     enum Section {
         case main
     }
     
-    var items = ProfileImage.allCases
-    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         configureDataSource()
-        updateSnapShot()
+        updateSnapShot(with: [])
     }
     
     override func configureHierarchy() {
@@ -67,24 +65,35 @@ final class ProfileSelectView: BaseView {
     }
     
     func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<ProfileSelectCell, ProfileImage> { cell, indexPath, itemIdentifier in
+        let cellRegistration = UICollectionView.CellRegistration<ProfileSelectCell, ProfileImageData> { cell, indexPath, itemIdentifier in
             
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, ProfileImage>(
+        dataSource = UICollectionViewDiffableDataSource<Section, ProfileImageData>(
             collectionView: profileCollectionView,
             cellProvider: { collectionView, indexPath, itemIdentifier in
                 let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-                cell.image.image.image = UIImage(named: itemIdentifier.rawValue) ?? UIImage(systemName: "star")
+                cell.image.image.image = UIImage(named: itemIdentifier.imageName) ?? UIImage(systemName: "star")
+                if itemIdentifier.isSelected {
+                    cell.selected()
+                } else {
+                    cell.deselected()
+                }
                 return cell
             })
     }
     
-    func updateSnapShot() {
-        var snapShot = NSDiffableDataSourceSnapshot<Section, ProfileImage>()
+    func setSelectedProfile(_ profileImage: ProfileImage) {
+        var snapShot = dataSource.snapshot(for: .main)
+        
+    }
+    
+    func updateSnapShot(with items: [ProfileImageData]) {
+        var snapShot = NSDiffableDataSourceSnapshot<Section, ProfileImageData>()
         snapShot.appendSections([.main])
         snapShot.appendItems(items, toSection: .main)
         
         dataSource.apply(snapShot)
     }
 }
+

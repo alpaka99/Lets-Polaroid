@@ -73,6 +73,14 @@ extension ViewModel {
     func bind<T: Equatable>(_ keyPath: WritableKeyPath<Output, Observable<T>>, closure: @escaping (T)->Void) {
         self(keyPath).bind(closure)
     }
+    
+    func actionBind<T: Equatable>(_ keyPath: WritableKeyPath<Input, Observable<T>>, closure: @escaping (T)->Void) {
+        self(keyPath).actionBind(closure)
+    }
+    
+    func actionBind<T: Equatable>(_ keyPath: WritableKeyPath<Output, Observable<T>>, closure: @escaping (T)->Void) {
+        self(keyPath).actionBind(closure)
+    }
 }
 
 

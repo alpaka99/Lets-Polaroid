@@ -34,6 +34,10 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
                 ),
                 animated: true)
         }
+        
+        viewModel.actionBind(\.selectedProfileImage) {[weak self] profileImage in
+            self?.baseView.profileImage.setProfileImage(profileImage)
+        }
     }
     
     @objc

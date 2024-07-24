@@ -5,7 +5,7 @@
 //  Created by user on 7/24/24.
 //
 
-enum ProfileImage: String, CaseIterable{
+enum ProfileImage: String, CaseIterable {
     case profile0 = "profile_0"
     case profile1 = "profile_1"
     case profile2 = "profile_2"
@@ -22,4 +22,19 @@ enum ProfileImage: String, CaseIterable{
     static func randomProfile() -> Self {
         return Self.allCases.randomElement() ?? .profile0
     }
+    
+    static var allData: [ProfileImageData] {
+        return Self.allCases.map {
+            $0.data
+        }
+    }
+    
+    var data: ProfileImageData {
+        return ProfileImageData(imageName: self.rawValue)
+    }
+}
+
+struct ProfileImageData: Equatable, Hashable {
+    var imageName: String
+    var isSelected: Bool = false
 }

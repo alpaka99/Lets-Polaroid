@@ -64,13 +64,15 @@ final class RoundImageView: BaseView {
         hideBadge()
     }
     
+    func setProfileImage(_ profileImage: ProfileImage) {
+        image.image = UIImage(named: profileImage.rawValue)
+    }
+    
     func selected() {
         image.layer.borderColor = MSColor.blue.color?.cgColor
         image.layer.borderWidth = 5
         image.alpha = 1
     }
-    
-    
     
     func deselected() {
         image.layer.borderWidth = 1

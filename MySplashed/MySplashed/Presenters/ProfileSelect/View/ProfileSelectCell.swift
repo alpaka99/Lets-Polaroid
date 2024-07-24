@@ -28,4 +28,12 @@ final class ProfileSelectCell: BaseCollectionViewCell {
             view.height.equalTo(image.snp.width)
         }
     }
+    
+    func selected() {
+        image.selected()
+    }
+    
+    func deselected() {
+        image.deselected()
+    }
 }

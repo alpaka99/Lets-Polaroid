@@ -12,6 +12,7 @@ final class ProfileSettingViewModel: ViewModel {
         var profileImageButtonTapped = Observable(false)
         var completeButtonTapped = Observable(false)
         var textFieldInput = Observable("")
+        var selectedProfileImage = Observable(ProfileImage.randomProfile())
     }
     
     struct Output: Equatable {

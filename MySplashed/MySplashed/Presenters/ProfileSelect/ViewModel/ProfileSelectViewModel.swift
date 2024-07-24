@@ -9,11 +9,12 @@ import Foundation
 
 final class ProfileSelectViewModel: ViewModel {
     struct Input: Equatable {
-        
+        var profileImageSelected = Observable(ProfileImage.randomProfile())
     }
     
     struct Output: Equatable {
-        
+        var selectedProfileImage = Observable(ProfileImage.randomProfile())
+        var profileImages = Observable(ProfileImage.allData)
     }
     
     var input = Input()
@@ -32,6 +33,21 @@ final class ProfileSelectViewModel: ViewModel {
     }
     
     func configureBind() {
+        actionBind(\.profileImageSelected) {[weak self] profileImage in
+            self?.profileImageSelected(profileImage)
+        }
+    }
+    
+    private func profileImageSelected(_ profileImage: ProfileImage) {
+        reduce(\.selectedProfileImage.value, into: profileImage)
+        let profileImageArray = self(\.profileImages).value.map {
+            if $0.imageName == profileImage.rawValue {
+                return ProfileImageData(imageName: $0.imageName, isSelected: true)
+            } else {
+                return $0
+            }
+        }
         
+        reduce(\.profileImages.value, into: profileImageArray)
     }
 }
