@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ProfileViewModel: ViewModel {
+final class ProfileSettingViewModel: ViewModel {
     struct Input: Equatable {
         var profileImageButtonTapped = Observable(false)
         var completeButtonTapped = Observable(false)
@@ -46,14 +46,12 @@ final class ProfileViewModel: ViewModel {
     
     func configureBind() {
         bind(\.profileImageButtonTapped) { [weak self] value in
-            self?.reduce(\.isMovingToProfileSelectionView, into: value)
+            self?.reduce(\.isMovingToProfileSelectionView.value, into: value)
         }
         
         bind(\.textFieldInput) { [weak self] value in
             self?.validateTextInput(value)
         }
-        
-        
     }
     
     private func profileImageTapped() {
@@ -68,6 +66,7 @@ final class ProfileViewModel: ViewModel {
     }
     
     private func completeButtonTapped() {
+        
         let toggledValue = !self(\.completeButtonTapped).value
         reduce(\.completeButtonTapped.value, into: toggledValue)
     }

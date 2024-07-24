@@ -9,11 +9,10 @@ import UIKit
 
 import SnapKit
 
-final class ProfileView: BaseView {
+final class ProfileSettingView: BaseView {
     private(set) var profileImage = {
         let imageView = RoundImageView()
         imageView.image.image = UIImage(named: "profile_0")
-        
         return imageView
     }()
     private(set) var nicknameTextField = {

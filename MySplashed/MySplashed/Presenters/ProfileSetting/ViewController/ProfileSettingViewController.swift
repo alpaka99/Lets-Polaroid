@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileViewController: BaseViewController<ProfileView, ProfileViewModel> {
+final class ProfileSettingViewController: BaseViewController<ProfileSettingView, ProfileSettingViewModel> {
     
     override func configureNavigationItem() {
         super.configureNavigationItem()
@@ -26,11 +26,14 @@ final class ProfileViewController: BaseViewController<ProfileView, ProfileViewMo
     override func configureDataBinding() {
         super.configureDataBinding()
         
-        viewModel.bind(\.isMovingToProfileSelectionView) { _ in
-            print("ProfileImageTapped")
-//            navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+        viewModel.bind(\.isMovingToProfileSelectionView) {[weak self] _ in
+            self?.navigationController?.pushViewController(
+                ProfileSelectViewController(
+                    baseView: ProfileSelectView(),
+                    viewModel: ProfileSelectViewModel()
+                ),
+                animated: true)
         }
-        
     }
     
     @objc

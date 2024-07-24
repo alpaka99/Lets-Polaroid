@@ -15,11 +15,10 @@ final class SplashViewController: BaseViewController<SplashView, SplashViewModel
     
     override func configureDataBinding() {
         super.configureDataBinding()
-        
         viewModel.bind(\.isShowOnboarding) {[weak self] _ in
-            let profileViewController = ProfileViewController(
-                baseView: ProfileView(),
-                viewModel: ProfileViewModel()
+            let profileViewController = ProfileSettingViewController(
+                baseView: ProfileSettingView(),
+                viewModel: ProfileSettingViewModel()
             )
             self?.navigationController?.pushViewController(profileViewController, animated: true)
         }

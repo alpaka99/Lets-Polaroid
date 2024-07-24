@@ -25,12 +25,17 @@
 		CEB45BEB2C4FEDF300327314 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BEA2C4FEDF300327314 /* UIColor+.swift */; };
 		CEB45BED2C4FF00800327314 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BEC2C4FF00800327314 /* UIButton+.swift */; };
 		CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BEE2C50081800327314 /* UIViewController+.swift */; };
-		CEB45BF52C5009DD00327314 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BF42C5009DD00327314 /* ProfileView.swift */; };
-		CEB45BF72C5009F500327314 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BF62C5009F500327314 /* ProfileViewModel.swift */; };
-		CEB45BF92C500A2F00327314 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BF82C500A2F00327314 /* ProfileViewController.swift */; };
+		CEB45BF52C5009DD00327314 /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BF42C5009DD00327314 /* ProfileSettingView.swift */; };
+		CEB45BF72C5009F500327314 /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BF62C5009F500327314 /* ProfileSettingViewModel.swift */; };
+		CEB45BF92C500A2F00327314 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BF82C500A2F00327314 /* ProfileSettingViewController.swift */; };
 		CEB45BFC2C5020FB00327314 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BFB2C5020FB00327314 /* RoundImageView.swift */; };
 		CEB45BFE2C50265A00327314 /* PaddingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BFD2C50265A00327314 /* PaddingImageView.swift */; };
 		CEB45C002C502A5600327314 /* InternalPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BFF2C502A5600327314 /* InternalPadding.swift */; };
+		CEB45C292C50ECBD00327314 /* ProfileSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C282C50ECBD00327314 /* ProfileSelectView.swift */; };
+		CEB45C2B2C50ECCE00327314 /* ProfileSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C2A2C50ECCE00327314 /* ProfileSelectViewModel.swift */; };
+		CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C2C2C50ED2C00327314 /* ProfileSelectViewController.swift */; };
+		CEB45C2F2C50F45100327314 /* ProfileSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C2E2C50F45100327314 /* ProfileSelectCell.swift */; };
+		CEB45C312C50F9F200327314 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C302C50F9F200327314 /* BaseCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,12 +58,17 @@
 		CEB45BEA2C4FEDF300327314 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		CEB45BEC2C4FF00800327314 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		CEB45BEE2C50081800327314 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
-		CEB45BF42C5009DD00327314 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		CEB45BF62C5009F500327314 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		CEB45BF82C500A2F00327314 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CEB45BF42C5009DD00327314 /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
+		CEB45BF62C5009F500327314 /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
+		CEB45BF82C500A2F00327314 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		CEB45BFB2C5020FB00327314 /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		CEB45BFD2C50265A00327314 /* PaddingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingImageView.swift; sourceTree = "<group>"; };
 		CEB45BFF2C502A5600327314 /* InternalPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalPadding.swift; sourceTree = "<group>"; };
+		CEB45C282C50ECBD00327314 /* ProfileSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectView.swift; sourceTree = "<group>"; };
+		CEB45C2A2C50ECCE00327314 /* ProfileSelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectViewModel.swift; sourceTree = "<group>"; };
+		CEB45C2C2C50ED2C00327314 /* ProfileSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectViewController.swift; sourceTree = "<group>"; };
+		CEB45C2E2C50F45100327314 /* ProfileSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectCell.swift; sourceTree = "<group>"; };
+		CEB45C302C50F9F200327314 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +128,7 @@
 			children = (
 				CEB45B972C4E4B0F00327314 /* BaseView.swift */,
 				CEB45B992C4E4B9600327314 /* BaseViewController.swift */,
+				CEB45C302C50F9F200327314 /* BaseCollectionViewCell.swift */,
 			);
 			path = Bases;
 			sourceTree = "<group>";
@@ -145,7 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				CEB45BFA2C5020D000327314 /* Reusable */,
-				CEB45BF02C5009B300327314 /* Profile */,
+				CEB45C242C50EC6700327314 /* ProfileSelect */,
+				CEB45BF02C5009B300327314 /* ProfileSetting */,
 				CEB45BD72C4FE04700327314 /* Splash */,
 			);
 			path = Presenters;
@@ -221,20 +233,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		CEB45BF02C5009B300327314 /* Profile */ = {
+		CEB45BF02C5009B300327314 /* ProfileSetting */ = {
 			isa = PBXGroup;
 			children = (
-				CEB45BF32C5009CB00327314 /* ViewController */,
-				CEB45BF22C5009C700327314 /* ViewModel */,
 				CEB45BF12C5009C300327314 /* View */,
+				CEB45BF22C5009C700327314 /* ViewModel */,
+				CEB45BF32C5009CB00327314 /* ViewController */,
 			);
-			path = Profile;
+			path = ProfileSetting;
 			sourceTree = "<group>";
 		};
 		CEB45BF12C5009C300327314 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CEB45BF42C5009DD00327314 /* ProfileView.swift */,
+				CEB45BF42C5009DD00327314 /* ProfileSettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -242,7 +254,7 @@
 		CEB45BF22C5009C700327314 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CEB45BF62C5009F500327314 /* ProfileViewModel.swift */,
+				CEB45BF62C5009F500327314 /* ProfileSettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -250,7 +262,7 @@
 		CEB45BF32C5009CB00327314 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CEB45BF82C500A2F00327314 /* ProfileViewController.swift */,
+				CEB45BF82C500A2F00327314 /* ProfileSettingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -262,6 +274,41 @@
 				CEB45BFD2C50265A00327314 /* PaddingImageView.swift */,
 			);
 			path = Reusable;
+			sourceTree = "<group>";
+		};
+		CEB45C242C50EC6700327314 /* ProfileSelect */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C252C50ECA000327314 /* View */,
+				CEB45C262C50ECA700327314 /* ViewModel */,
+				CEB45C272C50ECAF00327314 /* ViewController */,
+			);
+			path = ProfileSelect;
+			sourceTree = "<group>";
+		};
+		CEB45C252C50ECA000327314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C282C50ECBD00327314 /* ProfileSelectView.swift */,
+				CEB45C2E2C50F45100327314 /* ProfileSelectCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEB45C262C50ECA700327314 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C2A2C50ECCE00327314 /* ProfileSelectViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CEB45C272C50ECAF00327314 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C2C2C50ED2C00327314 /* ProfileSelectViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,22 +390,27 @@
 			files = (
 				CEB45C002C502A5600327314 /* InternalPadding.swift in Sources */,
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
+				CEB45C2B2C50ECCE00327314 /* ProfileSelectViewModel.swift in Sources */,
 				CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */,
 				CEB45B7A2C4E3D0400327314 /* AppDelegate.swift in Sources */,
 				CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */,
 				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
 				CEB45BDD2C4FE05E00327314 /* SplashViewModel.swift in Sources */,
 				CEB45BEB2C4FEDF300327314 /* UIColor+.swift in Sources */,
-				CEB45BF52C5009DD00327314 /* ProfileView.swift in Sources */,
+				CEB45C292C50ECBD00327314 /* ProfileSelectView.swift in Sources */,
+				CEB45BF52C5009DD00327314 /* ProfileSettingView.swift in Sources */,
 				CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */,
+				CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */,
 				CEB45BED2C4FF00800327314 /* UIButton+.swift in Sources */,
 				CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */,
+				CEB45C312C50F9F200327314 /* BaseCollectionViewCell.swift in Sources */,
 				CEB45BE92C4FEDD000327314 /* String+.swift in Sources */,
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
-				CEB45BF92C500A2F00327314 /* ProfileViewController.swift in Sources */,
+				CEB45BF92C500A2F00327314 /* ProfileSettingViewController.swift in Sources */,
 				CEB45BFE2C50265A00327314 /* PaddingImageView.swift in Sources */,
+				CEB45C2F2C50F45100327314 /* ProfileSelectCell.swift in Sources */,
 				CEB45BD92C4FE05300327314 /* SplashViewController.swift in Sources */,
-				CEB45BF72C5009F500327314 /* ProfileViewModel.swift in Sources */,
+				CEB45BF72C5009F500327314 /* ProfileSettingViewModel.swift in Sources */,
 				CEB45BDB2C4FE05900327314 /* SplashView.swift in Sources */,
 				CEB45BFC2C5020FB00327314 /* RoundImageView.swift in Sources */,
 			);
