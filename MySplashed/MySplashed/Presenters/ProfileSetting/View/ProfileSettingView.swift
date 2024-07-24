@@ -13,6 +13,8 @@ final class ProfileSettingView: BaseView {
     private(set) var profileImage = {
         let imageView = RoundImageView()
         imageView.image.image = UIImage(named: "profile_0")
+        imageView.showBadge()
+        imageView.selected()
         return imageView
     }()
     private(set) var nicknameTextField = {

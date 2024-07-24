@@ -12,6 +12,7 @@ import SnapKit
 final class RoundImageView: BaseView {
     private(set) var image = {
         let imageView = UIImageView()
+        imageView.alpha = 0.5
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -59,13 +60,33 @@ final class RoundImageView: BaseView {
         super.configureUI()
         
         self.addGestureRecognizer(tapGestureRecognizer)
-        setImageBorder()
-        
+        deselected()
+        hideBadge()
     }
     
-    func setImageBorder() {
+    func selected() {
         image.layer.borderColor = MSColor.blue.color?.cgColor
         image.layer.borderWidth = 5
+        image.alpha = 1
+    }
+    
+    
+    
+    func deselected() {
+        image.layer.borderWidth = 1
+        image.layer.borderColor = MSColor.black.color?.cgColor
+        image.alpha = 0.5
+    }
+    
+    
+    func hideBadge() {
+        badge.isHidden = true
+        badgeBackground.isHidden = true
+    }
+    
+    func showBadge() {
+        badge.isHidden = false
+        badgeBackground.isHidden = false
     }
     
     

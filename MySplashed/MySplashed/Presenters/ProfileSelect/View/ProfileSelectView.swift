@@ -13,6 +13,8 @@ final class ProfileSelectView: BaseView {
     let selectedProfileImage = {
         let imageView = RoundImageView()
         imageView.image.image = UIImage(named: "profile_0")
+        imageView.selected()
+        imageView.showBadge()
         return imageView
     }()
     lazy var profileCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
