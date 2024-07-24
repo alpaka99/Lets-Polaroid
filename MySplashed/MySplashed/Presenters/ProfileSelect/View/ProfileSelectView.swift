@@ -61,6 +61,7 @@ final class ProfileSelectView: BaseView {
             collectionView.top.equalTo(selectedProfileImage.snp.bottom)
                 .offset(16)
             collectionView.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+                .inset(16)
             collectionView.height.equalTo(profileCollectionView.snp.width)
         }
     }
@@ -75,7 +76,7 @@ final class ProfileSelectView: BaseView {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/4), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(85))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(10)
         
@@ -88,27 +89,23 @@ final class ProfileSelectView: BaseView {
     
     func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<ProfileSelectCell, String> { cell, indexPath, itemIdentifier in
-            print(#function, itemIdentifier)
-            cell.image.image.image = UIImage(named: itemIdentifier)
+            
         }
         
         dataSource = UICollectionViewDiffableDataSource<String, String>(
             collectionView: profileCollectionView,
             cellProvider: { collectionView, indexPath, itemIdentifier in
                 let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-                print(#function, itemIdentifier)
-                cell.backgroundColor = MSColor.blue.color
+                cell.image.image.image = UIImage(named: itemIdentifier) ?? UIImage(systemName: "star")
                 return cell
             })
     }
     
     func updateSnapShot() {
-        print(#function)
         var snapShot = NSDiffableDataSourceSnapshot<String, String>()
         snapShot.appendSections(["asd"])
         snapShot.appendItems(items, toSection: "asd")
         
         dataSource.apply(snapShot)
-        print(dataSource.snapshot().itemIdentifiers)
     }
 }
