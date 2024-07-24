@@ -12,28 +12,18 @@ import SnapKit
 final class ProfileSelectView: BaseView {
     let selectedProfileImage = {
         let imageView = RoundImageView()
-        imageView.image.image = UIImage(named: "profile_0")
+        imageView.image.image = UIImage(named: ProfileImage.profile0.rawValue)
         imageView.selected()
         imageView.showBadge()
         return imageView
     }()
     lazy var profileCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
-    var dataSource: UICollectionViewDiffableDataSource<String, String>!
-    var items = [
-        "profile_0",
-        "profile_1",
-        "profile_2",
-        "profile_3",
-        "profile_4",
-        "profile_5",
-        "profile_6",
-        "profile_7",
-        "profile_8",
-        "profile_9",
-        "profile_10",
-        "profile_11",
-    ]
+    var dataSource: UICollectionViewDiffableDataSource<Section, ProfileImage>!
+    enum Section {
+        case main
+    }
+    var items = ProfileImage.allCases
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -90,23 +80,23 @@ final class ProfileSelectView: BaseView {
     }
     
     func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<ProfileSelectCell, String> { cell, indexPath, itemIdentifier in
+        let cellRegistration = UICollectionView.CellRegistration<ProfileSelectCell, ProfileImage> { cell, indexPath, itemIdentifier in
             
         }
         
-        dataSource = UICollectionViewDiffableDataSource<String, String>(
+        dataSource = UICollectionViewDiffableDataSource<Section, ProfileImage>(
             collectionView: profileCollectionView,
             cellProvider: { collectionView, indexPath, itemIdentifier in
                 let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-                cell.image.image.image = UIImage(named: itemIdentifier) ?? UIImage(systemName: "star")
+                cell.image.image.image = UIImage(named: itemIdentifier.rawValue) ?? UIImage(systemName: "star")
                 return cell
             })
     }
     
     func updateSnapShot() {
-        var snapShot = NSDiffableDataSourceSnapshot<String, String>()
-        snapShot.appendSections(["asd"])
-        snapShot.appendItems(items, toSection: "asd")
+        var snapShot = NSDiffableDataSourceSnapshot<Section, ProfileImage>()
+        snapShot.appendSections([.main])
+        snapShot.appendItems(items, toSection: .main)
         
         dataSource.apply(snapShot)
     }

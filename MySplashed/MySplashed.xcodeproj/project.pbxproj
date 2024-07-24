@@ -36,6 +36,7 @@
 		CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C2C2C50ED2C00327314 /* ProfileSelectViewController.swift */; };
 		CEB45C2F2C50F45100327314 /* ProfileSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C2E2C50F45100327314 /* ProfileSelectCell.swift */; };
 		CEB45C312C50F9F200327314 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C302C50F9F200327314 /* BaseCollectionViewCell.swift */; };
+		CEB45C332C51186E00327314 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C322C51186E00327314 /* ProfileImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		CEB45C2C2C50ED2C00327314 /* ProfileSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectViewController.swift; sourceTree = "<group>"; };
 		CEB45C2E2C50F45100327314 /* ProfileSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectCell.swift; sourceTree = "<group>"; };
 		CEB45C302C50F9F200327314 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		CEB45C322C51186E00327314 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB45BE52C4FEBA600327314 /* MSColor.swift */,
+				CEB45C322C51186E00327314 /* ProfileImage.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				CEB45C002C502A5600327314 /* InternalPadding.swift in Sources */,
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
 				CEB45C2B2C50ECCE00327314 /* ProfileSelectViewModel.swift in Sources */,
+				CEB45C332C51186E00327314 /* ProfileImage.swift in Sources */,
 				CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */,
 				CEB45B7A2C4E3D0400327314 /* AppDelegate.swift in Sources */,
 				CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */,
