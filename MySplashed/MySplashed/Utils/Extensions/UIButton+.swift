@@ -21,7 +21,28 @@ extension UIButton {
     
     func image(systemName: String) -> Self {
         var config = config
-        config.image = UIImage(systemName: systemName)
+        config.image = UIImage(systemName: systemName)?.withTintColor(tintColor)
+        self.configuration = config
+        return self
+    }
+    
+    func imageSize(size: CGFloat) -> Self {
+        var config = config
+        if let _ = config.image {
+            let imageConfig = UIImage.SymbolConfiguration(pointSize: size)
+            config.preferredSymbolConfigurationForImage = imageConfig
+        }
+        self.configuration = config
+        return self
+    }
+    
+    func imageColor(color: UIColor) -> Self {
+        var config = config
+        let transformer = UIConfigurationColorTransformer { _ in
+            return color
+        }
+        
+        config.imageColorTransformer = transformer
         self.configuration = config
         return self
     }
@@ -29,6 +50,14 @@ extension UIButton {
     func title(_ title: String) -> Self {
         var config = config
         config.attributedTitle = AttributedString(stringLiteral: title)
+        self.configuration = config
+        return self
+    }
+    
+    func titleColor(_ color: UIColor) -> Self {
+        var config = config
+        config.baseForegroundColor = color
+        
         self.configuration = config
         return self
     }

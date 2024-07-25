@@ -52,6 +52,7 @@
 		CEB45C762C52354100327314 /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C752C52354100327314 /* LikeView.swift */; };
 		CEB45C782C52355200327314 /* LikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C772C52355200327314 /* LikeViewModel.swift */; };
 		CEB45C7A2C5235EB00327314 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C792C5235EB00327314 /* LikeViewController.swift */; };
+		CEB45C7C2C525F6300327314 /* PictureViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C7B2C525F6300327314 /* PictureViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +102,7 @@
 		CEB45C752C52354100327314 /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 		CEB45C772C52355200327314 /* LikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewModel.swift; sourceTree = "<group>"; };
 		CEB45C792C5235EB00327314 /* LikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
+		CEB45C7B2C525F6300327314 /* PictureViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +312,7 @@
 			children = (
 				CEB45BFB2C5020FB00327314 /* RoundImageView.swift */,
 				CEB45BFD2C50265A00327314 /* PaddingImageView.swift */,
+				CEB45C7B2C525F6300327314 /* PictureViewCell.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */,
 				CEB45BFC2C5020FB00327314 /* RoundImageView.swift in Sources */,
 				CEB45C642C5231E200327314 /* TopicViewController.swift in Sources */,
+				CEB45C7C2C525F6300327314 /* PictureViewCell.swift in Sources */,
 				CEB45C682C52320100327314 /* TopicViewModel.swift in Sources */,
 				CEB45C782C52355200327314 /* LikeViewModel.swift in Sources */,
 			);

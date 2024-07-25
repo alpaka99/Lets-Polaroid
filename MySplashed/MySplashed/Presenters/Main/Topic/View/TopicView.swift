@@ -39,7 +39,7 @@ final class TopicView: BaseView {
         
         collectionView.snp.makeConstraints { collection in
             collection.edges.equalTo(self.safeAreaLayoutGuide)
-                .inset(16)
+                .inset(8)
         }
     }
     
@@ -80,7 +80,7 @@ final class TopicView: BaseView {
     }
     
     func configureDataSource() {
-        var cellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, Int> { cell, indexPath, itemIdentifier in
+        var cellRegistration = UICollectionView.CellRegistration<PictureViewCell, Int> { cell, indexPath, itemIdentifier in
             
         }
         
