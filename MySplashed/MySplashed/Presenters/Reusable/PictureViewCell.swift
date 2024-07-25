@@ -14,22 +14,22 @@ final class PictureViewCell: BaseCollectionViewCell {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
-        view.backgroundColor = .systemTeal
         return view
     }()
     let totalLike = {
         let button = UIButton()
-            .title(10000.formatted())
-            .font(ofSize: 12, weight: .regular)
+            .font(ofSize: 8, weight: .regular)
             .image(systemName: "star.fill")
             .imageSize(size: 8)
             .imageColor(color: .systemYellow)
+            .imagePadding(8)
             .backgroundColor(.darkGray)
             .titleColor(.white)
             .cornerStyle(.capsule)
         
         
         button.isUserInteractionEnabled = false
+        button.isHidden = true
         return button
     }()
     let userLike = {
@@ -37,9 +37,9 @@ final class PictureViewCell: BaseCollectionViewCell {
             .image(systemName: "heart.fill")
             .cornerStyle(.capsule)
             .backgroundColor(.white.withAlphaComponent(0.5))
+        button.isHidden = true
         return button
     }()
-    
     
     override func configureHierarchy() {
         super.configureHierarchy()
@@ -64,4 +64,39 @@ final class PictureViewCell: BaseCollectionViewCell {
                 .inset(8)
         }
     }
+    
+    func configureUI(_ type: PictureCellType) {
+        switch type {
+        case .topic:
+            showTotalLike()
+            roundCellEdge()
+        case .search:
+            showTotalLike()
+            showUserLike()
+        case .like:
+            showUserLike()
+        }
+    }
+    
+    func showTotalLike() {
+        totalLike.isHidden = false
+    }
+    
+    func showUserLike() {
+        userLike.isHidden = false
+    }
+    
+    func roundCellEdge() {
+        imageView.layer.cornerRadius = 8
+    }
+    
+    func setTotalLike(_ likes: Int) {
+        totalLike.title(likes.formatted())
+    }
+}
+
+enum PictureCellType {
+    case topic
+    case search
+    case like
 }

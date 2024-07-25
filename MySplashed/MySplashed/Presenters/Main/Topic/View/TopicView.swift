@@ -46,11 +46,10 @@ final class TopicView: BaseView {
     override func configureUI() {
         super.configureUI()
         
-        collectionView.backgroundColor = .systemOrange
+        collectionView.showsVerticalScrollIndicator = false
     }
     
     private func createLayout() -> UICollectionViewLayout {
-        
         let config = UICollectionViewCompositionalLayoutConfiguration()
         
         let layout = UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, layoutEnvironment in
@@ -86,21 +85,14 @@ final class TopicView: BaseView {
         
         dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-            if indexPath.section == 0 {
-                cell.backgroundColor = MSColor.blue.color
-            } else if indexPath.section == 1  {
-                cell.backgroundColor = MSColor.magenta.color
-            } else {
-                cell.backgroundColor = MSColor.darkGray.color
-            }
+            cell.configureUI(.topic)
+            cell.setTotalLike(Int.random(in: 1000...10000))
             return cell
         })
         
         let supplymentaryRegistration = UICollectionView.SupplementaryRegistration<CollectionViewHeader>(elementKind: "CollectionViewHeader") { supplementaryView, elementKind, indexPath in
             let sectionKind = Section.allCases[indexPath.section]
-            print(sectionKind, indexPath)
             supplementaryView.label.text = sectionKind.rawValue
-            supplementaryView.backgroundColor = .systemGreen
         }
         
         dataSource.supplementaryViewProvider = { (view, kind, indexPath) in
@@ -113,11 +105,8 @@ final class TopicView: BaseView {
         
         snapShot.appendSections(Section.allCases)
         let testArray1 = [Int](0..<9)
-        print(testArray1)
         let testArray2 = [Int](10..<19)
-        print(testArray2)
         let testArray3 = [Int](20..<29)
-        print(testArray3)
         
         snapShot.appendItems(testArray1, toSection: .goldenHour)
         snapShot.appendItems(testArray2, toSection: .business)

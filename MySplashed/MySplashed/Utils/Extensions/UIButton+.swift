@@ -82,6 +82,14 @@ extension UIButton {
         return self
     }
     
+    func imagePadding(_ space: CGFloat) -> Self {
+        var config = config
+        config.imagePadding = space
+        
+        self.configuration = config
+        return self
+    }
+    
     func cornerStyle(_ cornerStyle: Configuration.CornerStyle) -> Self {
         var config = config
         config.cornerStyle = cornerStyle
