@@ -12,7 +12,7 @@ import SnapKit
 final class SplashView: BaseView {
     private let launchTitle = {
         let label = UILabel()
-        label.text = "HELLO.\nMY SPLASHED🎨"
+        label.text = "HELLO ฅ^._.^ฅ\nMY SPLASHED"
         label.numberOfLines = 0
         label.textColor = MSColor.blue.color
         label.font = UIFont.systemFont(ofSize: 40, weight: .heavy)

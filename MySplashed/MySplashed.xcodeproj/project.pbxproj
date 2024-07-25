@@ -42,6 +42,7 @@
 		CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C382C5139AC00327314 /* MBTIViewCell.swift */; };
 		CEB45C3B2C5153F300327314 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C3A2C5153F300327314 /* Sections.swift */; };
 		CEB45C3D2C51545700327314 /* MBTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C3C2C51545700327314 /* MBTI.swift */; };
+		CEB45C4A2C51EB1A00327314 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C492C51EB1A00327314 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		CEB45C382C5139AC00327314 /* MBTIViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTIViewCell.swift; sourceTree = "<group>"; };
 		CEB45C3A2C5153F300327314 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		CEB45C3C2C51545700327314 /* MBTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTI.swift; sourceTree = "<group>"; };
+		CEB45C492C51EB1A00327314 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 		CEB45B942C4E49BA00327314 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				CEB45C482C51EAF800327314 /* TabBar */,
 				CEB45BFA2C5020D000327314 /* Reusable */,
 				CEB45C242C50EC6700327314 /* ProfileSelect */,
 				CEB45BF02C5009B300327314 /* ProfileSetting */,
@@ -329,6 +332,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		CEB45C482C51EAF800327314 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C492C51EB1A00327314 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -407,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB45C002C502A5600327314 /* InternalPadding.swift in Sources */,
+				CEB45C4A2C51EB1A00327314 /* TabBarController.swift in Sources */,
 				CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */,
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
 				CEB45C2B2C50ECCE00327314 /* ProfileSelectViewModel.swift in Sources */,
