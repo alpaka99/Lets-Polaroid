@@ -58,6 +58,7 @@
 		CEB45C852C526B3100327314 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEB45C842C526B3100327314 /* Kingfisher */; };
 		CEB45C8A2C527B2700327314 /* TopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C892C527B2700327314 /* TopicResponse.swift */; };
 		CEB45C8C2C527C5200327314 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8B2C527C5200327314 /* User.swift */; };
+		CEB45C8F2C527CA100327314 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8E2C527CA100327314 /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 		CEB45C872C5272D400327314 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		CEB45C892C527B2700327314 /* TopicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicResponse.swift; sourceTree = "<group>"; };
 		CEB45C8B2C527C5200327314 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CEB45C8E2C527CA100327314 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 		CEB45B922C4E488700327314 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CEB45C8D2C527C9B00327314 /* Routers */,
 				CEB45BE42C4FEB9800327314 /* Constants */,
 				CEB45BE72C4FEDA800327314 /* Extensions */,
 				CEB45C7D2C526AC200327314 /* Managers */,
@@ -521,6 +524,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CEB45C8D2C527C9B00327314 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C8E2C527CA100327314 /* Router.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -618,6 +629,7 @@
 				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
 				CEB45BDD2C4FE05E00327314 /* SplashViewModel.swift in Sources */,
 				CEB45BEB2C4FEDF300327314 /* UIColor+.swift in Sources */,
+				CEB45C8F2C527CA100327314 /* Router.swift in Sources */,
 				CEB45C292C50ECBD00327314 /* ProfileSelectView.swift in Sources */,
 				CEB45BF52C5009DD00327314 /* ProfileSettingView.swift in Sources */,
 				CEB45C352C511C0800327314 /* MBTIView.swift in Sources */,
