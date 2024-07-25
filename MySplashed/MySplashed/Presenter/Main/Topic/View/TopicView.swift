@@ -112,6 +112,7 @@ final class TopicView: BaseView {
         
         var snapShot = dataSource.snapshot(for: sectionType)
         
+        snapShot.deleteAll()
         snapShot.append(data)
         
         dataSource.apply(snapShot, to: sectionType)
