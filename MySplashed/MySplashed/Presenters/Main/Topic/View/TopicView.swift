@@ -11,9 +11,9 @@ import SnapKit
 
 final class TopicView: BaseView {
     enum Section: String, CaseIterable {
-        case goldenHour
-        case business
-        case architecture
+        case goldenHour = "골든 아워"
+        case business = "비즈니스 및 업무"
+        case architecture = "건축 및 인테리어"
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -131,7 +131,8 @@ final class TopicView: BaseView {
 final class CollectionViewHeader: UICollectionReusableView {
     lazy var label = {
         let label = UILabel()
-        label.text = "제발!!"
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.textColor = MSColor.darkGray.color
         return label
     }()
     
@@ -154,6 +155,7 @@ final class CollectionViewHeader: UICollectionReusableView {
     func configureLayout() {
         label.snp.makeConstraints { label in
             label.edges.equalTo(self)
+                .inset(16)
         }
     }
     
