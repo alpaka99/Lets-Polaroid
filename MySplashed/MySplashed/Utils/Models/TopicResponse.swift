@@ -24,13 +24,3 @@ struct TopicResponse: Decodable {
         case user
     }
 }
-
-struct User: Decodable {
-    let name: String
-    let profileImage: [String : String]
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-        case profileImage = "profile_image"
-    }
-}

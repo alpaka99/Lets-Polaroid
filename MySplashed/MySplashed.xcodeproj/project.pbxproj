@@ -57,6 +57,7 @@
 		CEB45C822C526B2700327314 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEB45C812C526B2700327314 /* Alamofire */; };
 		CEB45C852C526B3100327314 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEB45C842C526B3100327314 /* Kingfisher */; };
 		CEB45C8A2C527B2700327314 /* TopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C892C527B2700327314 /* TopicResponse.swift */; };
+		CEB45C8C2C527C5200327314 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8B2C527C5200327314 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		CEB45C7E2C526AD200327314 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CEB45C872C5272D400327314 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		CEB45C892C527B2700327314 /* TopicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicResponse.swift; sourceTree = "<group>"; };
+		CEB45C8B2C527C5200327314 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -514,6 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB45C892C527B2700327314 /* TopicResponse.swift */,
+				CEB45C8B2C527C5200327314 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */,
 				CEB45BED2C4FF00800327314 /* UIButton+.swift in Sources */,
 				CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */,
+				CEB45C8C2C527C5200327314 /* User.swift in Sources */,
 				CEB45C312C50F9F200327314 /* BaseCollectionViewCell.swift in Sources */,
 				CEB45BE92C4FEDD000327314 /* String+.swift in Sources */,
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
