@@ -4,6 +4,7 @@
 APIKey.swift
 
 .DS_Store
+*.xcconfig
 
 GoogleService-Info.plist
 
