@@ -24,15 +24,15 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
     override func configureDataBinding() {
         super.configureDataBinding()
         
-        viewModel.bind(\.goldenHourItems) {[weak self] value in
+        viewModel.bind(\.goldenHourData) {[weak self] value in
             self?.baseView.updateSnapShot(value, sectionType: .goldenHour)
         }
         
-        viewModel.bind(\.businessItems) {[weak self] value in
+        viewModel.bind(\.businessData) {[weak self] value in
             self?.baseView.updateSnapShot(value, sectionType: .business)
         }
         
-        viewModel.bind(\.architectureItems) {[weak self] value in
+        viewModel.bind(\.architectureData) {[weak self] value in
             self?.baseView.updateSnapShot(value, sectionType: .architecture)
         }
     }

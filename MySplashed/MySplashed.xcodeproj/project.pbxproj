@@ -60,6 +60,7 @@
 		CEB45C8C2C527C5200327314 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8B2C527C5200327314 /* User.swift */; };
 		CEB45C8F2C527CA100327314 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8E2C527CA100327314 /* Router.swift */; };
 		CEB45C922C52915D00327314 /* TopicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C912C52915D00327314 /* TopicRepository.swift */; };
+		CEB45C972C52D4CC00327314 /* TopicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C962C52D4CC00327314 /* TopicData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		CEB45C8B2C527C5200327314 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CEB45C8E2C527CA100327314 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CEB45C912C52915D00327314 /* TopicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRepository.swift; sourceTree = "<group>"; };
+		CEB45C962C52D4CC00327314 /* TopicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,6 +557,7 @@
 			children = (
 				CEB45C892C527B2700327314 /* TopicResponse.swift */,
 				CEB45C8B2C527C5200327314 /* User.swift */,
+				CEB45C962C52D4CC00327314 /* TopicData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -659,6 +662,7 @@
 				CEB45C8F2C527CA100327314 /* Router.swift in Sources */,
 				CEB45C292C50ECBD00327314 /* ProfileSelectView.swift in Sources */,
 				CEB45BF52C5009DD00327314 /* ProfileSettingView.swift in Sources */,
+				CEB45C972C52D4CC00327314 /* TopicData.swift in Sources */,
 				CEB45C352C511C0800327314 /* MBTIView.swift in Sources */,
 				CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */,
 				CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */,

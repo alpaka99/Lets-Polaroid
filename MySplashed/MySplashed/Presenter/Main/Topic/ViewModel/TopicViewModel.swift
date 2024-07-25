@@ -10,12 +10,15 @@ import Foundation
 final class TopicViewModel: ViewModel {
     struct Input: Equatable {
         var topicViewWillAppear = Observable(false)
+        var goldenHourResponse: Observable<[TopicResponse]> = Observable([])
+        var businessResponse: Observable<[TopicResponse]> = Observable([])
+        var architectureResponse: Observable<[TopicResponse]> = Observable([])
     }
     
     struct Output: Equatable {
-        var goldenHourItems: Observable<[TopicResponse]> = Observable([])
-        var businessItems: Observable<[TopicResponse]> = Observable([])
-        var architectureItems: Observable<[TopicResponse]> = Observable([])
+        var goldenHourData: Observable<[TopicData]> = Observable([])
+        var businessData: Observable<[TopicData]> = Observable([])
+        var architectureData: Observable<[TopicData]> = Observable([])
     }
     
     var input = Input()
@@ -25,6 +28,7 @@ final class TopicViewModel: ViewModel {
     
     enum Action: String {
         case topicViewWillAppear
+        case loadTopics
     }
     
     init() {
@@ -35,30 +39,60 @@ final class TopicViewModel: ViewModel {
         switch action {
         case .topicViewWillAppear:
             topicViewWillAppear()
+        case .loadTopics:
+            loadTopics()
         }
     }
     
     func configureBind() {
         bind(\.topicViewWillAppear) {[weak self] _ in
             // topic view appearing event
-            // 1. api request
-            TopicType.allCases.forEach { topic in
-                self?.repository.requestTopic(of: topic) { value in
-                    switch topic {
-                    case .goldenHour:
-                        self?.reduce(\.goldenHourItems.value, into: value)
-                    case .business:
-                        self?.reduce(\.businessItems.value, into: value)
-                    case .architecture:
-                        self?.reduce(\.architectureItems.value, into: value)
-                    }
-                }
-            }
+            self?.react(.loadTopics, value: true)
+        }
+        
+        bind(\.goldenHourResponse) {[weak self] value in
+            self?.loadImages(type: .goldenHour, with: value)
+        }
+        
+        bind(\.businessResponse) {[weak self] value in
+            self?.loadImages(type: .business, with: value)
+        }
+        
+        bind(\.architectureResponse) {[weak self] value in
+            self?.loadImages(type: .architecture, with: value)
         }
     }
     
     private func topicViewWillAppear() {
         let toggledValue = !self(\.topicViewWillAppear).value
         reduce(\.topicViewWillAppear.value, into: toggledValue)
+    }
+    
+    private func loadTopics() {
+        TopicType.allCases.forEach {[weak self] topic in
+            self?.repository.requestTopic(of: topic) { value in
+                switch topic {
+                case .goldenHour:
+                    self?.reduce(\.goldenHourResponse.value, into: value)
+                case .business:
+                    self?.reduce(\.businessResponse.value, into: value)
+                case .architecture:
+                    self?.reduce(\.architectureResponse.value, into: value)
+                }
+            }
+        }
+    }
+    
+    private func loadImages(type: TopicType, with data: [TopicResponse]) {
+        repository.requestImage(of: data) {[weak self] value in
+            switch type {
+            case.goldenHour:
+                self?.reduce(\.goldenHourData.value, into: value)
+            case .business:
+                self?.reduce(\.businessData.value, into: value)
+            case .architecture:
+                self?.reduce(\.architectureData.value, into: value)
+            }
+        }
     }
 }

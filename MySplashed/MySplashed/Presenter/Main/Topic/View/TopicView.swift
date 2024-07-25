@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 
 final class TopicView: BaseView {
@@ -18,7 +19,7 @@ final class TopicView: BaseView {
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, TopicResponse>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, TopicData>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,15 +80,15 @@ final class TopicView: BaseView {
     }
     
     func configureDataSource() {
-        var cellRegistration = UICollectionView.CellRegistration<PictureViewCell, TopicResponse> { cell, indexPath, itemIdentifier in
+        var cellRegistration = UICollectionView.CellRegistration<PictureViewCell, TopicData> { cell, indexPath, itemIdentifier in
             
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, TopicResponse>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, TopicData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             cell.configureUI(.topic)
-            cell.setTotalLike(itemIdentifier.likes)
-            
+            cell.setTotalLike(itemIdentifier.topicResponse.likes)
+            cell.imageView.image = itemIdentifier.image
             return cell
         })
         
@@ -102,12 +103,12 @@ final class TopicView: BaseView {
     }
     
     func configureSnapShot() {
-        var snapShot = NSDiffableDataSourceSnapshot<Section, TopicResponse>()
+        var snapShot = NSDiffableDataSourceSnapshot<Section, TopicData>()
         snapShot.appendSections(Section.allCases)
         dataSource.apply(snapShot)
     }
     
-    func updateSnapShot(_ data: [TopicResponse], sectionType: Section) {
+    func updateSnapShot(_ data: [TopicData], sectionType: Section) {
         
         var snapShot = dataSource.snapshot(for: sectionType)
         
