@@ -59,6 +59,7 @@
 		CEB45C8A2C527B2700327314 /* TopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C892C527B2700327314 /* TopicResponse.swift */; };
 		CEB45C8C2C527C5200327314 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8B2C527C5200327314 /* User.swift */; };
 		CEB45C8F2C527CA100327314 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8E2C527CA100327314 /* Router.swift */; };
+		CEB45C922C52915D00327314 /* TopicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C912C52915D00327314 /* TopicRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,7 @@
 		CEB45C892C527B2700327314 /* TopicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicResponse.swift; sourceTree = "<group>"; };
 		CEB45C8B2C527C5200327314 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CEB45C8E2C527CA100327314 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		CEB45C912C52915D00327314 /* TopicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +154,8 @@
 			children = (
 				CEB45B8F2C4E486D00327314 /* App */,
 				CEB45B902C4E487400327314 /* Bases */,
-				CEB45B942C4E49BA00327314 /* Presenters */,
+				CEB45C932C5292CB00327314 /* Domain */,
+				CEB45B942C4E49BA00327314 /* Presenter */,
 				CEB45B912C4E487A00327314 /* Resoureces */,
 				CEB45B922C4E488700327314 /* Utils */,
 			);
@@ -196,14 +199,13 @@
 				CEB45BE42C4FEB9800327314 /* Constants */,
 				CEB45BE72C4FEDA800327314 /* Extensions */,
 				CEB45C7D2C526AC200327314 /* Managers */,
-				CEB45C882C527B1C00327314 /* Models */,
 				CEB45B9B2C4E4E8700327314 /* Observable */,
 				CEB45BD02C4FCF7D00327314 /* Protocols */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		CEB45B942C4E49BA00327314 /* Presenters */ = {
+		CEB45B942C4E49BA00327314 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				CEB45C5F2C52313500327314 /* Main */,
@@ -211,7 +213,7 @@
 				CEB45BFA2C5020D000327314 /* Reusable */,
 				CEB45C482C51EAF800327314 /* TabBar */,
 			);
-			path = Presenters;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		CEB45B9B2C4E4E8700327314 /* Observable */ = {
@@ -515,21 +517,46 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		CEB45C882C527B1C00327314 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				CEB45C892C527B2700327314 /* TopicResponse.swift */,
-				CEB45C8B2C527C5200327314 /* User.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		CEB45C8D2C527C9B00327314 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
 				CEB45C8E2C527CA100327314 /* Router.swift */,
 			);
 			path = Routers;
+			sourceTree = "<group>";
+		};
+		CEB45C902C52915400327314 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C912C52915D00327314 /* TopicRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		CEB45C932C5292CB00327314 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C942C5292E200327314 /* Topic */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		CEB45C942C5292E200327314 /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C952C5292FC00327314 /* Model */,
+				CEB45C902C52915400327314 /* Repository */,
+			);
+			path = Topic;
+			sourceTree = "<group>";
+		};
+		CEB45C952C5292FC00327314 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C892C527B2700327314 /* TopicResponse.swift */,
+				CEB45C8B2C527C5200327314 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -658,6 +685,7 @@
 				CEB45C7C2C525F6300327314 /* PictureViewCell.swift in Sources */,
 				CEB45C682C52320100327314 /* TopicViewModel.swift in Sources */,
 				CEB45C7F2C526AD200327314 /* NetworkManager.swift in Sources */,
+				CEB45C922C52915D00327314 /* TopicRepository.swift in Sources */,
 				CEB45C782C52355200327314 /* LikeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

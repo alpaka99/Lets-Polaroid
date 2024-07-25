@@ -18,13 +18,13 @@ final class TopicView: BaseView {
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, Int>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, TopicResponse>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configureDataSource()
-        updateSnapShot()
+        updateSnapShot([], sectionType: .goldenHour)
     }
     
     override func configureHierarchy() {
@@ -79,14 +79,15 @@ final class TopicView: BaseView {
     }
     
     func configureDataSource() {
-        var cellRegistration = UICollectionView.CellRegistration<PictureViewCell, Int> { cell, indexPath, itemIdentifier in
+        var cellRegistration = UICollectionView.CellRegistration<PictureViewCell, TopicResponse> { cell, indexPath, itemIdentifier in
             
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, TopicResponse>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             cell.configureUI(.topic)
-            cell.setTotalLike(Int.random(in: 1000...10000))
+            cell.setTotalLike(itemIdentifier.likes)
+            
             return cell
         })
         
@@ -100,19 +101,19 @@ final class TopicView: BaseView {
         }
     }
     
-    func updateSnapShot() {
-        var snapShot = NSDiffableDataSourceSnapshot<Section, Int>()
-        
+    func configureSnapShot() {
+        var snapShot = NSDiffableDataSourceSnapshot<Section, TopicResponse>()
         snapShot.appendSections(Section.allCases)
-        let testArray1 = [Int](0..<9)
-        let testArray2 = [Int](10..<19)
-        let testArray3 = [Int](20..<29)
-        
-        snapShot.appendItems(testArray1, toSection: .goldenHour)
-        snapShot.appendItems(testArray2, toSection: .business)
-        snapShot.appendItems(testArray3, toSection: .architecture)
-        
         dataSource.apply(snapShot)
+    }
+    
+    func updateSnapShot(_ data: [TopicResponse], sectionType: Section) {
+        
+        var snapShot = dataSource.snapshot(for: sectionType)
+        
+        snapShot.append(data)
+        
+        dataSource.apply(snapShot, to: sectionType)
     }
 }
 

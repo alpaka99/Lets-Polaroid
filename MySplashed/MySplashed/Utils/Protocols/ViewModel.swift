@@ -49,7 +49,7 @@ extension ViewModel {
             self.input[keyPath: keyPath] = convertedValue
             return true
         }
-        print("Failed")
+        print("Failed", keyPath)
         return false
     }
     
@@ -62,7 +62,7 @@ extension ViewModel {
             self.output[keyPath: keyPath] = convertedValue
             return true
         }
-        print("Failed")
+        print("Failed", keyPath)
         return false
     }
     

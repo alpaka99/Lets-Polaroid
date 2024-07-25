@@ -5,7 +5,7 @@
 //  Created by user on 7/25/24.
 //
 
-struct User: Decodable {
+struct User: Decodable, Hashable {
     let name: String
     let profileImage: [String : String]
     

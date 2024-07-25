@@ -39,7 +39,6 @@ extension Router: URLRequestConvertible {
     
     var header: [String : String] {
         let accessKey = Bundle.main.object(forInfoDictionaryKey: "ACCESS_KEY") as? String ?? ""
-        print(accessKey)
         return [
             "contentType" : "application/json",
             "Accept-Version" : "v1",
@@ -47,12 +46,10 @@ extension Router: URLRequestConvertible {
         ]
     }
     
-    var parameters: [String : String] {
+    var parameters: [String:String] {
         switch self {
         case .topic:
-            return [
-                "per_page" : "20",
-            ]
+            return [:]
         case .search:
             return [:]
         }
@@ -74,13 +71,14 @@ extension Router: URLRequestConvertible {
             method: method
         )
         request.allHTTPHeaderFields = header
+        
         return request
     }
 }
 
 
 
-enum TopicType: String {
+enum TopicType: String, CaseIterable {
     case goldenHour = "golden-hour"
     case business = "business-work"
     case architecture = "architecture-interior"
