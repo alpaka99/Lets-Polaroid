@@ -23,6 +23,8 @@ protocol ViewModel<Input, Output>: AnyObject {
     
     // react 메서드의 내부는 switch-case로 구현되어 가독성을 높히고, 명확하게 action에 따른 logic을 실행 할 수 있게 함
     func react<U: Equatable>(_ action: Action, value: U)
+    
+    func configureBind()
 }
 
 extension ViewModel {
@@ -45,7 +47,6 @@ extension ViewModel {
     {
         if let convertedValue = newValue as? T {
             self.input[keyPath: keyPath] = convertedValue
-            print(self.input[keyPath: keyPath])
             return true
         }
         print("Failed")
@@ -59,11 +60,26 @@ extension ViewModel {
     {
         if let convertedValue = newValue as? T {
             self.output[keyPath: keyPath] = convertedValue
-            print(self.output[keyPath: keyPath])
             return true
         }
         print("Failed")
         return false
+    }
+    
+    func bind<T: Equatable>(_ keyPath: WritableKeyPath<Input, Observable<T>>, closure: @escaping (T)->Void) {
+        self(keyPath).bind(closure)
+    }
+    
+    func bind<T: Equatable>(_ keyPath: WritableKeyPath<Output, Observable<T>>, closure: @escaping (T)->Void) {
+        self(keyPath).bind(closure)
+    }
+    
+    func actionBind<T: Equatable>(_ keyPath: WritableKeyPath<Input, Observable<T>>, closure: @escaping (T)->Void) {
+        self(keyPath).actionBind(closure)
+    }
+    
+    func actionBind<T: Equatable>(_ keyPath: WritableKeyPath<Output, Observable<T>>, closure: @escaping (T)->Void) {
+        self(keyPath).actionBind(closure)
     }
 }
 
@@ -94,6 +110,8 @@ final class BasicViewModel: ViewModel {
             reduce(\.input.value, into: "qwer")
         }
     }
+    
+    func configureBind() { }
 }
 
 

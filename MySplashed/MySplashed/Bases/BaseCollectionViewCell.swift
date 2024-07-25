@@ -1,15 +1,16 @@
 //
-//  BaseView.swift
+//  BaseCollectionViewCell.swift
 //  MySplashed
 //
-//  Created by user on 7/22/24.
+//  Created by user on 7/24/24.
 //
 
 import UIKit
 
-class BaseView: UIView {
+class BaseCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         configureHierarchy()
         configureLayout()
         configureUI()
@@ -22,5 +23,5 @@ class BaseView: UIView {
     
     func configureHierarchy() { }
     func configureLayout() { }
-    func configureUI() { self.backgroundColor = .systemBackground }
+    func configureUI() { }
 }

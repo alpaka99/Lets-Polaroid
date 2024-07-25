@@ -8,8 +8,8 @@
 import UIKit
 
 class BaseViewController<V: BaseView, VM: ViewModel>: UIViewController {
-    private let baseView: V
-    private let viewModel: VM
+    let baseView: V
+    let viewModel: VM
     
     override func loadView() {
         self.view = baseView
