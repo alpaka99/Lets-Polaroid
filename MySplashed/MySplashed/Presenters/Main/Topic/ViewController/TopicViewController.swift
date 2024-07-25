@@ -11,6 +11,6 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
     override func configureNavigationItem() {
         super.configureNavigationItem()
         
-        navigationItem.title = "TOPIC"
+        // profile iamge rightBarButton으로 넣기
     }
 }
