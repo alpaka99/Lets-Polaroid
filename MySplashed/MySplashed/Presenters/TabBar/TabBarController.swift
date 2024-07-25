@@ -21,20 +21,27 @@ final class TabBarController: UITabBarController {
 
 enum TabBarComponents: String, CaseIterable {
     case topic
-    case random
+//    case random
     case search
     case like
     
     var viewController: UIViewController {
         switch self {
         case .topic:
-            return SplashViewController(baseView: SplashView(), viewModel: SplashViewModel())
-        case .random:
-            return SplashViewController(baseView: SplashView(), viewModel: SplashViewModel())
+            return TopicViewController(
+                baseView: TopicView(),
+                viewModel: TopicViewModel()
+            )
         case .search:
-            return SplashViewController(baseView: SplashView(), viewModel: SplashViewModel())
+            return SearchViewController(
+                baseView: SearchView(),
+                viewModel: SearchViewModel()
+            )
         case .like:
-            return SplashViewController(baseView: SplashView(), viewModel: SplashViewModel())
+            return LikeViewController(
+                baseView: LikeView(),
+                viewModel: LikeViewModel()
+            )
         }
     }
     
@@ -42,8 +49,8 @@ enum TabBarComponents: String, CaseIterable {
         switch self {
         case .topic:
             return TabBarItem(iamgeName: "tab_trend", title: self.rawValue)
-        case .random:
-            return TabBarItem(iamgeName: "tab_random", title: self.rawValue)
+//        case .random:
+//            return TabBarItem(iamgeName: "tab_random", title: self.rawValue)
         case .search:
             return TabBarItem(iamgeName: "tab_search", title: self.rawValue)
         case .like:

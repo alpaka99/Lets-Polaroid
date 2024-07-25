@@ -40,7 +40,7 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         }
     
         viewModel.bind(\.completeButtonTapped) {[weak self] _ in
-            self?.setNewViewController(nextViewController: TabBarController(), isNavigation: true)
+            self?.setNewViewController(nextViewController: TabBarController(), isNavigation: false)
         }
     }
     
