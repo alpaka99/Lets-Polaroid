@@ -34,11 +34,13 @@ final class SplashView: BaseView {
     }()
     
     private(set) var startButton = {
-        let button = UIButton()
+        let button = UIButton.Configuration.plain()
             .title("시작하기")
             .backgroundColor(MSColor.blue.color ?? .systemBlue)
             .font(ofSize: 16, weight: .semibold)
             .cornerStyle(.capsule)
+            .build()
+        
         button.tintColor = .white
         button.isHidden = true
         return button

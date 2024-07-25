@@ -17,15 +17,16 @@ final class PictureViewCell: BaseCollectionViewCell {
         return view
     }()
     private let totalLike = {
-        let button = UIButton()
+        let button = UIButton.Configuration.plain()
             .font(ofSize: 8, weight: .regular)
             .image(systemName: "star.fill")
             .imageSize(size: 8)
             .imageColor(color: .systemYellow)
             .imagePadding(8)
             .backgroundColor(.darkGray)
-            .titleColor(.white)
+            .foregroundColor(.white)
             .cornerStyle(.capsule)
+            .build()
         
         
         button.isUserInteractionEnabled = false
@@ -33,10 +34,12 @@ final class PictureViewCell: BaseCollectionViewCell {
         return button
     }()
     private let userLike = {
-        let button = UIButton()
+        let button = UIButton.Configuration.plain()
             .image(systemName: "heart.fill")
             .cornerStyle(.capsule)
             .backgroundColor(.white.withAlphaComponent(0.5))
+            .build()
+        
         button.isHidden = true
         return button
     }()
@@ -91,7 +94,8 @@ final class PictureViewCell: BaseCollectionViewCell {
     }
     
     func setTotalLike(_ likes: Int) {
-        totalLike.title(likes.formatted())
+        let config = totalLike.configuration?.title(likes.formatted())
+        totalLike.configuration = config
     }
     
     func setImage(_ image: UIImage) {

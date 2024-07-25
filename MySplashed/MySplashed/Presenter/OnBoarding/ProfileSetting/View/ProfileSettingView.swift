@@ -33,10 +33,11 @@ final class ProfileSettingView: BaseView {
         return view
     }()
     private(set) var completeButton = {
-        let button = UIButton()
+        let button = UIButton.Configuration.plain()
             .title("완료")
             .cornerStyle(.capsule)
             .backgroundColor(MSColor.blue.color ?? .systemBlue)
+            .build()
         button.tintColor = .white
         return button
     }()
