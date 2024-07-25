@@ -88,7 +88,7 @@ final class TopicView: BaseView {
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             cell.configureUI(.topic)
             cell.setTotalLike(itemIdentifier.topicResponse.likes)
-            cell.imageView.image = itemIdentifier.image
+            cell.setImage(itemIdentifier.image)
             return cell
         })
         

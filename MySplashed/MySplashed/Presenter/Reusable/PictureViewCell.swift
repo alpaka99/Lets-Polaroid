@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 
 final class PictureViewCell: BaseCollectionViewCell {
-    let imageView = {
+    private let imageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         return view
     }()
-    let totalLike = {
+    private let totalLike = {
         let button = UIButton()
             .font(ofSize: 8, weight: .regular)
             .image(systemName: "star.fill")
@@ -32,7 +32,7 @@ final class PictureViewCell: BaseCollectionViewCell {
         button.isHidden = true
         return button
     }()
-    let userLike = {
+    private let userLike = {
         let button = UIButton()
             .image(systemName: "heart.fill")
             .cornerStyle(.capsule)
@@ -92,6 +92,10 @@ final class PictureViewCell: BaseCollectionViewCell {
     
     func setTotalLike(_ likes: Int) {
         totalLike.title(likes.formatted())
+    }
+    
+    func setImage(_ image: UIImage) {
+        imageView.image = image
     }
 }
 
