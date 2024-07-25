@@ -60,6 +60,7 @@ final class RoundImageView: BaseView {
         super.configureUI()
         
         self.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer.cancelsTouchesInView = false
         deselected()
         hideBadge()
     }

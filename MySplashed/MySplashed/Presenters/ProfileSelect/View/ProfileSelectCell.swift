@@ -17,7 +17,7 @@ final class ProfileSelectCell: BaseCollectionViewCell {
     override func configureHierarchy() {
         super.configureHierarchy()
         
-        self.addSubview(image)
+        contentView.addSubview(image)
     }
     override func configureLayout() {
         super.configureLayout()

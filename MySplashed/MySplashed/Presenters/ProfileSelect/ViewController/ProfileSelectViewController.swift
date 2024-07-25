@@ -8,10 +8,22 @@
 import UIKit
 
 final class ProfileSelectViewController: BaseViewController<ProfileSelectView, ProfileSelectViewModel> {
+    
+    convenience init(baseView: ProfileSelectView, viewModel: ProfileSelectViewModel, profileImage: ProfileImage) {
+        self.init(baseView: baseView, viewModel: viewModel)
+        viewModel.react(.profileImageSelected, value: profileImage)
+    }
+    
     override func configureNavigationItem() {
         super.configureNavigationItem()
         
         navigationItem.title = "EDIT PROFILE"
+    }
+    
+    override func configureDelegate() {
+        super.configureDelegate()
+        
+        baseView.profileCollectionView.delegate = self
     }
     
     override func configureDataBinding() {
@@ -23,6 +35,16 @@ final class ProfileSelectViewController: BaseViewController<ProfileSelectView, P
         
         viewModel.actionBind(\.profileImages) { [weak self] value in
             self?.baseView.updateSnapShot(with: value)
+        }
+    }
+}
+
+extension ProfileSelectViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+        let data = baseView.dataSource.snapshot(for: .main).items[indexPath.row]
+        if let profileImage = ProfileImage(rawValue: data.imageName) {
+            viewModel.react(.profileImageSelected, value: profileImage)
         }
     }
 }

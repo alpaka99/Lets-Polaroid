@@ -25,11 +25,14 @@ final class ProfileSelectViewModel: ViewModel {
     }
     
     enum Action: String {
-        case profileSelectAction
+        case profileImageSelected
     }
     
     func react<U>(_ action: Action, value: U) where U : Equatable {
-        
+        switch action {
+        case .profileImageSelected:
+            reduce(\.selectedProfileImage, into: value)
+        }
     }
     
     func configureBind() {
