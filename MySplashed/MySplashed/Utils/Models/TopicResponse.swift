@@ -5,13 +5,15 @@
 //  Created by user on 7/25/24.
 //
 
+
+
 struct TopicResponse: Decodable {
-    let id: String
-    let createdAt: String
-    let width: Int
-    let height: Int
+    let id: String?
+    let createdAt: String?
+    let width: Int?
+    let height: Int?
     let urls: [String : String]
-    let likes: Int
+    let likes: Int?
     let user: User
     
     enum CodingKeys: String, CodingKey {

@@ -11,7 +11,7 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
     override func configureNavigationItem() {
         super.configureNavigationItem()
         
-        NetworkManager.shared.sendRequest(ofType: TopicResponse.self) { _ in
+        NetworkManager.shared.sendRequest(ofType: [TopicResponse].self) { _ in
             print("This")
         }
         

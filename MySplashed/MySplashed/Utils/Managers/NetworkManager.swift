@@ -13,20 +13,28 @@ final class NetworkManager {
     static let shared = NetworkManager()
     private init() { }
     
-    func sendRequest<T: Decodable>(ofType: T.Type, handler: @escaping (T)->Void) {
+    func sendRequest<T: Decodable>(ofType type: T.Type, handler: @escaping (T)->Void) {
         do {
             let request = try Router.topic(topic: .goldenHour).asURLRequest()
-            print(request.url?.absoluteString)
+            
             AF.request(request)
-                .responseString { response in
-                    print(response.response?.statusCode)
+                .responseDecodable(of: type) { response in
                     switch response.result {
-                    case .success(let value):
-                        print(value)
-                    case .failure(let error):
-                        print("AF Request Failed", error)
-                    }
-            }
+                        case .success(let value):
+                            print(value)
+                        case .failure(let error):
+                            print("AF Request Failed", error)
+                        }
+                }
+//                .responseString { response in
+//                    print(response.response?.statusCode)
+//                    switch response.result {
+//                    case .success(let value):
+//                        print(value)
+//                    case .failure(let error):
+//                        print("AF Request Failed", error)
+//                    }
+//            }
         } catch {
             print(error)
         }
