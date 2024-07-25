@@ -11,6 +11,10 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
     override func configureNavigationItem() {
         super.configureNavigationItem()
         
+        NetworkManager.shared.sendRequest(ofType: TopicResponse.self) { _ in
+            print("This")
+        }
+        
         // profile iamge rightBarButton으로 넣기
     }
 }

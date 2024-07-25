@@ -10,29 +10,40 @@ import Foundation
 import Alamofire
 
 enum Router {
-    case topic
-    case search
+    case topic(topic: TopicType)
+    case search(text: String)
 }
 
 extension Router: URLRequestConvertible {
-    
     var baseURL: String {
-        return "https://api.unsplashed.com"
+        return "https://api.unsplash.com"
     }
     
     var path: String {
         switch self {
-        case .topic:
+        case .topic(_):
             return "/topics"
         case .search:
             return "/search"
         }
     }
     
+    var trailingPath: String {
+        switch self {
+        case .topic(topic: let topic):
+            return "/"+topic.rawValue + "/photos"
+        case .search(let text):
+            return "/"+text + "/photos"
+        }
+    }
+    
     var header: [String : String] {
+        let accessKey = Bundle.main.object(forInfoDictionaryKey: "ACCESS_KEY") as? String ?? ""
+        print(accessKey)
         return [
+            "contentType" : "application/json",
             "Accept-Version" : "v1",
-            "Authorization" : "Client-ID \("ACCESS KEY")"
+            "Authorization" : accessKey
         ]
     }
     
@@ -40,7 +51,6 @@ extension Router: URLRequestConvertible {
         switch self {
         case .topic:
             return [
-                "id_or_slug" : "",
                 "per_page" : "20",
             ]
         case .search:
@@ -58,7 +68,20 @@ extension Router: URLRequestConvertible {
     }
     
     func asURLRequest() throws -> URLRequest {
-        <#code#>
+        let url = try (baseURL + path).asURL()
+        var request = try URLRequest(
+            url: url.appendingPathComponent(trailingPath),
+            method: method
+        )
+        request.allHTTPHeaderFields = header
+        return request
     }
 }
 
+
+
+enum TopicType: String {
+    case goldenHour = "golden-hour"
+    case business = "business-work"
+    case architecture = "architecture-interior"
+}
