@@ -41,7 +41,6 @@ final class ProfileSelectViewController: BaseViewController<ProfileSelectView, P
 
 extension ProfileSelectViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
         let data = baseView.dataSource.snapshot(for: .main).items[indexPath.row]
         if let profileImage = ProfileImage(rawValue: data.imageName) {
             viewModel.react(.profileImageSelected, value: profileImage)

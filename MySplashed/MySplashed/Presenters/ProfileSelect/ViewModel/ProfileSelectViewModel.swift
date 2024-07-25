@@ -31,7 +31,7 @@ final class ProfileSelectViewModel: ViewModel {
     func react<U>(_ action: Action, value: U) where U : Equatable {
         switch action {
         case .profileImageSelected:
-            reduce(\.selectedProfileImage, into: value)
+            userSelectedProfileImage(value)
         }
     }
     
@@ -47,10 +47,16 @@ final class ProfileSelectViewModel: ViewModel {
             if $0.imageName == profileImage.rawValue {
                 return ProfileImageData(imageName: $0.imageName, isSelected: true)
             } else {
-                return $0
+                return ProfileImageData(imageName: $0.imageName)
             }
         }
         
         reduce(\.profileImages.value, into: profileImageArray)
+    }
+    
+    private func userSelectedProfileImage<T: Equatable>(_ value: T) {
+        if let value = value as? ProfileImage {
+            profileImageSelected(value)
+        }
     }
 }
