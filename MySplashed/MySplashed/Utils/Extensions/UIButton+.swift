@@ -7,41 +7,58 @@
 
 import UIKit
 
-extension UIButton {
-    var config: UIButton.Configuration {
-        return self.configuration ?? UIButton.Configuration.plain()
-    }
-    
+extension UIButton.Configuration {
     func image(named: String) -> Self {
-        var config = config
+        var config = self
         config.image = UIImage(named: named)
-        self.configuration = config
-        return self
+        return config
     }
     
     func image(systemName: String) -> Self {
-        var config = config
+        var config = self
         config.image = UIImage(systemName: systemName)
-        self.configuration = config
-        return self
+        return config
+    }
+    
+    func imageSize(size: CGFloat) -> Self {
+        var config = self
+        if let _ = config.image {
+            let imageConfig = UIImage.SymbolConfiguration(pointSize: size)
+            config.preferredSymbolConfigurationForImage = imageConfig
+        }
+        return config
+    }
+    
+    func imageColor(color: UIColor) -> Self {
+        var config = self
+        let transformer = UIConfigurationColorTransformer { _ in
+            return color
+        }
+        
+        config.imageColorTransformer = transformer
+        return config
     }
     
     func title(_ title: String) -> Self {
-        var config = config
+        var config = self
         config.attributedTitle = AttributedString(stringLiteral: title)
-        self.configuration = config
-        return self
+        return config
+    }
+    
+    func foregroundColor(_ color: UIColor) -> Self {
+        var config = self
+        config.baseForegroundColor = color
+        return config
     }
     
     func backgroundColor(_ color: UIColor) -> Self {
-        var config = config
+        var config = self
         config.background.backgroundColor = color
-        self.configuration = config
-        return self
+        return config
     }
     
     func font(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> Self {
-        var config = config
+        var config = self
         let transformer = UIConfigurationTextAttributesTransformer { oldValue in
             var newValue = oldValue
             newValue.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
@@ -49,14 +66,24 @@ extension UIButton {
         }
         
         config.titleTextAttributesTransformer = transformer
-        self.configuration = config
-        return self
+        return config
     }
     
-    func cornerStyle(_ cornerStyle: Configuration.CornerStyle) -> Self {
-        var config = config
+    func imagePadding(_ space: CGFloat) -> Self {
+        var config = self
+        config.imagePadding = space
+        return config
+    }
+    
+    func cornerStyle(_ cornerStyle: Self.CornerStyle) -> Self {
+        var config = self
         config.cornerStyle = cornerStyle
-        self.configuration = config
-        return self
+        return config
+    }
+    
+    func build() -> UIButton {
+        let button = UIButton()
+        button.configuration = self
+        return button
     }
 }

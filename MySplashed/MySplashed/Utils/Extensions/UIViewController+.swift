@@ -10,7 +10,6 @@ import UIKit
 extension UIViewController {
     func setNewViewController(nextViewController: UIViewController, isNavigation: Bool) {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
         
         var newRootViewController: UIViewController

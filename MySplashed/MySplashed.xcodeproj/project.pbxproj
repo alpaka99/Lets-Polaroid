@@ -42,6 +42,25 @@
 		CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C382C5139AC00327314 /* MBTIViewCell.swift */; };
 		CEB45C3B2C5153F300327314 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C3A2C5153F300327314 /* Sections.swift */; };
 		CEB45C3D2C51545700327314 /* MBTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C3C2C51545700327314 /* MBTI.swift */; };
+		CEB45C4A2C51EB1A00327314 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C492C51EB1A00327314 /* TabBarController.swift */; };
+		CEB45C642C5231E200327314 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C632C5231E200327314 /* TopicViewController.swift */; };
+		CEB45C662C5231EE00327314 /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C652C5231EE00327314 /* TopicView.swift */; };
+		CEB45C682C52320100327314 /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C672C52320100327314 /* TopicViewModel.swift */; };
+		CEB45C6D2C52347100327314 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C6C2C52347100327314 /* SearchViewController.swift */; };
+		CEB45C6F2C52348700327314 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C6E2C52348700327314 /* SearchView.swift */; };
+		CEB45C712C5234A500327314 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C702C5234A500327314 /* SearchViewModel.swift */; };
+		CEB45C762C52354100327314 /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C752C52354100327314 /* LikeView.swift */; };
+		CEB45C782C52355200327314 /* LikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C772C52355200327314 /* LikeViewModel.swift */; };
+		CEB45C7A2C5235EB00327314 /* LikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C792C5235EB00327314 /* LikeViewController.swift */; };
+		CEB45C7C2C525F6300327314 /* PictureViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C7B2C525F6300327314 /* PictureViewCell.swift */; };
+		CEB45C7F2C526AD200327314 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C7E2C526AD200327314 /* NetworkManager.swift */; };
+		CEB45C822C526B2700327314 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEB45C812C526B2700327314 /* Alamofire */; };
+		CEB45C852C526B3100327314 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEB45C842C526B3100327314 /* Kingfisher */; };
+		CEB45C8A2C527B2700327314 /* TopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C892C527B2700327314 /* TopicResponse.swift */; };
+		CEB45C8C2C527C5200327314 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8B2C527C5200327314 /* User.swift */; };
+		CEB45C8F2C527CA100327314 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8E2C527CA100327314 /* Router.swift */; };
+		CEB45C922C52915D00327314 /* TopicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C912C52915D00327314 /* TopicRepository.swift */; };
+		CEB45C972C52D4CC00327314 /* TopicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C962C52D4CC00327314 /* TopicData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +100,24 @@
 		CEB45C382C5139AC00327314 /* MBTIViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTIViewCell.swift; sourceTree = "<group>"; };
 		CEB45C3A2C5153F300327314 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		CEB45C3C2C51545700327314 /* MBTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTI.swift; sourceTree = "<group>"; };
+		CEB45C492C51EB1A00327314 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		CEB45C632C5231E200327314 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		CEB45C652C5231EE00327314 /* TopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
+		CEB45C672C52320100327314 /* TopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
+		CEB45C6C2C52347100327314 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CEB45C6E2C52348700327314 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		CEB45C702C5234A500327314 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		CEB45C752C52354100327314 /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
+		CEB45C772C52355200327314 /* LikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewModel.swift; sourceTree = "<group>"; };
+		CEB45C792C5235EB00327314 /* LikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeViewController.swift; sourceTree = "<group>"; };
+		CEB45C7B2C525F6300327314 /* PictureViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewCell.swift; sourceTree = "<group>"; };
+		CEB45C7E2C526AD200327314 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CEB45C872C5272D400327314 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		CEB45C892C527B2700327314 /* TopicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicResponse.swift; sourceTree = "<group>"; };
+		CEB45C8B2C527C5200327314 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CEB45C8E2C527CA100327314 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		CEB45C912C52915D00327314 /* TopicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRepository.swift; sourceTree = "<group>"; };
+		CEB45C962C52D4CC00327314 /* TopicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +125,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB45C852C526B3100327314 /* Kingfisher in Frameworks */,
 				CEB45BE32C4FE6C700327314 /* SnapKit in Frameworks */,
+				CEB45C822C526B2700327314 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +156,8 @@
 			children = (
 				CEB45B8F2C4E486D00327314 /* App */,
 				CEB45B902C4E487400327314 /* Bases */,
-				CEB45B942C4E49BA00327314 /* Presenters */,
+				CEB45C932C5292CB00327314 /* Domain */,
+				CEB45B942C4E49BA00327314 /* Presenter */,
 				CEB45B912C4E487A00327314 /* Resoureces */,
 				CEB45B922C4E488700327314 /* Utils */,
 			);
@@ -131,6 +171,7 @@
 				CEB45B7B2C4E3D0400327314 /* SceneDelegate.swift */,
 				CEB45B842C4E3D0600327314 /* LaunchScreen.storyboard */,
 				CEB45B872C4E3D0600327314 /* Info.plist */,
+				CEB45C872C5272D400327314 /* Config.xcconfig */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -156,23 +197,25 @@
 		CEB45B922C4E488700327314 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CEB45C8D2C527C9B00327314 /* Routers */,
 				CEB45BE42C4FEB9800327314 /* Constants */,
 				CEB45BE72C4FEDA800327314 /* Extensions */,
+				CEB45C7D2C526AC200327314 /* Managers */,
 				CEB45B9B2C4E4E8700327314 /* Observable */,
 				CEB45BD02C4FCF7D00327314 /* Protocols */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		CEB45B942C4E49BA00327314 /* Presenters */ = {
+		CEB45B942C4E49BA00327314 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				CEB45C5F2C52313500327314 /* Main */,
+				CEB45C5E2C52311100327314 /* OnBoarding */,
 				CEB45BFA2C5020D000327314 /* Reusable */,
-				CEB45C242C50EC6700327314 /* ProfileSelect */,
-				CEB45BF02C5009B300327314 /* ProfileSetting */,
-				CEB45BD72C4FE04700327314 /* Splash */,
+				CEB45C482C51EAF800327314 /* TabBar */,
 			);
-			path = Presenters;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		CEB45B9B2C4E4E8700327314 /* Observable */ = {
@@ -290,6 +333,7 @@
 			children = (
 				CEB45BFB2C5020FB00327314 /* RoundImageView.swift */,
 				CEB45BFD2C50265A00327314 /* PaddingImageView.swift */,
+				CEB45C7B2C525F6300327314 /* PictureViewCell.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -329,6 +373,195 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		CEB45C482C51EAF800327314 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C492C51EB1A00327314 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		CEB45C592C522FD300327314 /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C622C5231D700327314 /* View */,
+				CEB45C612C5231D000327314 /* ViewModel */,
+				CEB45C602C5231C500327314 /* ViewController */,
+			);
+			path = Topic;
+			sourceTree = "<group>";
+		};
+		CEB45C5A2C522FEC00327314 /* Random */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Random;
+			sourceTree = "<group>";
+		};
+		CEB45C5B2C52302B00327314 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C6B2C52345000327314 /* View */,
+				CEB45C6A2C52344C00327314 /* ViewModel */,
+				CEB45C692C52344400327314 /* ViewController */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		CEB45C5C2C52303700327314 /* Like */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C742C52353800327314 /* View */,
+				CEB45C732C52353300327314 /* ViewModel */,
+				CEB45C722C52352E00327314 /* ViewController */,
+			);
+			path = Like;
+			sourceTree = "<group>";
+		};
+		CEB45C5E2C52311100327314 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C242C50EC6700327314 /* ProfileSelect */,
+				CEB45BF02C5009B300327314 /* ProfileSetting */,
+				CEB45BD72C4FE04700327314 /* Splash */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		CEB45C5F2C52313500327314 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C592C522FD300327314 /* Topic */,
+				CEB45C5B2C52302B00327314 /* Search */,
+				CEB45C5A2C522FEC00327314 /* Random */,
+				CEB45C5C2C52303700327314 /* Like */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		CEB45C602C5231C500327314 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C632C5231E200327314 /* TopicViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CEB45C612C5231D000327314 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C672C52320100327314 /* TopicViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CEB45C622C5231D700327314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C652C5231EE00327314 /* TopicView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEB45C692C52344400327314 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C6C2C52347100327314 /* SearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CEB45C6A2C52344C00327314 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C702C5234A500327314 /* SearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CEB45C6B2C52345000327314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C6E2C52348700327314 /* SearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEB45C722C52352E00327314 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C792C5235EB00327314 /* LikeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CEB45C732C52353300327314 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C772C52355200327314 /* LikeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CEB45C742C52353800327314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C752C52354100327314 /* LikeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEB45C7D2C526AC200327314 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C7E2C526AD200327314 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CEB45C8D2C527C9B00327314 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C8E2C527CA100327314 /* Router.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		CEB45C902C52915400327314 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C912C52915D00327314 /* TopicRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		CEB45C932C5292CB00327314 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C942C5292E200327314 /* Topic */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		CEB45C942C5292E200327314 /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C952C5292FC00327314 /* Model */,
+				CEB45C902C52915400327314 /* Repository */,
+			);
+			path = Topic;
+			sourceTree = "<group>";
+		};
+		CEB45C952C5292FC00327314 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C892C527B2700327314 /* TopicResponse.swift */,
+				CEB45C8B2C527C5200327314 /* User.swift */,
+				CEB45C962C52D4CC00327314 /* TopicData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -347,6 +580,8 @@
 			name = MySplashed;
 			packageProductDependencies = (
 				CEB45BE22C4FE6C700327314 /* SnapKit */,
+				CEB45C812C526B2700327314 /* Alamofire */,
+				CEB45C842C526B3100327314 /* Kingfisher */,
 			);
 			productName = MySplashed;
 			productReference = CEB45B762C4E3D0400327314 /* MySplashed.app */;
@@ -378,6 +613,8 @@
 			mainGroup = CEB45B6D2C4E3D0400327314;
 			packageReferences = (
 				CEB45BE12C4FE6C700327314 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CEB45C802C526B2700327314 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CEB45C832C526B3100327314 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = CEB45B772C4E3D0400327314 /* Products */;
 			projectDirPath = "";
@@ -407,9 +644,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB45C002C502A5600327314 /* InternalPadding.swift in Sources */,
+				CEB45C4A2C51EB1A00327314 /* TabBarController.swift in Sources */,
 				CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */,
+				CEB45C762C52354100327314 /* LikeView.swift in Sources */,
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
+				CEB45C712C5234A500327314 /* SearchViewModel.swift in Sources */,
 				CEB45C2B2C50ECCE00327314 /* ProfileSelectViewModel.swift in Sources */,
+				CEB45C7A2C5235EB00327314 /* LikeViewController.swift in Sources */,
 				CEB45C332C51186E00327314 /* ProfileImage.swift in Sources */,
 				CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */,
 				CEB45B7A2C4E3D0400327314 /* AppDelegate.swift in Sources */,
@@ -418,25 +659,38 @@
 				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
 				CEB45BDD2C4FE05E00327314 /* SplashViewModel.swift in Sources */,
 				CEB45BEB2C4FEDF300327314 /* UIColor+.swift in Sources */,
+				CEB45C8F2C527CA100327314 /* Router.swift in Sources */,
 				CEB45C292C50ECBD00327314 /* ProfileSelectView.swift in Sources */,
 				CEB45BF52C5009DD00327314 /* ProfileSettingView.swift in Sources */,
+				CEB45C972C52D4CC00327314 /* TopicData.swift in Sources */,
 				CEB45C352C511C0800327314 /* MBTIView.swift in Sources */,
 				CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */,
 				CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */,
 				CEB45BED2C4FF00800327314 /* UIButton+.swift in Sources */,
 				CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */,
+				CEB45C8C2C527C5200327314 /* User.swift in Sources */,
 				CEB45C312C50F9F200327314 /* BaseCollectionViewCell.swift in Sources */,
 				CEB45BE92C4FEDD000327314 /* String+.swift in Sources */,
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
+				CEB45C6F2C52348700327314 /* SearchView.swift in Sources */,
 				CEB45BF92C500A2F00327314 /* ProfileSettingViewController.swift in Sources */,
 				CEB45BFE2C50265A00327314 /* PaddingImageView.swift in Sources */,
 				CEB45C2F2C50F45100327314 /* ProfileSelectCell.swift in Sources */,
+				CEB45C662C5231EE00327314 /* TopicView.swift in Sources */,
 				CEB45BD92C4FE05300327314 /* SplashViewController.swift in Sources */,
 				CEB45C3B2C5153F300327314 /* Sections.swift in Sources */,
 				CEB45BF72C5009F500327314 /* ProfileSettingViewModel.swift in Sources */,
+				CEB45C6D2C52347100327314 /* SearchViewController.swift in Sources */,
 				CEB45BDB2C4FE05900327314 /* SplashView.swift in Sources */,
+				CEB45C8A2C527B2700327314 /* TopicResponse.swift in Sources */,
 				CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */,
 				CEB45BFC2C5020FB00327314 /* RoundImageView.swift in Sources */,
+				CEB45C642C5231E200327314 /* TopicViewController.swift in Sources */,
+				CEB45C7C2C525F6300327314 /* PictureViewCell.swift in Sources */,
+				CEB45C682C52320100327314 /* TopicViewModel.swift in Sources */,
+				CEB45C7F2C526AD200327314 /* NetworkManager.swift in Sources */,
+				CEB45C922C52915D00327314 /* TopicRepository.swift in Sources */,
+				CEB45C782C52355200327314 /* LikeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +829,7 @@
 		};
 		CEB45B8B2C4E3D0600327314 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEB45C872C5272D400327314 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -583,7 +838,6 @@
 				DEVELOPMENT_TEAM = CZH2CMCGCZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MySplashed/App/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -615,7 +869,6 @@
 				DEVELOPMENT_TEAM = CZH2CMCGCZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MySplashed/App/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -669,6 +922,22 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		CEB45C802C526B2700327314 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		CEB45C832C526B3100327314 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -676,6 +945,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEB45BE12C4FE6C700327314 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		CEB45C812C526B2700327314 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEB45C802C526B2700327314 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		CEB45C842C526B3100327314 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEB45C832C526B3100327314 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

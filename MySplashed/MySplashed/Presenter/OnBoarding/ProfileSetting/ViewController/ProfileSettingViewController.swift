@@ -38,6 +38,10 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         viewModel.actionBind(\.selectedProfileImage) {[weak self] profileImage in
             self?.baseView.profileImage.setProfileImage(profileImage)
         }
+    
+        viewModel.bind(\.completeButtonTapped) {[weak self] _ in
+            self?.setNewViewController(nextViewController: TabBarController(), isNavigation: false)
+        }
     }
     
     @objc
