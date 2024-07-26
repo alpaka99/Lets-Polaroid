@@ -19,6 +19,7 @@ final class TopicViewModel: ViewModel {
         var goldenHourData: Observable<[UnsplashImageData]> = Observable([])
         var businessData: Observable<[UnsplashImageData]> = Observable([])
         var architectureData: Observable<[UnsplashImageData]> = Observable([])
+        var loadDetailView = Observable(false)
     }
     
     var input = Input()
@@ -29,6 +30,7 @@ final class TopicViewModel: ViewModel {
     enum Action: String {
         case topicViewWillAppear
         case loadTopics
+        case cellTapped
     }
     
     init() {
@@ -41,6 +43,8 @@ final class TopicViewModel: ViewModel {
             topicViewWillAppear()
         case .loadTopics:
             loadTopics()
+        case .cellTapped:
+            cellTapped()
         }
     }
     
@@ -94,5 +98,10 @@ final class TopicViewModel: ViewModel {
                 self?.reduce(\.architectureData.value, into: value)
             }
         }
+    }
+    
+    private func cellTapped() {
+        var toggledValue = !self(\.loadDetailView).value
+        reduce(\.loadDetailView.value, into: toggledValue)
     }
 }

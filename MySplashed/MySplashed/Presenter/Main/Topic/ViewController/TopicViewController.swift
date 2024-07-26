@@ -20,6 +20,12 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
         // profile iamge rightBarButton으로 넣기
     }
     
+    override func configureDelegate() {
+        super.configureDelegate()
+        
+        baseView.collectionView.delegate = self
+    }
+    
     
     override func configureDataBinding() {
         super.configureDataBinding()
@@ -35,5 +41,15 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
         viewModel.bind(\.architectureData) {[weak self] value in
             self?.baseView.updateSnapShot(value, sectionType: .architecture)
         }
+        
+        viewModel.bind(\.loadDetailView) {[weak self] _ in
+            self?.navigationController?.pushViewController(DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: DetailPhotoViewModel()), animated: true)
+        }
+    }
+}
+
+extension TopicViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.react(.cellTapped, value: true)
     }
 }
