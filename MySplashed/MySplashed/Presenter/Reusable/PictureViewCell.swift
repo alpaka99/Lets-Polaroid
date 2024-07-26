@@ -101,6 +101,14 @@ final class PictureViewCell: BaseCollectionViewCell {
     func setImage(_ image: UIImage) {
         imageView.image = image
     }
+    
+    func setLikedButton(_ isLiked: Bool) {
+        if isLiked {
+            userLike.updateImge("heart.fill")
+        } else {
+            userLike.updateImge("heart")
+        }
+    }
 }
 
 enum PictureCellType {

@@ -10,6 +10,7 @@ import Foundation
 final class SearchViewModel: ViewModel {
     struct Input: Equatable {
         var searchText = Observable("")
+        var currentPage = Observable(0)
     }
     
     struct Output: Equatable {

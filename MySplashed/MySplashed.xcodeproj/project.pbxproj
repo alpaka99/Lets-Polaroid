@@ -23,7 +23,7 @@
 		CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BE52C4FEBA600327314 /* MSColor.swift */; };
 		CEB45BE92C4FEDD000327314 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BE82C4FEDD000327314 /* String+.swift */; };
 		CEB45BEB2C4FEDF300327314 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BEA2C4FEDF300327314 /* UIColor+.swift */; };
-		CEB45BED2C4FF00800327314 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BEC2C4FF00800327314 /* UIButton+.swift */; };
+		CEB45BED2C4FF00800327314 /* UIButton.Configuration+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BEC2C4FF00800327314 /* UIButton.Configuration+.swift */; };
 		CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BEE2C50081800327314 /* UIViewController+.swift */; };
 		CEB45BF52C5009DD00327314 /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BF42C5009DD00327314 /* ProfileSettingView.swift */; };
 		CEB45BF72C5009F500327314 /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BF62C5009F500327314 /* ProfileSettingViewModel.swift */; };
@@ -64,6 +64,7 @@
 		CEB45C9B2C539DE300327314 /* TopicType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C9A2C539DE300327314 /* TopicType.swift */; };
 		CEB45C9F2C53A0CF00327314 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C9E2C53A0CF00327314 /* SearchRepository.swift */; };
 		CEB45CA22C53A79A00327314 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CA12C53A79A00327314 /* SearchResponse.swift */; };
+		CEB45CA42C53B11B00327314 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CA32C53B11B00327314 /* UIButton+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,7 +85,7 @@
 		CEB45BE52C4FEBA600327314 /* MSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSColor.swift; sourceTree = "<group>"; };
 		CEB45BE82C4FEDD000327314 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		CEB45BEA2C4FEDF300327314 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
-		CEB45BEC2C4FF00800327314 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		CEB45BEC2C4FF00800327314 /* UIButton.Configuration+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton.Configuration+.swift"; sourceTree = "<group>"; };
 		CEB45BEE2C50081800327314 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		CEB45BF42C5009DD00327314 /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
 		CEB45BF62C5009F500327314 /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
@@ -124,6 +125,7 @@
 		CEB45C9A2C539DE300327314 /* TopicType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicType.swift; sourceTree = "<group>"; };
 		CEB45C9E2C53A0CF00327314 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 		CEB45CA12C53A79A00327314 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		CEB45CA32C53B11B00327314 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,7 +294,8 @@
 			children = (
 				CEB45BE82C4FEDD000327314 /* String+.swift */,
 				CEB45BEA2C4FEDF300327314 /* UIColor+.swift */,
-				CEB45BEC2C4FF00800327314 /* UIButton+.swift */,
+				CEB45CA32C53B11B00327314 /* UIButton+.swift */,
+				CEB45BEC2C4FF00800327314 /* UIButton.Configuration+.swift */,
 				CEB45BEE2C50081800327314 /* UIViewController+.swift */,
 				CEB45C362C511FD600327314 /* UICollectionViewLayout+.swift */,
 			);
@@ -683,6 +686,7 @@
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
 				CEB45C712C5234A500327314 /* SearchViewModel.swift in Sources */,
 				CEB45C2B2C50ECCE00327314 /* ProfileSelectViewModel.swift in Sources */,
+				CEB45CA42C53B11B00327314 /* UIButton+.swift in Sources */,
 				CEB45C7A2C5235EB00327314 /* LikeViewController.swift in Sources */,
 				CEB45C332C51186E00327314 /* ProfileImage.swift in Sources */,
 				CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */,
@@ -699,7 +703,7 @@
 				CEB45C352C511C0800327314 /* MBTIView.swift in Sources */,
 				CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */,
 				CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */,
-				CEB45BED2C4FF00800327314 /* UIButton+.swift in Sources */,
+				CEB45BED2C4FF00800327314 /* UIButton.Configuration+.swift in Sources */,
 				CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */,
 				CEB45C8C2C527C5200327314 /* User.swift in Sources */,
 				CEB45C312C50F9F200327314 /* BaseCollectionViewCell.swift in Sources */,

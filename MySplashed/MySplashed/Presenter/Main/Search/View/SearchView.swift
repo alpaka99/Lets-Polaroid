@@ -23,12 +23,13 @@ final class SearchView: BaseView {
         return label
     }()
     
-    private lazy var collectionView = { [weak self] in
+    private(set) lazy var collectionView = { [weak self] in
         guard let view = self else { return UICollectionView(frame: .zero)}
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: view.createLayout()
         )
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.alpha = 0
         return collectionView
     }()
@@ -93,7 +94,7 @@ final class SearchView: BaseView {
             cell.configureUI(.search)
             cell.setImage(UIImage(systemName: "star.fill")!)
             cell.setTotalLike(itemIdentifier.unsplashResponse.likes)
-            cell.backgroundView?.backgroundColor = MSColor.blue.color
+            cell.setLikedButton(itemIdentifier.liked)
         }
         
         dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
