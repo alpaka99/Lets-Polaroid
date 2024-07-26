@@ -108,13 +108,6 @@ final class SearchView: BaseView {
         if data.isEmpty {
             setEmptyState()
         } else {
-//            var snapShot = dataSource.snapshot(for: .main)
-//            snapShot.deleteAll()
-//            snapShot.append(data)
-//            
-//            dataSource.apply(snapShot, to: .main)
-//            setSearchedState()
-            print(data.count)
             var snapShot = NSDiffableDataSourceSnapshot<Section, UnsplashImageData>()
             snapShot.appendSections([.main])
             snapShot.appendItems(data, toSection: .main)

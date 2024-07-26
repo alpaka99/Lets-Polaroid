@@ -39,7 +39,7 @@ final class SearchViewModel: ViewModel {
         case .searchButtonTapped:
             searchImage(value)
         case .prefetchImage:
-            prefetchImage()
+            prefetchImage(value)
         }
     }
     
@@ -59,7 +59,6 @@ final class SearchViewModel: ViewModel {
             if let vm = self {
                 if vm(\.isPrefetching).value == true {
                     vm.repository.prefetchImage(vm(\.searchText).value, page: vm(\.currentPage).value, completionHandler: { imageData in
-                        print("Prefetch done")
                         vm.prefetchComplete(imageData)
                     })
                 }
@@ -75,13 +74,15 @@ final class SearchViewModel: ViewModel {
     }
     
     // prefetch action
-    private func prefetchImage() {
-        print(#function, ">>>>>>>>>>>>>>>>>>>>>>")
-        let nextPage = self(\.currentPage).value + 1
-        let isPrefetching = self(\.isPrefetching).value
-        if isPrefetching == false {
-            reduce(\.currentPage.value, into: nextPage)
-            reduce(\.isPrefetching.value, into: true)
+    private func prefetchImage<T: Equatable>(_ index: T) {
+        if self(\.isPrefetching).value == false {
+            if let index = index as? Int {
+                if index > self(\.searchData).value.count - 4 {
+                    let nextPage = self(\.currentPage).value + 1
+                    reduce(\.currentPage.value, into: nextPage)
+                    reduce(\.isPrefetching.value, into: true)
+                }
+            }
         }
     }
     
