@@ -32,7 +32,7 @@ extension Router: URLRequestConvertible {
         switch self {
         case .topic(topic: let topic):
             return "/"+topic.rawValue + "/photos"
-        case .search(_):
+        case .search(_, _):
             return "/photos"
         }
     }

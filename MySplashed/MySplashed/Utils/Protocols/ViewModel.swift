@@ -31,7 +31,8 @@ extension ViewModel {
     // callAsFunction의 경우, 정적으로 호출 가능한(statically callable value)의 값을 직접 호출할 수 있게 해줌
     // MARK: 추후에 @dynamicMemberLookUp을 통해 function syntax가 아닌, dot syntax로 바꿔줄 수 있을것 같음
     func callAsFunction<T: Equatable>(_ keyPath: KeyPath<Input, T>) -> T {
-        return self.input[keyPath: keyPath]
+        let value = self.input[keyPath: keyPath]
+        return value
     }
     
     func callAsFunction<T: Equatable>(_ keyPath: KeyPath<Output, T>) -> T {

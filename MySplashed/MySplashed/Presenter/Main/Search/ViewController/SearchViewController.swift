@@ -26,6 +26,10 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
         viewModel.bind(\.searchData) {[weak self] value in
             self?.baseView.updateSnapShot(value)
         }
+        
+        viewModel.bind(\.isInitialSearch) {[weak self] value in
+             print("Initial")
+        }
     }
 }
 
@@ -41,7 +45,10 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         if let index = indexPaths.last?.row, index > 15 {
-            print(index)
+            print(index, viewModel(\.isPrefetching).value)
+            if viewModel(\.isPrefetching).value == false {
+                viewModel.react(.prefetchImage, value: true)
+            }
         }
     }
 }

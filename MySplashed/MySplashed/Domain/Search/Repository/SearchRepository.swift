@@ -18,7 +18,16 @@ final class SearchRepository {
         }
     }
     
-    func requestImage(of data: [UnsplashResponse], completionHandler: @escaping ([UnsplashImageData])->Void) {
+    func prefetchImage(_ searchText: String, page: Int, completionHandler: @escaping ([UnsplashImageData])->Void) {
+        print(#function, page)
+        NetworkManager.shared.sendRequest(.search(searchText: searchText, page: page), ofType: SearchResponse.self) {[weak self] searchResponse in
+            self?.requestImage(of: searchResponse.results) { imageResponse in
+                completionHandler(imageResponse)
+            }
+        }
+    }
+    
+    private func requestImage(of data: [UnsplashResponse], completionHandler: @escaping ([UnsplashImageData])->Void) {
         let dispatchGroup = DispatchGroup()
         
         var topicData: [UnsplashImageData] = []
