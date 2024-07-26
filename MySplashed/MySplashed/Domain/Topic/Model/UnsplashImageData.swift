@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct TopicData: Equatable, Hashable {
-    let topicResponse: UnsplashResponse
+struct UnsplashImageData: Equatable, Hashable {
+    let unsplashResponse: UnsplashResponse
     let image: UIImage
 }

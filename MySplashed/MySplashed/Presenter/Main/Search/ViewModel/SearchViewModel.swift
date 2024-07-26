@@ -13,7 +13,7 @@ final class SearchViewModel: ViewModel {
     }
     
     struct Output: Equatable {
-        
+        var searchData: Observable<[UnsplashImageData]> = Observable([])
     }
     
     var input = Input()
@@ -38,13 +38,22 @@ final class SearchViewModel: ViewModel {
     
     func configureBind() {
         bind(\.searchText) {[weak self] value in
-            self?.repository.requestSearchImage(value)
+            self?.repository.requestSearchImage(value) { imageData in
+                self?.reduce(\.searchData.value, into: imageData)
+            }
         }
     }
     
     private func searchImage<T: Equatable>(_ value: T) {
-        if let value = value as? String {
+        if let value = value as? String, value != self(\.searchText).value {
             reduce(\.searchText.value, into: value)
         }
     }
+    
+    // prefetch action
+//    private func preferchImage<T: Equatable>(_ value: T) {
+//        if let value = value as? String {
+//            
+//        }
+//    }
 }

@@ -19,7 +19,7 @@ final class TopicView: BaseView {
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, TopicData>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, UnsplashImageData>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -80,14 +80,14 @@ final class TopicView: BaseView {
     }
     
     func configureDataSource() {
-        var cellRegistration = UICollectionView.CellRegistration<PictureViewCell, TopicData> { cell, indexPath, itemIdentifier in
+        var cellRegistration = UICollectionView.CellRegistration<PictureViewCell, UnsplashImageData> { cell, indexPath, itemIdentifier in
             
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, TopicData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             cell.configureUI(.topic)
-            cell.setTotalLike(itemIdentifier.topicResponse.likes)
+            cell.setTotalLike(itemIdentifier.unsplashResponse.likes)
             cell.setImage(itemIdentifier.image)
             return cell
         })
@@ -103,12 +103,12 @@ final class TopicView: BaseView {
     }
     
     func configureSnapShot() {
-        var snapShot = NSDiffableDataSourceSnapshot<Section, TopicData>()
+        var snapShot = NSDiffableDataSourceSnapshot<Section, UnsplashImageData>()
         snapShot.appendSections(Section.allCases)
         dataSource.apply(snapShot)
     }
     
-    func updateSnapShot(_ data: [TopicData], sectionType: Section) {
+    func updateSnapShot(_ data: [UnsplashImageData], sectionType: Section) {
         
         var snapShot = dataSource.snapshot(for: sectionType)
         

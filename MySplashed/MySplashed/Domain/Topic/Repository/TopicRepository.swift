@@ -19,10 +19,10 @@ final class TopicRepository {
         }
     }
     
-    func requestImage(of data: [UnsplashResponse], completionHandler: @escaping ([TopicData])->Void) {
+    func requestImage(of data: [UnsplashResponse], completionHandler: @escaping ([UnsplashImageData])->Void) {
         let dispatchGroup = DispatchGroup()
         
-        var topicData: [TopicData] = []
+        var topicData: [UnsplashImageData] = []
         
         for index in 0..<data.count {
             if let imageURL = data[index].urls["small_s3"], let url = URL(string: imageURL) {
@@ -31,7 +31,7 @@ final class TopicRepository {
                     KingfisherManager.shared.retrieveImage(with: url) { result in
                         switch result {
                         case .success(let image):
-                            topicData.append(TopicData(topicResponse: data[index], image: image.image))
+                            topicData.append(UnsplashImageData(unsplashResponse: data[index], image: image.image))
                         case .failure(let error):
                             print("KingFisher ImageFetch Error", error)
                         }

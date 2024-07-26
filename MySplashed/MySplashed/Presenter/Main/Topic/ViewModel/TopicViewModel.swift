@@ -16,9 +16,9 @@ final class TopicViewModel: ViewModel {
     }
     
     struct Output: Equatable {
-        var goldenHourData: Observable<[TopicData]> = Observable([])
-        var businessData: Observable<[TopicData]> = Observable([])
-        var architectureData: Observable<[TopicData]> = Observable([])
+        var goldenHourData: Observable<[UnsplashImageData]> = Observable([])
+        var businessData: Observable<[UnsplashImageData]> = Observable([])
+        var architectureData: Observable<[UnsplashImageData]> = Observable([])
     }
     
     var input = Input()

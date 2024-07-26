@@ -10,6 +10,10 @@ import UIKit
 import SnapKit
 
 final class SearchView: BaseView {
+    enum Section: CaseIterable {
+        case main
+    }
+    
     private(set) var searchBar = UISearchBar()
     
     private let emptyView = {
@@ -29,13 +33,13 @@ final class SearchView: BaseView {
         return collectionView
     }()
     
-    var dataSource: UICollectionViewDiffableDataSource<String,String>!
+    var dataSource: UICollectionViewDiffableDataSource<Section,UnsplashImageData>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configureDataSource()
-        updateSnapShot()
+        updateSnapShot([])
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -85,30 +89,31 @@ final class SearchView: BaseView {
     }
     
     func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<PictureViewCell, String> { cell, indexPath, itemIdentifier in
+        let cellRegistration = UICollectionView.CellRegistration<PictureViewCell, UnsplashImageData> { cell, indexPath, itemIdentifier in
+            cell.configureUI(.search)
             cell.setImage(UIImage(systemName: "star.fill")!)
+            cell.setTotalLike(itemIdentifier.unsplashResponse.likes)
             cell.backgroundView?.backgroundColor = MSColor.blue.color
         }
         
-        dataSource = UICollectionViewDiffableDataSource<String, String>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-            cell.backgroundColor = MSColor.blue.color
+            cell.setImage(itemIdentifier.image)
             return cell
         })
     }
     
-    func updateSnapShot() {
-        var snapShot = NSDiffableDataSourceSnapshot<String, String>()
-        
-        snapShot.appendSections(["test"])
-        snapShot.appendItems(
-            [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",],
-            toSection: "test"
-        )
-        
-        dataSource.apply(snapShot)
-        
-        
+    func updateSnapShot(_ data: [UnsplashImageData]) {
+        if data.isEmpty {
+            setEmptyState()
+        } else {
+            var snapShot = dataSource.snapshot(for: .main)
+            snapShot.deleteAll()
+            snapShot.append(data)
+            
+            dataSource.apply(snapShot, to: .main)
+            setSearchedState()
+        }
     }
     
     func setEmptyState() {
@@ -116,7 +121,7 @@ final class SearchView: BaseView {
         collectionView.alpha = 0
     }
     
-    func setSearchResult() {
+    func setSearchedState() {
         emptyView.alpha = 0
         collectionView.alpha = 1
     }
