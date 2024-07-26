@@ -12,7 +12,22 @@ import SnapKit
 final class SearchPhotoView: BaseView {
     private let searchBar = UISearchBar()
     
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+    private let emptyView = {
+        let label = UILabel()
+        label.text = "검색 결과가 없습니다"
+        label.font = .systemFont(ofSize: 24, weight: .bold)
+        return label
+    }()
+    
+    private lazy var collectionView = { [weak self] in
+        guard let view = self else { return UICollectionView(frame: .zero)}
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: view.createLayout()
+        )
+        collectionView.alpha = 0
+        return collectionView
+    }()
     
     var dataSource: UICollectionViewDiffableDataSource<String,String>!
     
@@ -43,6 +58,7 @@ final class SearchPhotoView: BaseView {
         super.configureHierarchy()
         
         self.addSubview(searchBar)
+        self.addSubview(emptyView)
         self.addSubview(collectionView)
     }
     
@@ -53,10 +69,19 @@ final class SearchPhotoView: BaseView {
         searchBar.snp.makeConstraints { search in
             search.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
         }
+        emptyView.snp.makeConstraints { label in
+            label.center.equalTo(self.safeAreaLayoutGuide)
+        }
         collectionView.snp.makeConstraints { collectionView in
             collectionView.top.equalTo(searchBar.snp.bottom)
             collectionView.horizontalEdges.bottom.equalTo(self.safeAreaLayoutGuide)
         }
+    }
+    
+    override func configureUI() {
+        super.configureUI()
+        
+        setEmptyState()
     }
     
     func configureDataSource() {
@@ -82,5 +107,17 @@ final class SearchPhotoView: BaseView {
         )
         
         dataSource.apply(snapShot)
+        
+        
+    }
+    
+    func setEmptyState() {
+        emptyView.alpha = 1
+        collectionView.alpha = 0
+    }
+    
+    func setSearchResult() {
+        emptyView.alpha = 0
+        collectionView.alpha = 1
     }
 }
