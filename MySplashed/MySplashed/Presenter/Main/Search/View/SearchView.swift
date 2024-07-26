@@ -132,4 +132,8 @@ final class SearchView: BaseView {
         emptyView.alpha = 0
         collectionView.alpha = 1
     }
+    
+    func moveToTop() {
+        collectionView.setContentOffset(.zero, animated: false)
+    }
 }

@@ -28,7 +28,7 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
         }
         
         viewModel.bind(\.isInitialSearch) {[weak self] value in
-             print("Initial")
+            self?.baseView.moveToTop()
         }
     }
 }
