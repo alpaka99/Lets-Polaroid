@@ -44,7 +44,8 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        if let index = indexPaths.last?.row, index > 15 {
+        let fetchedData = viewModel(\.searchData).value.count
+        if let index = indexPaths.last?.row, index > fetchedData - 4 {
             print(index, viewModel(\.isPrefetching).value)
             if viewModel(\.isPrefetching).value == false {
                 viewModel.react(.prefetchImage, value: true)
