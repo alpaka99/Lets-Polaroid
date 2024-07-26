@@ -10,9 +10,9 @@ import Foundation
 final class TopicViewModel: ViewModel {
     struct Input: Equatable {
         var topicViewWillAppear = Observable(false)
-        var goldenHourResponse: Observable<[TopicResponse]> = Observable([])
-        var businessResponse: Observable<[TopicResponse]> = Observable([])
-        var architectureResponse: Observable<[TopicResponse]> = Observable([])
+        var goldenHourResponse: Observable<[UnsplashResponse]> = Observable([])
+        var businessResponse: Observable<[UnsplashResponse]> = Observable([])
+        var architectureResponse: Observable<[UnsplashResponse]> = Observable([])
     }
     
     struct Output: Equatable {
@@ -83,7 +83,7 @@ final class TopicViewModel: ViewModel {
         }
     }
     
-    private func loadImages(type: TopicType, with data: [TopicResponse]) {
+    private func loadImages(type: TopicType, with data: [UnsplashResponse]) {
         repository.requestImage(of: data) {[weak self] value in
             switch type {
             case.goldenHour:

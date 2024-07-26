@@ -8,6 +8,6 @@
 import UIKit
 
 struct TopicData: Equatable, Hashable {
-    let topicResponse: TopicResponse
+    let topicResponse: UnsplashResponse
     let image: UIImage
 }

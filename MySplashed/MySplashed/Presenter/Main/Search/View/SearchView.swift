@@ -9,8 +9,8 @@ import UIKit
 
 import SnapKit
 
-final class SearchPhotoView: BaseView {
-    private let searchBar = UISearchBar()
+final class SearchView: BaseView {
+    private(set) var searchBar = UISearchBar()
     
     private let emptyView = {
         let label = UILabel()

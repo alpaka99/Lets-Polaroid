@@ -9,17 +9,17 @@ import UIKit
 import Kingfisher
 
 final class TopicRepository {
-    private var goldenHour: [TopicResponse] = []
-    private var business: [TopicResponse] = []
-    private var architecture: [TopicResponse] = []
+    private var goldenHour: [UnsplashResponse] = []
+    private var business: [UnsplashResponse] = []
+    private var architecture: [UnsplashResponse] = []
     
-    func requestTopic(of topic: TopicType, completionHandler: @escaping ([TopicResponse])->Void) {
-        NetworkManager.shared.sendRequest(.topic(topic: topic), ofType: [TopicResponse].self) { value in
+    func requestTopic(of topic: TopicType, completionHandler: @escaping ([UnsplashResponse])->Void) {
+        NetworkManager.shared.sendRequest(.topic(topic: topic), ofType: [UnsplashResponse].self) { value in
             completionHandler(value)
         }
     }
     
-    func requestImage(of data: [TopicResponse], completionHandler: @escaping ([TopicData])->Void) {
+    func requestImage(of data: [UnsplashResponse], completionHandler: @escaping ([TopicData])->Void) {
         let dispatchGroup = DispatchGroup()
         
         var topicData: [TopicData] = []
