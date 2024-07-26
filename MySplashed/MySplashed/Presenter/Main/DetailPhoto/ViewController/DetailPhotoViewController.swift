@@ -11,7 +11,5 @@ final class DetailPhotoViewController: BaseViewController<DetailPhotoView, Detai
     
     override func configureNavigationItem() {
         super.configureNavigationItem()
-        
-        navigationItem.title = "DetailPhotoViewController"
     }
 }

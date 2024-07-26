@@ -68,6 +68,9 @@
 		CEB45CAA2C543A9400327314 /* DetailPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CA92C543A9400327314 /* DetailPhotoView.swift */; };
 		CEB45CAC2C543AB900327314 /* DetailPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CAB2C543AB900327314 /* DetailPhotoViewModel.swift */; };
 		CEB45CAE2C543B1900327314 /* DetailPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CAD2C543B1900327314 /* DetailPhotoViewController.swift */; };
+		CEB45CB02C544A5C00327314 /* PhotoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CAF2C544A5C00327314 /* PhotoHeaderView.swift */; };
+		CEB45CB22C544A7E00327314 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CB12C544A7E00327314 /* InfoView.swift */; };
+		CEB45CB42C544A8D00327314 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CB32C544A8D00327314 /* InfoLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +135,9 @@
 		CEB45CA92C543A9400327314 /* DetailPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoView.swift; sourceTree = "<group>"; };
 		CEB45CAB2C543AB900327314 /* DetailPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoViewModel.swift; sourceTree = "<group>"; };
 		CEB45CAD2C543B1900327314 /* DetailPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoViewController.swift; sourceTree = "<group>"; };
+		CEB45CAF2C544A5C00327314 /* PhotoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHeaderView.swift; sourceTree = "<group>"; };
+		CEB45CB12C544A7E00327314 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		CEB45CB32C544A8D00327314 /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -635,6 +641,9 @@
 			isa = PBXGroup;
 			children = (
 				CEB45CA92C543A9400327314 /* DetailPhotoView.swift */,
+				CEB45CAF2C544A5C00327314 /* PhotoHeaderView.swift */,
+				CEB45CB12C544A7E00327314 /* InfoView.swift */,
+				CEB45CB32C544A8D00327314 /* InfoLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -726,6 +735,7 @@
 				CEB45C762C52354100327314 /* LikeView.swift in Sources */,
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
 				CEB45C712C5234A500327314 /* SearchViewModel.swift in Sources */,
+				CEB45CB42C544A8D00327314 /* InfoLabel.swift in Sources */,
 				CEB45C2B2C50ECCE00327314 /* ProfileSelectViewModel.swift in Sources */,
 				CEB45CA42C53B11B00327314 /* UIButton+.swift in Sources */,
 				CEB45C7A2C5235EB00327314 /* LikeViewController.swift in Sources */,
@@ -742,8 +752,10 @@
 				CEB45BF52C5009DD00327314 /* ProfileSettingView.swift in Sources */,
 				CEB45C972C52D4CC00327314 /* UnsplashImageData.swift in Sources */,
 				CEB45C352C511C0800327314 /* MBTIView.swift in Sources */,
+				CEB45CB02C544A5C00327314 /* PhotoHeaderView.swift in Sources */,
 				CEB45CAC2C543AB900327314 /* DetailPhotoViewModel.swift in Sources */,
 				CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */,
+				CEB45CB22C544A7E00327314 /* InfoView.swift in Sources */,
 				CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */,
 				CEB45BED2C4FF00800327314 /* UIButton.Configuration+.swift in Sources */,
 				CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */,
