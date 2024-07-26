@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchViewController: BaseViewController<SearchView, SearchViewModel> {
+final class SearchPhotoViewController: BaseViewController<SearchPhotoView, SearchPhotoViewModel> {
     
     override func configureNavigationItem() {
         super.configureNavigationItem()

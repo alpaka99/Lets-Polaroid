@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SearchViewModel: ViewModel {
+final class SearchPhotoViewModel: ViewModel {
     struct Input: Equatable {
         
     }

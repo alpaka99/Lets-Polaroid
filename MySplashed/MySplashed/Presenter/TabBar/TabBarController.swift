@@ -33,9 +33,9 @@ enum TabBarComponents: String, CaseIterable {
                 viewModel: TopicViewModel()
             )
         case .search:
-            return SearchViewController(
-                baseView: SearchView(),
-                viewModel: SearchViewModel()
+            return SearchPhotoViewController(
+                baseView: SearchPhotoView(),
+                viewModel: SearchPhotoViewModel()
             )
         case .like:
             return LikeViewController(
