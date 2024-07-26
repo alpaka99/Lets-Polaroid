@@ -11,7 +11,7 @@ import Alamofire
 
 enum Router {
     case topic(topic: TopicType)
-    case search(text: String)
+    case search(searchText: String, page: Int = 1)
 }
 
 extension Router: URLRequestConvertible {
@@ -32,8 +32,8 @@ extension Router: URLRequestConvertible {
         switch self {
         case .topic(topic: let topic):
             return "/"+topic.rawValue + "/photos"
-        case .search(let text):
-            return "/"+text + "/photos"
+        case .search(_, _):
+            return "/photos"
         }
     }
     
@@ -50,8 +50,12 @@ extension Router: URLRequestConvertible {
         switch self {
         case .topic:
             return [:]
-        case .search:
-            return [:]
+        case .search(searchText: let searchText, page: let page):
+            return [
+                "query" : searchText,
+                "per_page" : "20",
+                "page" : String(page)
+            ]
         }
     }
     
@@ -64,6 +68,15 @@ extension Router: URLRequestConvertible {
         }
     }
     
+    var encoding: ParameterEncoding {
+        switch self {
+        case .topic(_):
+            return URLEncoding.default
+        case .search(_):
+            return URLEncoding.default
+        }
+    }
+    
     func asURLRequest() throws -> URLRequest {
         let url = try (baseURL + path).asURL()
         var request = try URLRequest(
@@ -71,15 +84,7 @@ extension Router: URLRequestConvertible {
             method: method
         )
         request.allHTTPHeaderFields = header
-        
-        return request
+        let encodedRequest = try encoding.encode(request, with: parameters)
+        return encodedRequest
     }
-}
-
-
-
-enum TopicType: String, CaseIterable {
-    case goldenHour = "golden-hour"
-    case business = "business-work"
-    case architecture = "architecture-interior"
 }

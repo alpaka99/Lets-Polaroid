@@ -7,7 +7,7 @@
 
 
 
-struct TopicResponse: Decodable, Hashable {
+struct UnsplashResponse: Decodable, Hashable {
     let id: String
     let createdAt: String
     let width: Int
@@ -27,8 +27,8 @@ struct TopicResponse: Decodable, Hashable {
     }
 }
 
-extension TopicResponse: Equatable {
-    static func == (lhs: TopicResponse, rhs: TopicResponse) -> Bool {
+extension UnsplashResponse: Equatable {
+    static func == (lhs: UnsplashResponse, rhs: UnsplashResponse) -> Bool {
         return lhs.id == rhs.id
     }
 }
