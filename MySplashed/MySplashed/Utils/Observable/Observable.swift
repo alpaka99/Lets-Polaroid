@@ -12,7 +12,7 @@ final class Observable<T: Equatable> {
         }
     }
 
-    private var closure: ((T)->Void)?
+    private(set) var closure: ((T)->Void)?
     
     init(_ value: T) {
         self.value = value

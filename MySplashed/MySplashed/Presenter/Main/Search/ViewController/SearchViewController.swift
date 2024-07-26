@@ -20,6 +20,7 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
         
         baseView.searchBar.delegate = self
         baseView.collectionView.prefetchDataSource = self
+        baseView.sortButton.addTarget(self, action: #selector(toggleSort), for: .touchUpInside)
     }
     
     override func configureDataBinding() {
@@ -30,6 +31,12 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
         viewModel.bind(\.isInitialSearch) {[weak self] value in
             self?.baseView.moveToTop()
         }
+    }
+    
+    @objc
+    func toggleSort(_ sender: UIButton) {
+        viewModel.react(.toggleSortOption, value: true)
+        baseView.toggleSortOption(viewModel(\.sortOption).value.toggled)
     }
 }
 

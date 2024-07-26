@@ -10,18 +10,29 @@ import UIKit
 import Kingfisher
 
 final class SearchRepository {
-    func requestSearchImage(_ searchText: String, completionHandler: @escaping ([UnsplashImageData])->Void) {
+    var relavantImageData: [UnsplashImageData] = []
+    var latestImageData: [UnsplashImageData] = []
+    
+    func requestSearchImage(_ searchText: String, sortOption: SortOption, completionHandler: @escaping ([UnsplashImageData])->Void) {
         NetworkManager.shared.sendRequest(.search(searchText: searchText), ofType: SearchResponse.self) {[weak self] searchResponse in
-            self?.requestImage(of: searchResponse.results) { imageResponse in
-                completionHandler(imageResponse)
+            if let repo = self {
+                repo.requestImage(of: searchResponse.results) { imageResponse in
+                    repo.relavantImageData = []
+                    repo.latestImageData = []
+                    let imageData = repo.returnImageData(imageResponse, sortOption: sortOption)
+                    completionHandler(imageData)
+                }
             }
         }
     }
     
-    func prefetchImage(_ searchText: String, page: Int, completionHandler: @escaping ([UnsplashImageData])->Void) {
+    func prefetchImage(_ searchText: String, page: Int, sortOption: SortOption, completionHandler: @escaping ([UnsplashImageData])->Void) {
         NetworkManager.shared.sendRequest(.search(searchText: searchText, page: page), ofType: SearchResponse.self) {[weak self] searchResponse in
-            self?.requestImage(of: searchResponse.results) { imageResponse in
-                completionHandler(imageResponse)
+            if let repo = self {
+                repo.requestImage(of: searchResponse.results) { imageResponse in
+                    let imageData = repo.returnImageData(imageResponse, sortOption: sortOption)
+                    completionHandler(imageData)
+                }
             }
         }
     }
@@ -50,6 +61,18 @@ final class SearchRepository {
         
         dispatchGroup.notify(queue: .main) {
             completionHandler(topicData)
+        }
+    }
+    
+    func returnImageData(_ imageData: [UnsplashImageData], sortOption: SortOption) -> [UnsplashImageData] {
+        relavantImageData.append(contentsOf: imageData)
+        latestImageData = relavantImageData.sorted(by: { $0.unsplashResponse.createdAt <= $1.unsplashResponse.createdAt })
+        
+        switch sortOption {
+        case .relevant:
+            return relavantImageData
+        case .latest:
+            return latestImageData
         }
     }
 }

@@ -16,10 +16,20 @@ final class SearchView: BaseView {
     
     private(set) var searchBar = UISearchBar()
     
+    private(set) var sortButton = {
+        let button = UIButton.Configuration.plain()
+            .image(named: "sort")
+            .title(SortOption.relevant.toggled.rawValue + "으로")
+            .cornerStyle(.capsule)
+            .build()
+        return button
+    }()
+    
     private let emptyView = {
         let label = UILabel()
         label.text = "검색 결과가 없습니다"
         label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.textAlignment = .center
         return label
     }()
     
@@ -63,6 +73,7 @@ final class SearchView: BaseView {
         super.configureHierarchy()
         
         self.addSubview(searchBar)
+        self.addSubview(sortButton)
         self.addSubview(emptyView)
         self.addSubview(collectionView)
     }
@@ -74,11 +85,16 @@ final class SearchView: BaseView {
         searchBar.snp.makeConstraints { search in
             search.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
         }
+        sortButton.snp.makeConstraints { btn in
+            btn.top.equalTo(searchBar.snp.bottom)
+            btn.trailing.equalTo(self.safeAreaLayoutGuide)
+        }
         emptyView.snp.makeConstraints { label in
-            label.center.equalTo(self.safeAreaLayoutGuide)
+            label.top.equalTo(sortButton.snp.bottom)
+            label.horizontalEdges.bottom.equalTo(self.safeAreaLayoutGuide)
         }
         collectionView.snp.makeConstraints { collectionView in
-            collectionView.top.equalTo(searchBar.snp.bottom)
+            collectionView.top.equalTo(sortButton.snp.bottom)
             collectionView.horizontalEdges.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }
@@ -109,6 +125,7 @@ final class SearchView: BaseView {
             setEmptyState()
         } else {
             var snapShot = NSDiffableDataSourceSnapshot<Section, UnsplashImageData>()
+            
             snapShot.appendSections([.main])
             snapShot.appendItems(data, toSection: .main)
             dataSource.apply(snapShot)
@@ -128,5 +145,23 @@ final class SearchView: BaseView {
     
     func moveToTop() {
         collectionView.setContentOffset(.zero, animated: false)
+    }
+    
+    func toggleSortOption(_ sortOption: SortOption) {
+        sortButton.updateTitle(sortOption.rawValue + "으로")
+    }
+}
+
+enum SortOption: String {
+    case relevant = "관련순"
+    case latest = "최신순"
+    
+    var toggled: Self {
+        switch self {
+        case .relevant:
+            return .latest
+        case .latest:
+            return .relevant
+        }
     }
 }

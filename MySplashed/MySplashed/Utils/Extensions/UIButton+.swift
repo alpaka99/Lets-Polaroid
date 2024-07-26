@@ -16,4 +16,9 @@ extension UIButton {
         var config = self.config
         self.configuration = config.image(systemName: systemName)
     }
+    
+    func updateTitle(_ title: String) {
+        var config = self.config
+        self.configuration = config.title(title)
+    }
 }

@@ -13,6 +13,7 @@ final class SearchViewModel: ViewModel {
         var currentPage = Observable(0)
         var isPrefetching = Observable(false)
         var total = Observable(0)
+        var sortOption: Observable<SortOption> = Observable(.relevant)
     }
     
     struct Output: Equatable {
@@ -26,6 +27,7 @@ final class SearchViewModel: ViewModel {
     enum Action: String {
         case searchButtonTapped
         case prefetchImage
+        case toggleSortOption
     }
     
     let repository = SearchRepository()
@@ -40,13 +42,18 @@ final class SearchViewModel: ViewModel {
             searchImage(value)
         case .prefetchImage:
             prefetchImage(value)
+        case .toggleSortOption:
+            toggleSortOption()
         }
     }
     
     func configureBind() {
         bind(\.searchText) {[weak self] value in
             if let vm = self {
-                vm.repository.requestSearchImage(value) { imageData in
+                vm.repository.requestSearchImage(
+                    value,
+                    sortOption: vm(\.sortOption).value
+                ) { imageData in
                     vm.reduce(\.searchData.value, into: imageData)
                     vm.reduce(\.currentPage.value, into: 1)
                     let toggledValue = !vm(\.isInitialSearch).value
@@ -58,10 +65,21 @@ final class SearchViewModel: ViewModel {
         bind(\.isPrefetching) { [weak self] _ in
             if let vm = self {
                 if vm(\.isPrefetching).value == true {
-                    vm.repository.prefetchImage(vm(\.searchText).value, page: vm(\.currentPage).value, completionHandler: { imageData in
+                    vm.repository.prefetchImage(
+                        vm(\.searchText).value,
+                        page: vm(\.currentPage).value,
+                        sortOption: vm(\.sortOption).value
+                    ) { imageData in
                         vm.prefetchComplete(imageData)
-                    })
+                    }
                 }
+            }
+        }
+        
+        bind(\.sortOption) { [weak self] value in
+            if let vm = self {
+                let imageData = vm.repository.returnImageData([], sortOption: vm(\.sortOption).value)
+                vm.reduce(\.searchData.value, into: imageData)
             }
         }
     }
@@ -89,11 +107,16 @@ final class SearchViewModel: ViewModel {
     private func prefetchComplete(_ imageData: [UnsplashImageData]) {
         reduce(\.isPrefetching.value, into: false)
         
-        var newSearchData = self(\.searchData).value
-        newSearchData.append(contentsOf: imageData)
-        reduce(\.searchData.value, into: newSearchData)
+        reduce(\.searchData.value, into: imageData)
         
         let newPage = self(\.currentPage).value + 1
         reduce(\.currentPage.value, into: newPage)
+    }
+    
+    private func toggleSortOption() {
+        let currentSortOption = self(\.sortOption).value
+        let toggledSortOption = currentSortOption.toggled
+        
+        reduce(\.sortOption.value, into: toggledSortOption)
     }
 }
