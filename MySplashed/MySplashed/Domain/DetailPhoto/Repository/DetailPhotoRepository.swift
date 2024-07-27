@@ -29,6 +29,25 @@ final class DetailPhotoRepository {
     func toggleDataLike(_ data: UnsplashImageData) -> UnsplashImageData {
         var toggledData = data
         toggledData.isLiked.toggle()
+        
+        do {
+            let realmImage = try makeRealmImage(with: toggledData)
+            if realmImage.isLiked {
+                try RealmManager.shared.create(realmImage)
+                
+            } else {
+                if let target = RealmManager.shared.readAll(LikedImage.self).filter({$0.id == data.unsplashResponse.id}).first {
+                    try RealmManager.shared.delete(target)
+                }
+            }
+        } catch {
+            print("toggle data error")
+        }
         return toggledData
+    }
+    
+    func makeRealmImage(with data: UnsplashImageData) throws -> LikedImage {
+        let likedImage = try LikedImage(unsplashImageData: data)
+        return likedImage
     }
 }

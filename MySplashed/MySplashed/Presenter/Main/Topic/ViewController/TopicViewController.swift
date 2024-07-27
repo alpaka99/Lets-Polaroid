@@ -11,6 +11,11 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.react(.topicViewDidLoad, value: true)
+    }
+//    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.react(.topicViewWillAppear, value: true)
     }
     

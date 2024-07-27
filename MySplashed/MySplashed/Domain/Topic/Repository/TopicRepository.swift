@@ -13,6 +13,8 @@ final class TopicRepository {
     private var business: [UnsplashResponse] = []
     private var architecture: [UnsplashResponse] = []
     
+    private var likedImages: [LikedImage] = []
+    
     func requestTopic(of topic: TopicType, completionHandler: @escaping ([UnsplashResponse])->Void) {
         NetworkManager.shared.sendRequest(.topic(topic: topic), ofType: [UnsplashResponse].self) { value in
             completionHandler(value)
@@ -44,5 +46,22 @@ final class TopicRepository {
         dispatchGroup.notify(queue: .main) {
             completionHandler(topicData)
         }
+    }
+    
+    
+    func checkImageIsLiked(_ data: UnsplashImageData) -> UnsplashImageData {
+        for likedImage in likedImages {
+            if likedImage.id == data.unsplashResponse.id {
+                var likedData = data
+                likedData.isLiked = true
+                return likedData
+            }
+        }
+        return data
+    }
+    
+    func loadLikedImages() {
+        likedImages = RealmManager.shared.readAll(LikedImage.self)
+        print(likedImages.count)
     }
 }

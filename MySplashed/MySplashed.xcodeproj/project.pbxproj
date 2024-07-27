@@ -580,7 +580,6 @@
 		CEB45C932C5292CB00327314 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				CEB45CC42C54EB8100327314 /* Realm */,
 				CEB45CB62C54CFC600327314 /* DetailPhoto */,
 				CEB45C9C2C53A0BD00327314 /* Search */,
 				CEB45C942C5292E200327314 /* Topic */,
@@ -661,6 +660,7 @@
 		CEB45CB52C54CAD200327314 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CEB45CC62C54EBAE00327314 /* LikedImage.swift */,
 				CEB45C892C527B2700327314 /* UnsplashResponse.swift */,
 				CEB45C8B2C527C5200327314 /* Photographer.swift */,
 				CEB45C962C52D4CC00327314 /* UnsplashImageData.swift */,
@@ -693,22 +693,6 @@
 				CEB45CBD2C54D05D00327314 /* DetailPhotoRepository.swift */,
 			);
 			path = Repository;
-			sourceTree = "<group>";
-		};
-		CEB45CC42C54EB8100327314 /* Realm */ = {
-			isa = PBXGroup;
-			children = (
-				CEB45CC52C54EB8E00327314 /* Model */,
-			);
-			path = Realm;
-			sourceTree = "<group>";
-		};
-		CEB45CC52C54EB8E00327314 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CEB45CC62C54EBAE00327314 /* LikedImage.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

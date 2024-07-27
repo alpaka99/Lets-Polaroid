@@ -9,6 +9,7 @@ import Foundation
 
 final class TopicViewModel: ViewModel {
     struct Input: Equatable {
+        var topicViewDidLoad = Observable(false)
         var topicViewWillAppear = Observable(false)
         var goldenHourResponse: Observable<[UnsplashResponse]> = Observable([])
         var businessResponse: Observable<[UnsplashResponse]> = Observable([])
@@ -29,8 +30,10 @@ final class TopicViewModel: ViewModel {
     let repository = TopicRepository()
     
     enum Action: String {
+        case topicViewDidLoad
         case topicViewWillAppear
         case loadTopics
+        case loadLikedImages
         case cellTapped
     }
     
@@ -40,19 +43,27 @@ final class TopicViewModel: ViewModel {
     
     func react<U>(_ action: Action, value: U) where U : Equatable {
         switch action {
+        case .topicViewDidLoad:
+            topicViewDidLoad()
         case .topicViewWillAppear:
             topicViewWillAppear()
         case .loadTopics:
             loadTopics()
+        case .loadLikedImages:
+            loadLikedImages()
         case .cellTapped:
             cellTapped(value)
         }
     }
     
     func configureBind() {
-        bind(\.topicViewWillAppear) {[weak self] _ in
+        bind(\.topicViewDidLoad) {[weak self] _ in
             // topic view appearing event
             self?.react(.loadTopics, value: true)
+        }
+        
+        bind(\.topicViewWillAppear) { [weak self] _ in
+            self?.react(.loadLikedImages, value: true)
         }
         
         bind(\.goldenHourResponse) {[weak self] value in
@@ -68,9 +79,9 @@ final class TopicViewModel: ViewModel {
         }
     }
     
-    private func topicViewWillAppear() {
-        let toggledValue = !self(\.topicViewWillAppear).value
-        reduce(\.topicViewWillAppear.value, into: toggledValue)
+    private func topicViewDidLoad() {
+        let toggledValue = !self(\.topicViewDidLoad).value
+        reduce(\.topicViewDidLoad.value, into: toggledValue)
     }
     
     private func loadTopics() {
@@ -102,7 +113,7 @@ final class TopicViewModel: ViewModel {
     }
     
     private func cellTapped<T: Equatable>(_ value: T) {
-    if let indexPath = value as? IndexPath, let topicType = TopicType.sectionNumberInit(indexPath.section) {
+        if let indexPath = value as? IndexPath, let topicType = TopicType.sectionNumberInit(indexPath.section) {
             var selectedImage: UnsplashImageData
             switch topicType {
             case .goldenHour:
@@ -112,7 +123,19 @@ final class TopicViewModel: ViewModel {
             case .architecture:
                 selectedImage = self(\.architectureData).value[indexPath.row]
             }
+            selectedImage = repository.checkImageIsLiked(selectedImage)
+            
             reduce(\.selectedImage.value, into: selectedImage)
         }
+    }
+    
+    private func topicViewWillAppear() {
+        let toggledValue = !self(\.topicViewWillAppear).value
+        reduce(\.topicViewWillAppear.value, into: toggledValue)
+    }
+    
+    private func loadLikedImages() {
+        print(#function)
+        repository.loadLikedImages()
     }
 }
