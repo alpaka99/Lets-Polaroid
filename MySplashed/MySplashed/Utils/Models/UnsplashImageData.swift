@@ -10,5 +10,5 @@ import UIKit
 struct UnsplashImageData: Equatable, Hashable {
     let unsplashResponse: UnsplashResponse
     let image: UIImage
-    let liked: Bool = false
+    let isLiked: Bool = false
 }

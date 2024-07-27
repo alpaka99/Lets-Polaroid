@@ -6,6 +6,7 @@
 //
 
 
+import RealmSwift
 
 struct UnsplashResponse: Decodable, Hashable {
     let id: String
