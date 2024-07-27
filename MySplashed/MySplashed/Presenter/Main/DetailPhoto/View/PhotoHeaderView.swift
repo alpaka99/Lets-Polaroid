@@ -22,7 +22,6 @@ final class PhotoHeaderView: BaseView {
     }()
     private let photoCreated = {
         let label = UILabel()
-        label.text = Date.now.formatted()
         label.font = .systemFont(ofSize: 12, weight: .bold)
         return label
     }()
@@ -70,9 +69,9 @@ final class PhotoHeaderView: BaseView {
         }
     }
     
-    func configureHeaderData(_ data: PhotographerData) {
-        print(data.profileImage)
-        photographerProfile.image.image = data.profileImage
-        photographerName.text = data.photographer.name
+    func configureHeaderData(_ data: DetailPhotoModel) {
+        photographerProfile.image.image = data.photographerData.profileImage
+        photographerName.text = data.photographerData.photographer.name
+        photoCreated.text = data.imageData.unsplashResponse.createdAt // TODO: DateFormatter formatting
     }
 }
