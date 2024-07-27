@@ -79,6 +79,7 @@
 		CEFBB2182C553CF600454193 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB2172C553CF600454193 /* SnapKit */; };
 		CEFBB21B2C553CFF00454193 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB21A2C553CFF00454193 /* Kingfisher */; };
 		CEFBB21E2C5540A400454193 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB21D2C5540A400454193 /* RealmSwift */; };
+		CEFBB2202C556C2300454193 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB21F2C556C2300454193 /* FileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,6 +154,7 @@
 		CEB45CC62C54EBAE00327314 /* LikedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedImage.swift; sourceTree = "<group>"; };
 		CEB45CC82C54F4AF00327314 /* JSONConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConstant.swift; sourceTree = "<group>"; };
 		CEB45CCB2C5531A700327314 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		CEFBB21F2C556C2300454193 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -557,6 +559,7 @@
 			children = (
 				CEB45C7E2C526AD200327314 /* NetworkManager.swift */,
 				CEB45CCB2C5531A700327314 /* RealmManager.swift */,
+				CEFBB21F2C556C2300454193 /* FileManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				CEB45C662C5231EE00327314 /* TopicView.swift in Sources */,
 				CEB45BD92C4FE05300327314 /* SplashViewController.swift in Sources */,
 				CEB45C3B2C5153F300327314 /* Sections.swift in Sources */,
+				CEFBB2202C556C2300454193 /* FileManager.swift in Sources */,
 				CEB45BF72C5009F500327314 /* ProfileSettingViewModel.swift in Sources */,
 				CEB45CCC2C5531A700327314 /* RealmManager.swift in Sources */,
 				CEB45C6D2C52347100327314 /* SearchViewController.swift in Sources */,

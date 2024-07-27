@@ -34,9 +34,10 @@ final class DetailPhotoRepository {
             let realmImage = try makeRealmImage(with: toggledData)
             if realmImage.isLiked {
                 try RealmManager.shared.create(realmImage)
-                
+                FileManager.default.saveImageToDocument(image: toggledData.image, filename: realmImage.id)
             } else {
                 if let target = RealmManager.shared.readAll(LikedImage.self).filter({$0.id == data.unsplashResponse.id}).first {
+                    FileManager.default.removeImageFromDocument(filename: data.unsplashResponse.id)
                     try RealmManager.shared.delete(target)
                 }
             }
