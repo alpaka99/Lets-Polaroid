@@ -27,8 +27,8 @@ extension String {
 }
 
 extension Dictionary {
-    func toString<T: Encodable>(_ dictionary: T = self) throws -> String {
-        let jsonData = try JSONConstant.jsonEncoder.encode(dictionary)
+    func toString() throws -> String {
+        let jsonData = try JSONSerialization.data(withJSONObject: self)
         
         if let convertedString = String(data: jsonData, encoding: .utf8) {
             return convertedString

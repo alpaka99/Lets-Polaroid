@@ -5,9 +5,6 @@
 //  Created by user on 7/25/24.
 //
 
-
-import RealmSwift
-
 struct UnsplashResponse: Decodable, Hashable {
     let id: String
     let createdAt: String

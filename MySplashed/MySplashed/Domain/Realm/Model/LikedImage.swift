@@ -24,8 +24,3 @@ final class LikedImage: Object {
     @Persisted var isLiked: Bool = false
 }
 
-
-/*
- Dictionary는 Persisted 할 수 없다 -> Custom Type을 만들어서 해결
- https://stackoverflow.com/questions/33796143/how-can-i-store-a-dictionary-with-realmswift
- */
