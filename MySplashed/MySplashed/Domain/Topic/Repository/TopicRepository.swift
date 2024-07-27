@@ -44,6 +44,7 @@ final class TopicRepository {
         }
         
         dispatchGroup.notify(queue: .main) {
+            topicData.sort(by: {$0.unsplashResponse.likes > $1.unsplashResponse.likes})
             completionHandler(topicData)
         }
     }

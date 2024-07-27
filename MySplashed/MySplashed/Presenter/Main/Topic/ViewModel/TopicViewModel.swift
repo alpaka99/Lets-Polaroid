@@ -87,6 +87,7 @@ final class TopicViewModel: ViewModel {
     private func loadTopics() {
         TopicType.allCases.forEach {[weak self] topic in
             self?.repository.requestTopic(of: topic) { value in
+                print(topic)
                 switch topic {
                 case .goldenHour:
                     self?.reduce(\.goldenHourResponse.value, into: value)

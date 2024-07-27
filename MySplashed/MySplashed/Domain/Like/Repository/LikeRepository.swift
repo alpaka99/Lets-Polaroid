@@ -38,6 +38,7 @@ final class LikeRepository {
     func deleteImageData(_ imageData: UnsplashImageData, completionHandler: @escaping (Result<Bool, Error> ) throws ->Void) {
         if let target = RealmManager.shared.readAll(LikedImage.self).filter({ $0.id == imageData.unsplashResponse.id }).first {
             do {
+                FileManager.default.removeImageFromDocument(filename: imageData.unsplashResponse.id)
                 try RealmManager.shared.delete(target)
                 try completionHandler(.success(true))
             } catch {
