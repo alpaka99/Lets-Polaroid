@@ -15,24 +15,3 @@ struct Photographer: Decodable, Hashable {
         case profileImageURL = "profile_image"
     }
 }
-
-extension String {
-    func toDictionary<T: Decodable, U: Decodable>(keyType: T.Type, valueType: U.Type) throws -> [T:U] {
-        if let data = self.data(using: Self.Encoding.utf8) {
-            let dictionary = try JSONConstant.jsonDecoder.decode([T : U].self, from: data)
-            return dictionary
-        }
-        return [:]
-    }
-}
-
-extension Dictionary {
-    func toString() throws -> String {
-        let jsonData = try JSONSerialization.data(withJSONObject: self)
-        
-        if let convertedString = String(data: jsonData, encoding: .utf8) {
-            return convertedString
-        }
-        return ""
-    }
-}

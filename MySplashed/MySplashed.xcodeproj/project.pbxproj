@@ -80,6 +80,7 @@
 		CEFBB21B2C553CFF00454193 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB21A2C553CFF00454193 /* Kingfisher */; };
 		CEFBB21E2C5540A400454193 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB21D2C5540A400454193 /* RealmSwift */; };
 		CEFBB2202C556C2300454193 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB21F2C556C2300454193 /* FileManager.swift */; };
+		CEFBB2222C55812900454193 /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2212C55812900454193 /* Dictionary+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +156,7 @@
 		CEB45CC82C54F4AF00327314 /* JSONConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConstant.swift; sourceTree = "<group>"; };
 		CEB45CCB2C5531A700327314 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		CEFBB21F2C556C2300454193 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		CEFBB2212C55812900454193 /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +332,7 @@
 				CEB45BEC2C4FF00800327314 /* UIButton.Configuration+.swift */,
 				CEB45BEE2C50081800327314 /* UIViewController+.swift */,
 				CEB45C362C511FD600327314 /* UICollectionViewLayout+.swift */,
+				CEFBB2212C55812900454193 /* Dictionary+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				CEB45CC92C54F4AF00327314 /* JSONConstant.swift in Sources */,
 				CEB45C9F2C53A0CF00327314 /* SearchRepository.swift in Sources */,
 				CEB45C992C53720400327314 /* SearchView.swift in Sources */,
+				CEFBB2222C55812900454193 /* Dictionary+.swift in Sources */,
 				CEB45CA22C53A79A00327314 /* SearchResponse.swift in Sources */,
 				CEB45BE92C4FEDD000327314 /* String+.swift in Sources */,
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,

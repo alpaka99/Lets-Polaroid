@@ -25,3 +25,12 @@ extension String {
     }
 }
 
+extension String {
+    func toDictionary<T: Decodable, U: Decodable>(keyType: T.Type, valueType: U.Type) throws -> [T:U] {
+        if let data = self.data(using: Self.Encoding.utf8) {
+            let dictionary = try JSONConstant.jsonDecoder.decode([T : U].self, from: data)
+            return dictionary
+        }
+        return [:]
+    }
+}

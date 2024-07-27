@@ -49,6 +49,9 @@ final class DetailPhotoView: BaseView {
     override func configureLayout() {
         super.configureLayout()
         
+        scrollView.snp.makeConstraints { scrollView in
+            scrollView.edges.equalTo(self.safeAreaLayoutGuide)
+        }
         
         photoHeaderView.snp.makeConstraints { header in
             header.top.horizontalEdges.equalTo(contentView)
@@ -69,10 +72,6 @@ final class DetailPhotoView: BaseView {
         contentView.snp.makeConstraints { view in
             view.verticalEdges.equalTo(scrollView.contentLayoutGuide)
             view.horizontalEdges.equalTo(scrollView.frameLayoutGuide)
-        }
-        
-        scrollView.snp.makeConstraints { scrollView in
-            scrollView.edges.equalTo(self.safeAreaLayoutGuide)
         }
     }
     
