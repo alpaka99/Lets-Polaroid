@@ -78,6 +78,7 @@
 		CEB45CC32C54EA8E00327314 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEB45CC22C54EA8E00327314 /* RealmSwift */; };
 		CEB45CC72C54EBAE00327314 /* LikedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CC62C54EBAE00327314 /* LikedImage.swift */; };
 		CEB45CC92C54F4AF00327314 /* JSONConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CC82C54F4AF00327314 /* JSONConstant.swift */; };
+		CEB45CCC2C5531A700327314 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CCB2C5531A700327314 /* RealmManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +152,7 @@
 		CEB45CBF2C54DBD600327314 /* DetailPhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoModel.swift; sourceTree = "<group>"; };
 		CEB45CC62C54EBAE00327314 /* LikedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedImage.swift; sourceTree = "<group>"; };
 		CEB45CC82C54F4AF00327314 /* JSONConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConstant.swift; sourceTree = "<group>"; };
+		CEB45CCB2C5531A700327314 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -554,6 +556,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB45C7E2C526AD200327314 /* NetworkManager.swift */,
+				CEB45CCB2C5531A700327314 /* RealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -843,6 +846,7 @@
 				CEB45BD92C4FE05300327314 /* SplashViewController.swift in Sources */,
 				CEB45C3B2C5153F300327314 /* Sections.swift in Sources */,
 				CEB45BF72C5009F500327314 /* ProfileSettingViewModel.swift in Sources */,
+				CEB45CCC2C5531A700327314 /* RealmManager.swift in Sources */,
 				CEB45C6D2C52347100327314 /* SearchViewController.swift in Sources */,
 				CEB45BDB2C4FE05900327314 /* SplashView.swift in Sources */,
 				CEB45C8A2C527B2700327314 /* UnsplashResponse.swift in Sources */,
