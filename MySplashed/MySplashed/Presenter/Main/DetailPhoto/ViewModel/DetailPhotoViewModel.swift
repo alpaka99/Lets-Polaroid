@@ -10,6 +10,7 @@ import Foundation
 final class DetailPhotoViewModel: ViewModel {
     struct Input: Equatable {
         var selectedImage: Observable<UnsplashImageData?> = Observable(nil)
+        var likeButtonTapped = Observable(false)
     }
     
     struct Output: Equatable {
@@ -22,6 +23,7 @@ final class DetailPhotoViewModel: ViewModel {
     
     enum Action: String {
         case recieveImageData
+        case likeButtonTapped
     }
     
     private let repository = DetailPhotoRepository()
@@ -34,6 +36,8 @@ final class DetailPhotoViewModel: ViewModel {
         switch action {
         case .recieveImageData:
             receiveImageData(value)
+        case .likeButtonTapped:
+            likeButtonTapped()
         }
     }
     
@@ -55,12 +59,26 @@ final class DetailPhotoViewModel: ViewModel {
                 }
             }
         }
+        
+        bind(\.likeButtonTapped) { [weak self] value in
+            if let vm = self {
+                if let data = vm(\.selectedImage).value {
+                    let toggledData = vm.repository.toggleDataLike(data)
+                    vm.reduce(\.selectedImage.value, into: toggledData)
+                }
+            }
+        }
     }
     
     private func receiveImageData<T: Equatable>(_ value: T) {
         if let value = value as? UnsplashImageData {
             reduce(\.selectedImage.value, into: value)
         }
+    }
+    
+    private func likeButtonTapped() {
+        let toggledValue = !self(\.likeButtonTapped).value
+        reduce(\.likeButtonTapped.value, into: toggledValue)
     }
 }
 

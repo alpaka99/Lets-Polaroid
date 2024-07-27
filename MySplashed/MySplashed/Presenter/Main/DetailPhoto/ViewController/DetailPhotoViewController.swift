@@ -14,6 +14,12 @@ final class DetailPhotoViewController: BaseViewController<DetailPhotoView, Detai
         
     }
     
+    override func configureDelegate() {
+        super.configureDelegate()
+        
+        baseView.photoHeaderView.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+    }
+    
     override func configureDataBinding() {
         super.configureDataBinding()
         
@@ -22,5 +28,10 @@ final class DetailPhotoViewController: BaseViewController<DetailPhotoView, Detai
                 self?.baseView.configureData(value)
             }
         }
+    }
+    
+    @objc
+    func likeButtonTapped(_ sender: UIButton) {
+        viewModel.react(.likeButtonTapped, value: true)
     }
 }

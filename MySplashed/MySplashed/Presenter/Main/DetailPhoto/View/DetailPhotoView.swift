@@ -10,15 +10,15 @@ import UIKit
 import SnapKit
 
 final class DetailPhotoView: BaseView {
-    let scrollView = {
+    private let scrollView = {
         let scrollView = UIScrollView()
         scrollView.isDirectionalLockEnabled = true
         
         return scrollView
     }()
-    let contentView = UIView()
+    private let contentView = UIView()
     
-    private let photoHeaderView = {
+    private(set) var photoHeaderView = {
         let view = PhotoHeaderView()
         view.backgroundColor = .clear
         return view

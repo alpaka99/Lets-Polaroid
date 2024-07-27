@@ -25,4 +25,10 @@ final class DetailPhotoRepository {
             }
         }
     }
+    
+    func toggleDataLike(_ data: UnsplashImageData) -> UnsplashImageData {
+        var toggledData = data
+        toggledData.isLiked.toggle()
+        return toggledData
+    }
 }
