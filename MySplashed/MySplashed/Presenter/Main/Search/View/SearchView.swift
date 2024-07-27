@@ -110,7 +110,7 @@ final class SearchView: BaseView {
             cell.configureUI(.search)
             cell.setImage(UIImage(systemName: "star.fill")!)
             cell.setTotalLike(itemIdentifier.unsplashResponse.likes)
-            cell.setLikedButton(itemIdentifier.liked)
+            cell.setLikedButton(itemIdentifier.isLiked)
         }
         
         dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in

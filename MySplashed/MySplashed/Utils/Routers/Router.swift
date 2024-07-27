@@ -12,6 +12,7 @@ import Alamofire
 enum Router {
     case topic(topic: TopicType)
     case search(searchText: String, page: Int = 1)
+    case statistic(imageID: String)
 }
 
 extension Router: URLRequestConvertible {
@@ -25,15 +26,20 @@ extension Router: URLRequestConvertible {
             return "/topics"
         case .search:
             return "/search"
+        case .statistic:
+            return "/photos"
         }
     }
     
     var trailingPath: String {
         switch self {
         case .topic(topic: let topic):
-            return "/"+topic.rawValue + "/photos"
+//            return "/"+topic.rawValue + "/photos"
+            return "/\(topic.rawValue)/photos"
         case .search(_, _):
             return "/photos"
+        case .statistic(imageID: let imageID):
+            return "/\(imageID)/statistics"
         }
     }
     
@@ -56,6 +62,8 @@ extension Router: URLRequestConvertible {
                 "per_page" : "20",
                 "page" : String(page)
             ]
+        case .statistic:
+            return [:]
         }
     }
     
@@ -65,14 +73,18 @@ extension Router: URLRequestConvertible {
             return .get
         case .search:
             return .get
+        case .statistic:
+            return .get
         }
     }
     
     var encoding: ParameterEncoding {
         switch self {
-        case .topic(_):
+        case .topic:
             return URLEncoding.default
-        case .search(_):
+        case .search:
+            return URLEncoding.default
+        case .statistic:
             return URLEncoding.default
         }
     }

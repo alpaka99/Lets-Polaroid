@@ -5,8 +5,6 @@
 //  Created by user on 7/25/24.
 //
 
-
-
 struct UnsplashResponse: Decodable, Hashable {
     let id: String
     let createdAt: String
@@ -14,7 +12,7 @@ struct UnsplashResponse: Decodable, Hashable {
     let height: Int
     let urls: [String : String]
     let likes: Int
-    let user: User
+    let photographer: Photographer
     
     enum CodingKeys: String, CodingKey, Hashable {
         case id
@@ -23,7 +21,7 @@ struct UnsplashResponse: Decodable, Hashable {
         case height
         case urls
         case likes
-        case user
+        case photographer = "user"
     }
 }
 

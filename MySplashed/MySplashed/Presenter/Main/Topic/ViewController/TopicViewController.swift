@@ -11,6 +11,11 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.react(.topicViewDidLoad, value: true)
+    }
+//    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.react(.topicViewWillAppear, value: true)
     }
     
@@ -18,6 +23,12 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
         super.configureNavigationItem()
         
         // profile iamge rightBarButton으로 넣기
+    }
+    
+    override func configureDelegate() {
+        super.configureDelegate()
+        
+        baseView.collectionView.delegate = self
     }
     
     
@@ -35,5 +46,21 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
         viewModel.bind(\.architectureData) {[weak self] value in
             self?.baseView.updateSnapShot(value, sectionType: .architecture)
         }
+        
+        viewModel.bind(\.selectedImage) {[weak self] value in
+            if let vc = self {
+                let detailViewModel = DetailPhotoViewModel()
+
+                detailViewModel.react(.recieveImageData, value: value)
+                
+                vc.navigationController?.pushViewController(DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: detailViewModel), animated: true)
+            }
+        }
+    }
+}
+
+extension TopicViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.react(.cellTapped, value: indexPath)
     }
 }

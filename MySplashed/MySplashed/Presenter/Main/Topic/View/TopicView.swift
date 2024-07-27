@@ -17,7 +17,7 @@ final class TopicView: BaseView {
         case architecture = "건축 및 인테리어"
     }
     
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+    private(set) lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
     var dataSource: UICollectionViewDiffableDataSource<Section, UnsplashImageData>!
     
