@@ -5,12 +5,12 @@
 //  Created by user on 7/25/24.
 //
 
-struct User: Decodable, Hashable {
+struct Photographer: Decodable, Hashable {
     let name: String
-    let profileImage: [String : String]
+    let profileImageURL: [String : String]
     
     enum CodingKeys: String, CodingKey {
         case name
-        case profileImage = "profile_image"
+        case profileImageURL = "profile_image"
     }
 }

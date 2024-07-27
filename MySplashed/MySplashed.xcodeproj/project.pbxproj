@@ -56,7 +56,7 @@
 		CEB45C822C526B2700327314 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEB45C812C526B2700327314 /* Alamofire */; };
 		CEB45C852C526B3100327314 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEB45C842C526B3100327314 /* Kingfisher */; };
 		CEB45C8A2C527B2700327314 /* UnsplashResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C892C527B2700327314 /* UnsplashResponse.swift */; };
-		CEB45C8C2C527C5200327314 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8B2C527C5200327314 /* User.swift */; };
+		CEB45C8C2C527C5200327314 /* Photographer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8B2C527C5200327314 /* Photographer.swift */; };
 		CEB45C8F2C527CA100327314 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C8E2C527CA100327314 /* Router.swift */; };
 		CEB45C922C52915D00327314 /* TopicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C912C52915D00327314 /* TopicRepository.swift */; };
 		CEB45C972C52D4CC00327314 /* UnsplashImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C962C52D4CC00327314 /* UnsplashImageData.swift */; };
@@ -71,6 +71,10 @@
 		CEB45CB02C544A5C00327314 /* PhotoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CAF2C544A5C00327314 /* PhotoHeaderView.swift */; };
 		CEB45CB22C544A7E00327314 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CB12C544A7E00327314 /* InfoView.swift */; };
 		CEB45CB42C544A8D00327314 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CB32C544A8D00327314 /* InfoLabel.swift */; };
+		CEB45CB82C54CFD400327314 /* PhotographerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CB72C54CFD400327314 /* PhotographerData.swift */; };
+		CEB45CBA2C54CFE700327314 /* UserDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CB92C54CFE700327314 /* UserDetailInfo.swift */; };
+		CEB45CBE2C54D05D00327314 /* DetailPhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CBD2C54D05D00327314 /* DetailPhotoRepository.swift */; };
+		CEB45CC02C54DBD600327314 /* DetailPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45CBF2C54DBD600327314 /* DetailPhotoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,7 +127,7 @@
 		CEB45C7E2C526AD200327314 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CEB45C872C5272D400327314 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		CEB45C892C527B2700327314 /* UnsplashResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashResponse.swift; sourceTree = "<group>"; };
-		CEB45C8B2C527C5200327314 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CEB45C8B2C527C5200327314 /* Photographer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photographer.swift; sourceTree = "<group>"; };
 		CEB45C8E2C527CA100327314 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CEB45C912C52915D00327314 /* TopicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRepository.swift; sourceTree = "<group>"; };
 		CEB45C962C52D4CC00327314 /* UnsplashImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashImageData.swift; sourceTree = "<group>"; };
@@ -138,6 +142,10 @@
 		CEB45CAF2C544A5C00327314 /* PhotoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHeaderView.swift; sourceTree = "<group>"; };
 		CEB45CB12C544A7E00327314 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		CEB45CB32C544A8D00327314 /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
+		CEB45CB72C54CFD400327314 /* PhotographerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographerData.swift; sourceTree = "<group>"; };
+		CEB45CB92C54CFE700327314 /* UserDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailInfo.swift; sourceTree = "<group>"; };
+		CEB45CBD2C54D05D00327314 /* DetailPhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoRepository.swift; sourceTree = "<group>"; };
+		CEB45CBF2C54DBD600327314 /* DetailPhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +225,7 @@
 		CEB45B922C4E488700327314 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CEB45CB52C54CAD200327314 /* Models */,
 				CEB45C8D2C527C9B00327314 /* Routers */,
 				CEB45BE42C4FEB9800327314 /* Constants */,
 				CEB45BE72C4FEDA800327314 /* Extensions */,
@@ -561,6 +570,7 @@
 		CEB45C932C5292CB00327314 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				CEB45CB62C54CFC600327314 /* DetailPhoto */,
 				CEB45C9C2C53A0BD00327314 /* Search */,
 				CEB45C942C5292E200327314 /* Topic */,
 			);
@@ -570,20 +580,9 @@
 		CEB45C942C5292E200327314 /* Topic */ = {
 			isa = PBXGroup;
 			children = (
-				CEB45C952C5292FC00327314 /* Model */,
 				CEB45C902C52915400327314 /* Repository */,
 			);
 			path = Topic;
-			sourceTree = "<group>";
-		};
-		CEB45C952C5292FC00327314 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CEB45C892C527B2700327314 /* UnsplashResponse.swift */,
-				CEB45C8B2C527C5200327314 /* User.swift */,
-				CEB45C962C52D4CC00327314 /* UnsplashImageData.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		CEB45C9C2C53A0BD00327314 /* Search */ = {
@@ -646,6 +645,43 @@
 				CEB45CB32C544A8D00327314 /* InfoLabel.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CEB45CB52C54CAD200327314 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45C892C527B2700327314 /* UnsplashResponse.swift */,
+				CEB45C8B2C527C5200327314 /* Photographer.swift */,
+				CEB45C962C52D4CC00327314 /* UnsplashImageData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CEB45CB62C54CFC600327314 /* DetailPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45CBB2C54D03400327314 /* Models */,
+				CEB45CBC2C54D04300327314 /* Repository */,
+			);
+			path = DetailPhoto;
+			sourceTree = "<group>";
+		};
+		CEB45CBB2C54D03400327314 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45CB72C54CFD400327314 /* PhotographerData.swift */,
+				CEB45CB92C54CFE700327314 /* UserDetailInfo.swift */,
+				CEB45CBF2C54DBD600327314 /* DetailPhotoModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CEB45CBC2C54D04300327314 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CEB45CBD2C54D05D00327314 /* DetailPhotoRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -730,9 +766,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB45C002C502A5600327314 /* InternalPadding.swift in Sources */,
+				CEB45CBA2C54CFE700327314 /* UserDetailInfo.swift in Sources */,
 				CEB45C4A2C51EB1A00327314 /* TabBarController.swift in Sources */,
 				CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */,
 				CEB45C762C52354100327314 /* LikeView.swift in Sources */,
+				CEB45CB82C54CFD400327314 /* PhotographerData.swift in Sources */,
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
 				CEB45C712C5234A500327314 /* SearchViewModel.swift in Sources */,
 				CEB45CB42C544A8D00327314 /* InfoLabel.swift in Sources */,
@@ -745,6 +783,7 @@
 				CEB45C3D2C51545700327314 /* MBTI.swift in Sources */,
 				CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */,
 				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
+				CEB45CBE2C54D05D00327314 /* DetailPhotoRepository.swift in Sources */,
 				CEB45BDD2C4FE05E00327314 /* SplashViewModel.swift in Sources */,
 				CEB45BEB2C4FEDF300327314 /* UIColor+.swift in Sources */,
 				CEB45C8F2C527CA100327314 /* Router.swift in Sources */,
@@ -759,7 +798,7 @@
 				CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */,
 				CEB45BED2C4FF00800327314 /* UIButton.Configuration+.swift in Sources */,
 				CEB45BD22C4FCFA100327314 /* ViewModel.swift in Sources */,
-				CEB45C8C2C527C5200327314 /* User.swift in Sources */,
+				CEB45C8C2C527C5200327314 /* Photographer.swift in Sources */,
 				CEB45C312C50F9F200327314 /* BaseCollectionViewCell.swift in Sources */,
 				CEB45CAA2C543A9400327314 /* DetailPhotoView.swift in Sources */,
 				CEB45C9F2C53A0CF00327314 /* SearchRepository.swift in Sources */,
@@ -779,6 +818,7 @@
 				CEB45C6D2C52347100327314 /* SearchViewController.swift in Sources */,
 				CEB45BDB2C4FE05900327314 /* SplashView.swift in Sources */,
 				CEB45C8A2C527B2700327314 /* UnsplashResponse.swift in Sources */,
+				CEB45CC02C54DBD600327314 /* DetailPhotoModel.swift in Sources */,
 				CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */,
 				CEB45BFC2C5020FB00327314 /* RoundImageView.swift in Sources */,
 				CEB45C642C5231E200327314 /* TopicViewController.swift in Sources */,

@@ -13,13 +13,14 @@ final class TopicViewModel: ViewModel {
         var goldenHourResponse: Observable<[UnsplashResponse]> = Observable([])
         var businessResponse: Observable<[UnsplashResponse]> = Observable([])
         var architectureResponse: Observable<[UnsplashResponse]> = Observable([])
+        var tappedIndex = Observable(IndexPath(row: 0, section: 0))
     }
     
     struct Output: Equatable {
         var goldenHourData: Observable<[UnsplashImageData]> = Observable([])
         var businessData: Observable<[UnsplashImageData]> = Observable([])
         var architectureData: Observable<[UnsplashImageData]> = Observable([])
-        var loadDetailView = Observable(false)
+        var selectedImage: Observable<UnsplashImageData?> = Observable(nil)
     }
     
     var input = Input()
@@ -44,7 +45,7 @@ final class TopicViewModel: ViewModel {
         case .loadTopics:
             loadTopics()
         case .cellTapped:
-            cellTapped()
+            cellTapped(value)
         }
     }
     
@@ -100,8 +101,18 @@ final class TopicViewModel: ViewModel {
         }
     }
     
-    private func cellTapped() {
-        var toggledValue = !self(\.loadDetailView).value
-        reduce(\.loadDetailView.value, into: toggledValue)
+    private func cellTapped<T: Equatable>(_ value: T) {
+    if let indexPath = value as? IndexPath, let topicType = TopicType.sectionNumberInit(indexPath.section) {
+            var selectedImage: UnsplashImageData
+            switch topicType {
+            case .goldenHour:
+                selectedImage = self(\.goldenHourData).value[indexPath.row]
+            case .business:
+                selectedImage = self(\.businessData).value[indexPath.row]
+            case .architecture:
+                selectedImage = self(\.architectureData).value[indexPath.row]
+            }
+            reduce(\.selectedImage.value, into: selectedImage)
+        }
     }
 }

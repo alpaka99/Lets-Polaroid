@@ -51,6 +51,22 @@ final class DetailPhotoView: BaseView {
                 .offset(16)
             view.horizontalEdges.equalTo(photoHeaderView.snp.horizontalEdges)
         }
-    
     }
+    
+    func configureData(_ detailPhotoData: DetailPhotoModel) {
+        setHeaderData(detailPhotoData.photographerData)
+        setImageData(detailPhotoData.imageData)
+    }
+    
+    private func setHeaderData(_ photographerData: PhotographerData) {
+        print(#function)
+        photoHeaderView.configureHeaderData(photographerData)
+    }
+    
+    private func setImageData(_ imageData: UnsplashImageData) {
+        print(#function)
+        self.image.image = imageData.image
+    }
+    
+    
 }

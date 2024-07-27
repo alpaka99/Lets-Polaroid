@@ -10,14 +10,13 @@ import UIKit
 import SnapKit
 
 final class PhotoHeaderView: BaseView {
-    private let photographerProfile = {
+    private var photographerProfile = {
         let imageView = RoundImageView()
         imageView.selected()
         return imageView
     }()
     private let photographerName = {
         let label = UILabel()
-        label.text = "Franky DeJong"
         label.font = .systemFont(ofSize: 16, weight: .regular)
         return label
     }()
@@ -69,5 +68,11 @@ final class PhotoHeaderView: BaseView {
             btn.centerY.equalTo(self.safeAreaLayoutGuide)
             btn.size.equalTo(44)
         }
+    }
+    
+    func configureHeaderData(_ data: PhotographerData) {
+        print(data.profileImage)
+        photographerProfile.image.image = data.profileImage
+        photographerName.text = data.photographer.name
     }
 }

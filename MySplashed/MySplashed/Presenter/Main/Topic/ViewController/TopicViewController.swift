@@ -42,14 +42,20 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
             self?.baseView.updateSnapShot(value, sectionType: .architecture)
         }
         
-        viewModel.bind(\.loadDetailView) {[weak self] _ in
-            self?.navigationController?.pushViewController(DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: DetailPhotoViewModel()), animated: true)
+        viewModel.bind(\.selectedImage) {[weak self] value in
+            if let vc = self {
+                let detailViewModel = DetailPhotoViewModel()
+
+                detailViewModel.react(.recieveImageData, value: value)
+                
+                vc.navigationController?.pushViewController(DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: detailViewModel), animated: true)
+            }
         }
     }
 }
 
 extension TopicViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.react(.cellTapped, value: true)
+        viewModel.react(.cellTapped, value: indexPath)
     }
 }

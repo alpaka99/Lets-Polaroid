@@ -9,7 +9,18 @@ import UIKit
 
 final class DetailPhotoViewController: BaseViewController<DetailPhotoView, DetailPhotoViewModel> {
     
-    override func configureNavigationItem() {
-        super.configureNavigationItem()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    override func configureDataBinding() {
+        super.configureDataBinding()
+        
+        viewModel.actionBind(\.detailPhotoData) {[weak self] value in
+            if let value = value {
+                self?.baseView.configureData(value)
+            }
+        }
     }
 }
