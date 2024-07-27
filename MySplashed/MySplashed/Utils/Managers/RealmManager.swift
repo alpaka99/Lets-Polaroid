@@ -23,6 +23,12 @@ final class RealmManager {
         return Array(realm.objects(dataType.self))
     }
     
+    func update<T: Object>(target: T, into newValue: T) throws {
+        try realm.write {
+            realm.create(T.self, value: newValue, update: .modified)
+        }
+    }
+    
     func delete<T: Object>(_ data: T) throws {
         try realm.write {
             realm.delete(data)
