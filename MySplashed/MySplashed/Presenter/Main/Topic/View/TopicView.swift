@@ -25,7 +25,7 @@ final class TopicView: BaseView {
         super.init(frame: frame)
         
         configureDataSource()
-        updateSnapShot([], sectionType: .goldenHour)
+        configureSnapShot()
     }
     
     override func configureHierarchy() {
