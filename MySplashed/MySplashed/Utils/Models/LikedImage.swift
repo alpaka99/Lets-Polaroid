@@ -5,6 +5,8 @@
 //  Created by user on 7/27/24.
 //
 
+import Foundation
+
 import RealmSwift
 
 final class LikedImage: Object {
@@ -38,3 +40,33 @@ final class LikedImage: Object {
     }
 }
 
+extension LikedImage {
+    func toUnsplashImageData() throws -> UnsplashImageData {
+        let unsplashResponseURL = try self.urls.toDictionary(keyType: String.self, valueType: String.self)
+        let photographerURL = try self.photographerProfileImageURL.toDictionary(
+            keyType: String.self,
+            valueType: String.self
+        )
+        let photographer = Photographer(name: self.photographerName, profileImageURL: photographerURL)
+        let unsplashResponse = UnsplashResponse(
+            id: self.id,
+            createdAt: self.createdAt,
+            width: self.width,
+            height: self.height,
+            urls: unsplashResponseURL,
+            likes: self.likes,
+            photographer: photographer
+        )
+        
+        
+        if let image = FileManager.default.loadImageToDocument(filename: unsplashResponse.id) {
+            
+            let unsplashImageData = UnsplashImageData(unsplashResponse: unsplashResponse, image: image)
+            
+            return unsplashImageData
+        } else {
+            // MARK: Custom Error type으로 변경하기
+            throw NSError(domain: "Empty Image", code: 123)
+        }
+    }
+}

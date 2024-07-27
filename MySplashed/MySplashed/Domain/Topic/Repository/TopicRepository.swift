@@ -62,6 +62,5 @@ final class TopicRepository {
     
     func loadLikedImages() {
         likedImages = RealmManager.shared.readAll(LikedImage.self)
-        print(likedImages.count)
     }
 }

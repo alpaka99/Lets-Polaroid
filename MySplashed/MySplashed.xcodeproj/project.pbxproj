@@ -81,6 +81,7 @@
 		CEFBB21E2C5540A400454193 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB21D2C5540A400454193 /* RealmSwift */; };
 		CEFBB2202C556C2300454193 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB21F2C556C2300454193 /* FileManager.swift */; };
 		CEFBB2222C55812900454193 /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2212C55812900454193 /* Dictionary+.swift */; };
+		CEFBB2262C55894300454193 /* LikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2252C55894300454193 /* LikeRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +158,7 @@
 		CEB45CCB2C5531A700327314 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		CEFBB21F2C556C2300454193 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		CEFBB2212C55812900454193 /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
+		CEFBB2252C55894300454193 /* LikeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -586,6 +588,7 @@
 		CEB45C932C5292CB00327314 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				CEFBB2232C55892100454193 /* Like */,
 				CEB45CB62C54CFC600327314 /* DetailPhoto */,
 				CEB45C9C2C53A0BD00327314 /* Search */,
 				CEB45C942C5292E200327314 /* Topic */,
@@ -697,6 +700,22 @@
 			isa = PBXGroup;
 			children = (
 				CEB45CBD2C54D05D00327314 /* DetailPhotoRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		CEFBB2232C55892100454193 /* Like */ = {
+			isa = PBXGroup;
+			children = (
+				CEFBB2242C55892A00454193 /* Repository */,
+			);
+			path = Like;
+			sourceTree = "<group>";
+		};
+		CEFBB2242C55892A00454193 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CEFBB2252C55894300454193 /* LikeRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -828,6 +847,7 @@
 				CEB45CA22C53A79A00327314 /* SearchResponse.swift in Sources */,
 				CEB45BE92C4FEDD000327314 /* String+.swift in Sources */,
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
+				CEFBB2262C55894300454193 /* LikeRepository.swift in Sources */,
 				CEB45BF92C500A2F00327314 /* ProfileSettingViewController.swift in Sources */,
 				CEB45BFE2C50265A00327314 /* PaddingImageView.swift in Sources */,
 				CEB45CAE2C543B1900327314 /* DetailPhotoViewController.swift in Sources */,
