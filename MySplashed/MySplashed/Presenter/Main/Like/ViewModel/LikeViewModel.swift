@@ -11,6 +11,7 @@ final class LikeViewModel: ViewModel {
     struct Input: Equatable {
         var likeViewWillAppear = Observable(false)
         var sortOption = Observable(LikeSortOption.latest)
+        var likeButtonTappedItem: Observable<UnsplashImageData?> = Observable(nil)
     }
     
     struct Output: Equatable {
@@ -25,6 +26,7 @@ final class LikeViewModel: ViewModel {
         case likeViewWillAppear
         case cellTapped
         case toggleSortOption
+        case likeButtonTapped
     }
     
     let repository = LikeRepository()
@@ -41,6 +43,8 @@ final class LikeViewModel: ViewModel {
             cellTapped(value)
         case .toggleSortOption:
             toggleSortOption()
+        case .likeButtonTapped:
+            likeButtonTapped(value)
         }
     }
     
@@ -87,5 +91,21 @@ final class LikeViewModel: ViewModel {
         let toggledSortOption = currentSortOption.toggled
         
         reduce(\.sortOption.value, into: toggledSortOption)
+    }
+    
+    private func likeButtonTapped<T: Equatable>(_ value: T) {
+        if let value = value as? UnsplashImageData {
+                repository.deleteImageData(value) {[weak self] result in
+                    switch result{
+                    case . success:
+                        self?.repository.loadLikedImages()
+                        if let imageData = try self?.repository.returnLikedUnsplashImageData(sortOption:  self?(\.sortOption).value ?? .latest) {
+                            self?.reduce(\.likedImages.value, into: imageData)
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+        }
     }
 }

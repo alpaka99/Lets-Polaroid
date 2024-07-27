@@ -15,7 +15,6 @@ final class LikeRepository {
     }
     
     func returnLikedUnsplashImageData(sortOption: LikeSortOption) throws -> [UnsplashImageData] {
-//        loadLikedImages()
         var unsplashImageData: [UnsplashImageData] = []
         do {
             try likedImages.forEach { likedImage in
@@ -34,5 +33,17 @@ final class LikeRepository {
         }
         
         return unsplashImageData
+    }
+    
+    func deleteImageData(_ imageData: UnsplashImageData, completionHandler: @escaping (Result<Bool, Error> ) throws ->Void) {
+        if let target = RealmManager.shared.readAll(LikedImage.self).filter({ $0.id == imageData.unsplashResponse.id }).first {
+            do {
+                try RealmManager.shared.delete(target)
+                try completionHandler(.success(true))
+            } catch {
+                print(error)
+//                try completionHandler(.failure(error))
+            }
+        }
     }
 }

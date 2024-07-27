@@ -12,6 +12,8 @@ final class LikeView: BaseView {
         case main
     }
     
+    weak var delegate: LikeViewDelegate?
+    
     private(set) var sortButton = {
         let button = UIButton.Configuration.plain()
             .image(named: "sort")
@@ -99,9 +101,13 @@ final class LikeView: BaseView {
             cell.setLikedButton(itemIdentifier.isLiked)
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: {[weak self] collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             cell.setImage(itemIdentifier.image)
+            cell.likeButton.tag = indexPath.row // MARK: 이 부분 수정하고 싶음
+            if let view = self {
+                cell.likeButton.addTarget(view, action: #selector(view.likeButtonTapped), for: .touchUpInside)
+            }
             return cell
         })
     }
@@ -132,6 +138,17 @@ final class LikeView: BaseView {
     func toggleSortOption(_ sortOption: LikeSortOption) {
         sortButton.updateTitle(sortOption.rawValue + "으로")
     }
+    
+    @objc
+    func likeButtonTapped(_ sender: UIButton) {
+        let index = sender.tag
+        let data = dataSource.snapshot(for: .main).items[index]
+        delegate?.likeButtonTapped(for: data)
+    }
+}
+
+protocol LikeViewDelegate: AnyObject {
+    func likeButtonTapped(for data: UnsplashImageData)
 }
 
 enum LikeSortOption: String {
