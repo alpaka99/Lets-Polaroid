@@ -14,8 +14,8 @@ final class LikeRepository {
         likedImages = RealmManager.shared.readAll(LikedImage.self)
     }
     
-    func returnLikedUnsplashImageData() throws -> [UnsplashImageData] {
-        loadLikedImages()
+    func returnLikedUnsplashImageData(sortOption: LikeSortOption) throws -> [UnsplashImageData] {
+//        loadLikedImages()
         var unsplashImageData: [UnsplashImageData] = []
         do {
             try likedImages.forEach { likedImage in
@@ -25,6 +25,14 @@ final class LikeRepository {
         } catch {
             throw error
         }
+        
+        switch sortOption {
+        case .latest:
+            unsplashImageData.sort(by: {$0.unsplashResponse.createdAt < $1.unsplashResponse.createdAt})
+        case .oldest:
+            unsplashImageData.sort(by: {$0.unsplashResponse.createdAt >= $1.unsplashResponse.createdAt})
+        }
+        
         return unsplashImageData
     }
 }

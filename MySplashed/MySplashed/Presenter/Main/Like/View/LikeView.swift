@@ -129,7 +129,7 @@ final class LikeView: BaseView {
         collectionView.alpha = 1
     }
     
-    func toggleSortOption(_ sortOption: SearchSortOption) {
+    func toggleSortOption(_ sortOption: LikeSortOption) {
         sortButton.updateTitle(sortOption.rawValue + "으로")
     }
 }

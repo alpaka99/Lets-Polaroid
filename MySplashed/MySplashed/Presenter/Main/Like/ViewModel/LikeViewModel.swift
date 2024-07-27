@@ -10,6 +10,7 @@ import Foundation
 final class LikeViewModel: ViewModel {
     struct Input: Equatable {
         var likeViewWillAppear = Observable(false)
+        var sortOption = Observable(LikeSortOption.latest)
     }
     
     struct Output: Equatable {
@@ -17,12 +18,13 @@ final class LikeViewModel: ViewModel {
         var selectedImage: Observable<UnsplashImageData?> = Observable(nil)
     }
     
-    var input = Input()
-    var output = Output()
+    lazy var input = Input()
+    lazy var output = Output()
     
     enum Action: String {
         case likeViewWillAppear
         case cellTapped
+        case toggleSortOption
     }
     
     let repository = LikeRepository()
@@ -37,6 +39,8 @@ final class LikeViewModel: ViewModel {
             likeViewWillAppear()
         case .cellTapped:
             cellTapped(value)
+        case .toggleSortOption:
+            toggleSortOption()
         }
     }
     
@@ -44,7 +48,20 @@ final class LikeViewModel: ViewModel {
         bind(\.likeViewWillAppear) { [weak self] _ in
             if let vm = self {
                 do {
-                    let likedImages = try vm.repository.returnLikedUnsplashImageData()
+                    vm.repository.loadLikedImages()
+                    let likedImages = try vm.repository.returnLikedUnsplashImageData(sortOption: vm(\.sortOption).value)
+                    vm.reduce(\.likedImages.value, into: likedImages)
+                } catch {
+                    print(error) // MARK: Error Handling 하기(Toast Alert)라던가...
+                }
+            }
+        }
+        
+        bind(\.sortOption) { [weak self] value in
+            if let vm = self {
+                do {
+                    vm.repository.loadLikedImages()
+                    let likedImages = try vm.repository.returnLikedUnsplashImageData(sortOption: vm(\.sortOption).value)
                     vm.reduce(\.likedImages.value, into: likedImages)
                 } catch {
                     print(error) // MARK: Error Handling 하기(Toast Alert)라던가...
@@ -63,5 +80,12 @@ final class LikeViewModel: ViewModel {
             let selectedImage = self(\.likedImages).value[indexPath.row]
             reduce(\.selectedImage.value, into: selectedImage)
         }
+    }
+    
+    private func toggleSortOption() {
+        let currentSortOption = self(\.sortOption).value
+        let toggledSortOption = currentSortOption.toggled
+        
+        reduce(\.sortOption.value, into: toggledSortOption)
     }
 }

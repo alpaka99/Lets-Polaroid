@@ -39,6 +39,13 @@ final class LikeViewController: BaseViewController<LikeView, LikeViewModel> {
         super.configureDelegate()
         
         baseView.collectionView.delegate = self
+        baseView.sortButton.addTarget(self, action: #selector(sortButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc
+    func sortButtonTapped(_ sender: UIButton) {
+        viewModel.react(.toggleSortOption, value: true)
+        baseView.toggleSortOption(viewModel(\.sortOption).value.toggled)
     }
 }
 
