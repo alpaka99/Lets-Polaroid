@@ -14,6 +14,7 @@ final class LikeViewModel: ViewModel {
     
     struct Output: Equatable {
         var likedImages: Observable<[UnsplashImageData]> = Observable([])
+        var selectedImage: Observable<UnsplashImageData?> = Observable(nil)
     }
     
     var input = Input()
@@ -21,6 +22,7 @@ final class LikeViewModel: ViewModel {
     
     enum Action: String {
         case likeViewWillAppear
+        case cellTapped
     }
     
     let repository = LikeRepository()
@@ -33,6 +35,8 @@ final class LikeViewModel: ViewModel {
         switch action {
         case .likeViewWillAppear:
             likeViewWillAppear()
+        case .cellTapped:
+            cellTapped(value)
         }
     }
     
@@ -52,5 +56,12 @@ final class LikeViewModel: ViewModel {
     private func likeViewWillAppear() {
         let toggledValue = !self(\.likeViewWillAppear).value
         reduce(\.likeViewWillAppear.value, into: toggledValue)
+    }
+    
+    private func cellTapped<T: Equatable>(_ value: T) {
+        if let indexPath = value as? IndexPath {
+            let selectedImage = self(\.likedImages).value[indexPath.row]
+            reduce(\.selectedImage.value, into: selectedImage)
+        }
     }
 }

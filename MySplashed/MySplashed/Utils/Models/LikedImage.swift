@@ -61,7 +61,11 @@ extension LikedImage {
         
         if let image = FileManager.default.loadImageToDocument(filename: unsplashResponse.id) {
             
-            let unsplashImageData = UnsplashImageData(unsplashResponse: unsplashResponse, image: image)
+            let unsplashImageData = UnsplashImageData(
+                unsplashResponse: unsplashResponse,
+                image: image,
+                isLiked: true
+            )
             
             return unsplashImageData
         } else {
