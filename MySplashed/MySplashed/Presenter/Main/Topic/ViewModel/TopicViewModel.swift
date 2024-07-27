@@ -135,7 +135,6 @@ final class TopicViewModel: ViewModel {
     }
     
     private func loadLikedImages() {
-        print(#function)
         repository.loadLikedImages()
     }
 }

@@ -13,7 +13,7 @@ final class SearchViewModel: ViewModel {
         var currentPage = Observable(0)
         var isPrefetching = Observable(false)
         var total = Observable(0)
-        var sortOption: Observable<SortOption> = Observable(.relevant)
+        var sortOption: Observable<SearchSortOption> = Observable(.relevant)
     }
     
     struct Output: Equatable {

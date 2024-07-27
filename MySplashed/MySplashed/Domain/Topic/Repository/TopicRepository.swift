@@ -44,6 +44,7 @@ final class TopicRepository {
         }
         
         dispatchGroup.notify(queue: .main) {
+            topicData.sort(by: {$0.unsplashResponse.likes > $1.unsplashResponse.likes})
             completionHandler(topicData)
         }
     }
@@ -62,6 +63,5 @@ final class TopicRepository {
     
     func loadLikedImages() {
         likedImages = RealmManager.shared.readAll(LikedImage.self)
-        print(likedImages.count)
     }
 }

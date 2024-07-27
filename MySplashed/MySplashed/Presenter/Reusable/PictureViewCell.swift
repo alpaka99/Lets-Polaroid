@@ -16,7 +16,7 @@ final class PictureViewCell: BaseCollectionViewCell {
         view.clipsToBounds = true
         return view
     }()
-    private let totalLike = {
+    private let totalLikes = {
         let button = UIButton.Configuration.plain()
             .font(ofSize: 8, weight: .regular)
             .image(systemName: "star.fill")
@@ -33,7 +33,7 @@ final class PictureViewCell: BaseCollectionViewCell {
         button.isHidden = true
         return button
     }()
-    private let userLike = {
+    private(set) var likeButton = {
         let button = UIButton.Configuration.plain()
             .image(systemName: "heart.fill")
             .cornerStyle(.capsule)
@@ -48,8 +48,8 @@ final class PictureViewCell: BaseCollectionViewCell {
         super.configureHierarchy()
         
         contentView.addSubview(imageView)
-        contentView.addSubview(totalLike)
-        contentView.addSubview(userLike)
+        contentView.addSubview(totalLikes)
+        contentView.addSubview(likeButton)
     }
     
     override func configureLayout() {
@@ -58,11 +58,11 @@ final class PictureViewCell: BaseCollectionViewCell {
         imageView.snp.makeConstraints { imageView in
             imageView.edges.equalTo(self.safeAreaLayoutGuide)
         }
-        totalLike.snp.makeConstraints { btn in
+        totalLikes.snp.makeConstraints { btn in
             btn.leading.bottom.equalTo(self.contentView.safeAreaLayoutGuide)
                 .inset(8)
         }
-        userLike.snp.makeConstraints { btn in
+        likeButton.snp.makeConstraints { btn in
             btn.trailing.bottom.equalTo(self.contentView.safeAreaLayoutGuide)
                 .inset(8)
         }
@@ -82,11 +82,11 @@ final class PictureViewCell: BaseCollectionViewCell {
     }
     
     func showTotalLike() {
-        totalLike.isHidden = false
+        totalLikes.isHidden = false
     }
     
     func showUserLike() {
-        userLike.isHidden = false
+        likeButton.isHidden = false
     }
     
     func roundCellEdge() {
@@ -94,8 +94,8 @@ final class PictureViewCell: BaseCollectionViewCell {
     }
     
     func setTotalLike(_ likes: Int) {
-        let config = totalLike.configuration?.title(likes.formatted())
-        totalLike.configuration = config
+        let config = totalLikes.configuration?.title(likes.formatted())
+        totalLikes.configuration = config
     }
     
     func setImage(_ image: UIImage) {
@@ -104,9 +104,9 @@ final class PictureViewCell: BaseCollectionViewCell {
     
     func setLikedButton(_ isLiked: Bool) {
         if isLiked {
-            userLike.updateImge("heart.fill")
+            likeButton.updateImge("heart.fill")
         } else {
-            userLike.updateImge("heart")
+            likeButton.updateImge("heart")
         }
     }
 }

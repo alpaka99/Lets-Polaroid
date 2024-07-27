@@ -19,7 +19,7 @@ final class SearchView: BaseView {
     private(set) var sortButton = {
         let button = UIButton.Configuration.plain()
             .image(named: "sort")
-            .title(SortOption.relevant.toggled.rawValue + "으로")
+            .title(SearchSortOption.relevant.toggled.rawValue + "으로")
             .cornerStyle(.capsule)
             .build()
         return button
@@ -147,12 +147,12 @@ final class SearchView: BaseView {
         collectionView.setContentOffset(.zero, animated: false)
     }
     
-    func toggleSortOption(_ sortOption: SortOption) {
+    func toggleSortOption(_ sortOption: SearchSortOption) {
         sortButton.updateTitle(sortOption.rawValue + "으로")
     }
 }
 
-enum SortOption: String {
+enum SearchSortOption: String {
     case relevant = "관련순"
     case latest = "최신순"
     

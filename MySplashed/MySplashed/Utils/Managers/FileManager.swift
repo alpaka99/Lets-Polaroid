@@ -35,11 +35,17 @@ extension FileManager {
             for: .documentDirectory,
             in: .userDomainMask).first else { return nil }
         
-        let filePathString = String(describing: documentDirectory.appendingPathComponent("\(filename).jpg"))
+        let fileURL = documentDirectory.appendingPathComponent("\(filename).jpg")
+        var fileURLString: String
+        if #available(iOS 16.0, *) {
+            fileURLString =  fileURL.path()
+        } else {
+            fileURLString = fileURL.path
+        }
         
         //이 경로에 실제로 파일이 존재하는 지 확인
-        if FileManager.default.fileExists(atPath: filePathString) {
-            return UIImage(contentsOfFile: filePathString)
+        if FileManager.default.fileExists(atPath: fileURLString) {
+            return UIImage(contentsOfFile: fileURLString)
         } else {
             return UIImage(systemName: "star.fill")
         }
