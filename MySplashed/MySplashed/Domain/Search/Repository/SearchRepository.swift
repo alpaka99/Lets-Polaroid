@@ -13,7 +13,7 @@ final class SearchRepository {
     var relavantImageData: [UnsplashImageData] = []
     var latestImageData: [UnsplashImageData] = []
     
-    func requestSearchImage(_ searchText: String, sortOption: SortOption, completionHandler: @escaping ([UnsplashImageData])->Void) {
+    func requestSearchImage(_ searchText: String, sortOption: SearchSortOption, completionHandler: @escaping ([UnsplashImageData])->Void) {
         NetworkManager.shared.sendRequest(.search(searchText: searchText), ofType: SearchResponse.self) {[weak self] searchResponse in
             if let repo = self {
                 repo.requestImage(of: searchResponse.results) { imageResponse in
@@ -26,7 +26,7 @@ final class SearchRepository {
         }
     }
     
-    func prefetchImage(_ searchText: String, page: Int, sortOption: SortOption, completionHandler: @escaping ([UnsplashImageData])->Void) {
+    func prefetchImage(_ searchText: String, page: Int, sortOption: SearchSortOption, completionHandler: @escaping ([UnsplashImageData])->Void) {
         NetworkManager.shared.sendRequest(.search(searchText: searchText, page: page), ofType: SearchResponse.self) {[weak self] searchResponse in
             if let repo = self {
                 repo.requestImage(of: searchResponse.results) { imageResponse in
@@ -64,7 +64,7 @@ final class SearchRepository {
         }
     }
     
-    func returnImageData(_ imageData: [UnsplashImageData], sortOption: SortOption) -> [UnsplashImageData] {
+    func returnImageData(_ imageData: [UnsplashImageData], sortOption: SearchSortOption) -> [UnsplashImageData] {
         relavantImageData.append(contentsOf: imageData)
         latestImageData = relavantImageData.sorted(by: { $0.unsplashResponse.createdAt <= $1.unsplashResponse.createdAt })
         
