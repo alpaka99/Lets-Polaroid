@@ -57,6 +57,14 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
             }
         }
         
+        viewModel.bind(\.validationLabelText) {[weak self] value in
+            self?.baseView.setValidationLabel(with: value)
+        }
+        
+        viewModel.bind(\.isNicknameValidated) {[weak self] value in
+            self?.baseView.setValidationLabelColor(value)
+        }
+        
         viewModel.actionBind(\.userMBTI) {[weak self] value in
             self?.baseView.mbtiView.updateSnapShot(value)
         }

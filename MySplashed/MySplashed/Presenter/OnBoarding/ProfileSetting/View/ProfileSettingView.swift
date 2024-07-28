@@ -25,7 +25,6 @@ final class ProfileSettingView: BaseView {
     private let validationLabel = {
         let label = UILabel()
         label.textColor = MSColor.magenta.color
-        label.text = "validation label"
         return label
     }()
     private(set) var mbtiView = {
@@ -122,5 +121,13 @@ final class ProfileSettingView: BaseView {
             completeButton.alpha = 0
             deleteAccountButton.alpha = 1
         }
+    }
+    
+    func setValidationLabel(with text: String) {
+        validationLabel.text = text
+    }
+    
+    func setValidationLabelColor(_ value: Bool) {
+        validationLabel.textColor = value ? MSColor.blue.color : MSColor.magenta.color
     }
 }
