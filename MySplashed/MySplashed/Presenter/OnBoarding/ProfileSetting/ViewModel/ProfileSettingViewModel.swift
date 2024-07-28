@@ -21,13 +21,14 @@ final class ProfileSettingViewModel: ViewModel {
         var isCompleteButtonEnabled = Observable(false)
     }
     
-    var input = Input()
-    var output = Output()
+    lazy var input = Input()
+    lazy var output = Output()
     
     enum Action: String {
         case profileImageTapped
         case textFieldInputChanged
         case completeButtonTapped
+        case profileImageSelected
     }
     
     init() {
@@ -42,6 +43,8 @@ final class ProfileSettingViewModel: ViewModel {
             textFieldInputChanged(value)
         case .completeButtonTapped:
             completeButtonTapped()
+        case .profileImageSelected:
+            profileImageSelected(value)
         }
     }
     
@@ -74,5 +77,11 @@ final class ProfileSettingViewModel: ViewModel {
     
     private func validateTextInput(_ nickname: String) {
         // nickname validation logic
+    }
+    
+    func profileImageSelected<T: Equatable>(_ profileImage: T) {
+        if let profileImage = profileImage as? ProfileImage {
+            reduce(\.selectedProfileImage.value, into: profileImage)
+        }
     }
 }

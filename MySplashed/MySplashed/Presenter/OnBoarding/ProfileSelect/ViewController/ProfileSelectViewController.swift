@@ -8,6 +8,7 @@
 import UIKit
 
 final class ProfileSelectViewController: BaseViewController<ProfileSelectView, ProfileSelectViewModel> {
+    weak var delegate: ProfileSelectViewControllerDelegate?
     
     convenience init(baseView: ProfileSelectView, viewModel: ProfileSelectViewModel, profileImage: ProfileImage) {
         self.init(baseView: baseView, viewModel: viewModel)
@@ -46,4 +47,9 @@ extension ProfileSelectViewController: UICollectionViewDelegate {
             viewModel.react(.profileImageSelected, value: profileImage)
         }
     }
+}
+
+
+protocol ProfileSelectViewControllerDelegate: AnyObject {
+    func profileImageSelected(_ profileImage: ProfileImage)
 }

@@ -31,12 +31,22 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         }
         
         viewModel.bind(\.isMovingToProfileSelectionView) {[weak self] _ in
-            self?.navigationController?.pushViewController(
-                ProfileSelectViewController(
-                    baseView: ProfileSelectView(),
-                    viewModel: ProfileSelectViewModel()
-                ),
-                animated: true)
+            if let selectedImage = self?.viewModel(\.selectedProfileImage).value {
+                
+                let profileSelectViewModel = ProfileSelectViewModel()
+                profileSelectViewModel.react(.profileImageSelected, value: selectedImage)
+                
+                let profileSelecteViewController = ProfileSelectViewController(baseView: ProfileSelectView(), viewModel: profileSelectViewModel)
+                
+                profileSelecteViewController.delegate = self
+                
+                self?.navigationController?.pushViewController(
+                    ProfileSelectViewController(
+                        baseView: ProfileSelectView(),
+                        viewModel: profileSelectViewModel
+                    ),
+                    animated: true)
+            }
         }
     
         viewModel.bind(\.completeButtonTapped) {[weak self] _ in
@@ -58,5 +68,11 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
     @objc
     func completeButtonTapped(_ sender: UIButton) {
         viewModel.react(.completeButtonTapped, value: true)
+    }
+}
+
+extension ProfileSettingViewController: ProfileSelectViewControllerDelegate {
+    func profileImageSelected(_ profileImage: ProfileImage) {
+        viewModel.react(.profileImageSelected, value: profileImage)
     }
 }
