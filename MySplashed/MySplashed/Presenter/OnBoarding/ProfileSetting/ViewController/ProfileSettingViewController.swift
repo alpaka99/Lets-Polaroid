@@ -20,6 +20,7 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         baseView.profileImage.tapGestureRecognizer.addTarget(self, action: #selector(profileImageTapped))
         baseView.nicknameTextField.addTarget(self, action: #selector(textFieldValueChanged), for: .editingChanged)
         baseView.completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
+        baseView.deleteAccountButton.addTarget(self, action: #selector(showDeleteAlert), for: .touchUpInside)
         
         baseView.mbtiView.mbtiCollectionView.delegate = self
     }
@@ -84,6 +85,16 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         viewModel.bind(\.completeButtonTapped) {[weak self] _ in
             self?.setNewViewController(nextViewController: TabBarController(), isNavigation: false)
         }
+        
+        viewModel.bind(\.isShowingDeleteAlert) {[weak self] _ in
+            self?.showAlert(alertData: [AlertData(title: "삭제", style: .destructive, closure: {
+                self?.deleteAccountButtonTapped()
+            })])
+        }
+        
+        viewModel.bind(\.accountDeleted) {[weak self] _ in
+            self?.setNewViewController(nextViewController: SplashViewController(baseView: SplashView(), viewModel: SplashViewModel()), isNavigation: true)
+        }
     }
     
     @objc
@@ -106,6 +117,16 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
     func saveButtonTapped(_ sender: UIBarButtonItem) {
         viewModel.react(.completeButtonTapped, value: true)
     }
+    
+    @objc
+    func showDeleteAlert(_ sender: UIButton) {
+        viewModel.react(.isShowingDeleteAlert, value: true)
+    }
+    
+    
+    func deleteAccountButtonTapped() {
+        viewModel.react(.deleteAccountButtonTapped, value: true)
+    }
 }
 
 extension ProfileSettingViewController: ProfileSelectViewControllerDelegate {
@@ -124,4 +145,27 @@ extension ProfileSettingViewController: UICollectionViewDelegate {
 enum ProfileSettingMode: Int {
     case onboarding = 0
     case edit = 1
+}
+
+extension UIViewController {
+    func showAlert(alertData: [AlertData]) {
+        let ac = UIAlertController(title: "계정 삭제", message: "MySplashed 계정을 삭제하실건가요?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        ac.addAction(cancelAction)
+        alertData.forEach { data in
+            let alertAction = UIAlertAction(title: data.title, style: data.style) { _ in
+                data.closure()
+            }
+            ac.addAction(alertAction)
+        }
+        
+        self.present(ac, animated: true)
+    }
+}
+
+struct AlertData {
+    let title: String
+    let style: UIAlertAction.Style
+    let closure: ()->()
 }

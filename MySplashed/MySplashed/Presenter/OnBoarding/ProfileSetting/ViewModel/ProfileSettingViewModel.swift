@@ -24,6 +24,8 @@ final class ProfileSettingViewModel: ViewModel {
         var validatedNickname = Observable("")
         var userMBTI: Observable<[MBTIGroup : MBTIComponent]> = Observable(MBTIComponent.initialMBTI())
         var validationLabelText = Observable("")
+        var isShowingDeleteAlert = Observable(false)
+        var accountDeleted = Observable(false)
     }
     
     lazy var input = Input()
@@ -38,6 +40,8 @@ final class ProfileSettingViewModel: ViewModel {
         case mbtiSelected
         case validateMBTI
         case checkSaveEnabled
+        case isShowingDeleteAlert
+        case deleteAccountButtonTapped
     }
     
     let repository = ProfileSettingRepository()
@@ -66,6 +70,10 @@ final class ProfileSettingViewModel: ViewModel {
             validateMBTI()
         case .checkSaveEnabled:
             checkSaveEnabled()
+        case .isShowingDeleteAlert:
+            isShowingDeleteAlert()
+        case .deleteAccountButtonTapped:
+            deleteAccountButtonTapped()
         }
     }
     
@@ -168,7 +176,7 @@ final class ProfileSettingViewModel: ViewModel {
         }
     }
     
-    func loadUserData() {
+    private func loadUserData() {
         do {
             let userData = try repository.readUserData()
             if let userData = userData {
@@ -180,6 +188,21 @@ final class ProfileSettingViewModel: ViewModel {
         } catch {
             print("UserData Load Error")
             print(error)
+        }
+    }
+    
+    private func isShowingDeleteAlert() {
+        let toggledValue = !self(\.isShowingDeleteAlert).value
+        reduce(\.isShowingDeleteAlert.value, into: toggledValue)
+    }
+    
+    private func deleteAccountButtonTapped() {
+        do {
+            try UserDefaults.standard.deleteAll(ofType: UserData.self)
+            let toggledData = !self(\.accountDeleted).value
+            reduce(\.accountDeleted.value, into: toggledData)
+        } catch {
+            print("UserDefaults delete action failed")
         }
     }
 }
