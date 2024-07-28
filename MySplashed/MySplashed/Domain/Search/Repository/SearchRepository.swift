@@ -12,6 +12,11 @@ import Kingfisher
 final class SearchRepository {
     var relavantImageData: [UnsplashImageData] = []
     var latestImageData: [UnsplashImageData] = []
+    var likedImageId = Set<String>()
+    
+    init() {
+        loadLikedImage()
+    }
     
     func requestSearchImage(_ searchText: String, sortOption: SearchSortOption, completionHandler: @escaping ([UnsplashImageData])->Void) {
         NetworkManager.shared.sendRequest(.search(searchText: searchText), ofType: SearchResponse.self) {[weak self] searchResponse in
@@ -46,10 +51,14 @@ final class SearchRepository {
             if let imageURL = data[index].urls["small_s3"], let url = URL(string: imageURL) {
                 dispatchGroup.enter()
                 DispatchQueue.global(qos: .userInteractive).async(group: dispatchGroup) {
-                    KingfisherManager.shared.retrieveImage(with: url) { result in
+                    KingfisherManager.shared.retrieveImage(with: url) {[weak self] result in
                         switch result {
                         case .success(let image):
-                            topicData.append(UnsplashImageData(unsplashResponse: data[index], image: image.image))
+                            var imageData = UnsplashImageData(unsplashResponse: data[index], image: image.image)
+                            if let isLiked = self?.likedImageId.contains(imageData.unsplashResponse.id) {
+                                imageData.isLiked = isLiked
+                            }
+                            topicData.append(imageData)
                         case .failure(let error):
                             print("KingFisher ImageFetch Error", error)
                         }
@@ -74,5 +83,12 @@ final class SearchRepository {
         case .latest:
             return latestImageData
         }
+    }
+    
+    func loadLikedImage() {
+        let likedImages = RealmManager.shared.readAll(LikedImage.self)
+        likedImageId = Set(likedImages.map({ likedImage in
+            likedImage.id
+        }))
     }
 }

@@ -20,6 +20,7 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
         
         baseView.searchBar.delegate = self
         baseView.collectionView.prefetchDataSource = self
+        baseView.collectionView.delegate = self
         baseView.sortButton.addTarget(self, action: #selector(toggleSort), for: .touchUpInside)
     }
     
@@ -54,5 +55,11 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
         if let index = indexPaths.last?.row {
             viewModel.react(.prefetchImage, value: index)
         }
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.react(.cellTapped, value: indexPath)
     }
 }

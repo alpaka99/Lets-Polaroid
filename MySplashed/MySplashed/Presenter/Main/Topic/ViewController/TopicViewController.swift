@@ -61,6 +61,9 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
 
 extension TopicViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.react(.cellTapped, value: indexPath)
+        if let section = TopicSection.intInit(indexPath.section) {
+            let data = baseView.dataSource.snapshot(for: section).items[indexPath.row]
+            viewModel.react(.cellTapped, value: data)
+        }
     }
 }

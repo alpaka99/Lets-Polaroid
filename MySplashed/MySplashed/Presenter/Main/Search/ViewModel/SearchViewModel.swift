@@ -14,6 +14,7 @@ final class SearchViewModel: ViewModel {
         var isPrefetching = Observable(false)
         var total = Observable(0)
         var sortOption: Observable<SearchSortOption> = Observable(.relevant)
+        
     }
     
     struct Output: Equatable {
@@ -28,6 +29,7 @@ final class SearchViewModel: ViewModel {
         case searchButtonTapped
         case prefetchImage
         case toggleSortOption
+        case cellTapped
     }
     
     let repository = SearchRepository()
@@ -44,6 +46,8 @@ final class SearchViewModel: ViewModel {
             prefetchImage(value)
         case .toggleSortOption:
             toggleSortOption()
+        case .cellTapped:
+            cellTapped(value)
         }
     }
     
@@ -118,5 +122,9 @@ final class SearchViewModel: ViewModel {
         let toggledSortOption = currentSortOption.toggled
         
         reduce(\.sortOption.value, into: toggledSortOption)
+    }
+    
+    private func cellTapped<T: Equatable>(_ value: T) {
+        print(#function)
     }
 }

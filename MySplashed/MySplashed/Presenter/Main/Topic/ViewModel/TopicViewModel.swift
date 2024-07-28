@@ -113,19 +113,10 @@ final class TopicViewModel: ViewModel {
     }
     
     private func cellTapped<T: Equatable>(_ value: T) {
-        if let indexPath = value as? IndexPath, let topicType = TopicType.sectionNumberInit(indexPath.section) {
-            var selectedImage: UnsplashImageData
-            switch topicType {
-            case .goldenHour:
-                selectedImage = self(\.goldenHourData).value[indexPath.row]
-            case .business:
-                selectedImage = self(\.businessData).value[indexPath.row]
-            case .architecture:
-                selectedImage = self(\.architectureData).value[indexPath.row]
-            }
-            selectedImage = repository.checkImageIsLiked(selectedImage)
+        if let selectedImage = value as? UnsplashImageData {
+            let newSelectedImage = repository.checkImageIsLiked(selectedImage)
             
-            reduce(\.selectedImage.value, into: selectedImage)
+            reduce(\.selectedImage.value, into: newSelectedImage)
         }
     }
     
