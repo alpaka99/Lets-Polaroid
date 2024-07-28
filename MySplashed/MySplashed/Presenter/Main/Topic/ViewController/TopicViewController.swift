@@ -13,16 +13,12 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
         super.viewDidLoad()
         viewModel.react(.topicViewDidLoad, value: true)
     }
-//    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.react(.topicViewWillAppear, value: true)
-    }
     
     override func configureNavigationItem() {
         super.configureNavigationItem()
         
         // profile iamge rightBarButton으로 넣기
+        
     }
     
     override func configureDelegate() {
@@ -56,6 +52,29 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
                 vc.navigationController?.pushViewController(DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: detailViewModel), animated: true)
             }
         }
+        
+        viewModel.bind(\.userData) {[weak self] userData in
+            if let userData = userData, let vc = self {
+                let editButtonImage = RoundImageView(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
+                editButtonImage.setProfileImage(userData.profileImage)
+                editButtonImage.selected()
+                editButtonImage.tapGestureRecognizer.addTarget(vc, action: #selector(vc.profileEditButtonTapped))
+                let rightBarButtonItem = UIBarButtonItem(customView: editButtonImage)
+                
+                
+                vc.navigationItem.rightBarButtonItem = rightBarButtonItem
+                vc.navigationItem.title = "Topic View"
+            }
+        }
+        
+        viewModel.bind(\.isMovingToProfileEditView) {[weak self] _ in
+            self?.navigationController?.pushViewController(ProfileSettingViewController(baseView: ProfileSettingView(), viewModel: ProfileSettingViewModel(), mode: .edit), animated: true)
+        }
+    }
+    
+    @objc
+    func profileEditButtonTapped(_ sender: UIBarButtonItem) {
+        viewModel.react(.profileEditButtonTapped, value: true)
     }
 }
 
@@ -65,5 +84,23 @@ extension TopicViewController: UICollectionViewDelegate {
             let data = baseView.dataSource.snapshot(for: section).items[indexPath.row]
             viewModel.react(.cellTapped, value: data)
         }
+    }
+}
+
+extension UIBarButtonItem {
+    static func customSizeBarButton(_ target: Any?, action: Selector, imageName: String? = nil, size: CGSize) -> UIBarButtonItem {
+        var buttonConfig = UIButton.Configuration.plain()
+        if let imageName = imageName {
+            buttonConfig = buttonConfig.image(named: imageName)
+        }
+        let button = buttonConfig.build()
+        button.addTarget(target, action: action, for: .touchUpInside)
+        
+        let customBarButton = UIBarButtonItem(customView: button)
+        customBarButton.customView?.translatesAutoresizingMaskIntoConstraints = false
+        customBarButton.customView?.heightAnchor.constraint(equalToConstant: size.height).isActive = true
+        customBarButton.customView?.widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        
+        return customBarButton
     }
 }

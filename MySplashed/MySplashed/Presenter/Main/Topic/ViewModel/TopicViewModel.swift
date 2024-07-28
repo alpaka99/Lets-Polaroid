@@ -22,6 +22,8 @@ final class TopicViewModel: ViewModel {
         var businessData: Observable<[UnsplashImageData]> = Observable([])
         var architectureData: Observable<[UnsplashImageData]> = Observable([])
         var selectedImage: Observable<UnsplashImageData?> = Observable(nil)
+        var userData: Observable<UserData?> = Observable(nil)
+        var isMovingToProfileEditView = Observable(false)
     }
     
     var input = Input()
@@ -31,10 +33,11 @@ final class TopicViewModel: ViewModel {
     
     enum Action: String {
         case topicViewDidLoad
-        case topicViewWillAppear
+        case loadUserData
         case loadTopics
         case loadLikedImages
         case cellTapped
+        case profileEditButtonTapped
     }
     
     init() {
@@ -45,20 +48,23 @@ final class TopicViewModel: ViewModel {
         switch action {
         case .topicViewDidLoad:
             topicViewDidLoad()
-        case .topicViewWillAppear:
-            topicViewWillAppear()
+        case .loadUserData:
+            loadUserData()
         case .loadTopics:
             loadTopics()
         case .loadLikedImages:
             loadLikedImages()
         case .cellTapped:
             cellTapped(value)
+        case .profileEditButtonTapped:
+            profileEditButtonTapped()
         }
     }
     
     func configureBind() {
         bind(\.topicViewDidLoad) {[weak self] _ in
             // topic view appearing event
+            self?.react(.loadUserData, value: true)
             self?.react(.loadTopics, value: true)
         }
         
@@ -82,6 +88,15 @@ final class TopicViewModel: ViewModel {
     private func topicViewDidLoad() {
         let toggledValue = !self(\.topicViewDidLoad).value
         reduce(\.topicViewDidLoad.value, into: toggledValue)
+    }
+    
+    private func loadUserData() {
+        do {
+            let userData = try UserDefaults.standard.readAll(ofType: UserData.self)
+            reduce(\.userData.value, into: userData)
+        } catch {
+            print("UserData load error")
+        }
     }
     
     private func loadTopics() {
@@ -120,12 +135,12 @@ final class TopicViewModel: ViewModel {
         }
     }
     
-    private func topicViewWillAppear() {
-        let toggledValue = !self(\.topicViewWillAppear).value
-        reduce(\.topicViewWillAppear.value, into: toggledValue)
-    }
-    
     private func loadLikedImages() {
         repository.loadLikedImages()
+    }
+    
+    private func profileEditButtonTapped() {
+        let toggledData = !self(\.isMovingToProfileEditView).value
+        reduce(\.isMovingToProfileEditView.value, into: toggledData)
     }
 }

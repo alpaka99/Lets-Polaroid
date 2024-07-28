@@ -42,8 +42,11 @@ final class RoundImageView: BaseView {
     override func configureLayout() {
         super.configureLayout()
         
-        image.snp.makeConstraints { image in
-            image.edges.equalTo(self.safeAreaLayoutGuide)
+        image.snp.makeConstraints { view in
+//            image.edges.equalTo(self.safeAreaLayoutGuide)
+            view.center.equalTo(self.safeAreaLayoutGuide)
+            view.height.equalTo(self.safeAreaLayoutGuide.snp.height)
+            view.width.equalTo(image.snp.height)
         }
         badgeBackground.snp.makeConstraints { view in
             view.size.equalTo(self)
