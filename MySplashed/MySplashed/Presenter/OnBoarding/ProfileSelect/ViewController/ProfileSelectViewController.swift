@@ -32,6 +32,8 @@ final class ProfileSelectViewController: BaseViewController<ProfileSelectView, P
         
         viewModel.actionBind(\.selectedProfileImage) {[weak self] profileImage in
             self?.baseView.selectedProfileImage.setProfileImage(profileImage)
+            
+            self?.delegate?.profileImageSelected(profileImage)
         }
         
         viewModel.actionBind(\.profileImages) { [weak self] value in

@@ -33,18 +33,14 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         viewModel.bind(\.isMovingToProfileSelectionView) {[weak self] _ in
             if let selectedImage = self?.viewModel(\.selectedProfileImage).value {
                 
-                let profileSelectViewModel = ProfileSelectViewModel()
-                profileSelectViewModel.react(.profileImageSelected, value: selectedImage)
                 
-                let profileSelecteViewController = ProfileSelectViewController(baseView: ProfileSelectView(), viewModel: profileSelectViewModel)
+                let profileSelectViewController = ProfileSelectViewController(baseView: ProfileSelectView(), viewModel: ProfileSelectViewModel(), profileImage: selectedImage)
                 
-                profileSelecteViewController.delegate = self
+                profileSelectViewController.delegate = self
+                
                 
                 self?.navigationController?.pushViewController(
-                    ProfileSelectViewController(
-                        baseView: ProfileSelectView(),
-                        viewModel: profileSelectViewModel
-                    ),
+                    profileSelectViewController,
                     animated: true)
             }
         }
