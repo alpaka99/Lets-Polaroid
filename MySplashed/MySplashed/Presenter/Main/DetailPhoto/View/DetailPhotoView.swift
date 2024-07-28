@@ -67,6 +67,7 @@ final class DetailPhotoView: BaseView {
                 .offset(16)
             view.horizontalEdges.equalTo(photoHeaderView.snp.horizontalEdges)
             view.bottom.equalTo(contentView.snp.bottom)
+            view.height.equalTo(150)
         }
         
         contentView.snp.makeConstraints { view in
