@@ -32,6 +32,16 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
         viewModel.bind(\.isInitialSearch) {[weak self] value in
             self?.baseView.moveToTop()
         }
+        
+        viewModel.bind(\.selectedImage) {[weak self] value in
+            if let vc = self {
+                let detailViewModel = DetailPhotoViewModel()
+
+                detailViewModel.react(.recieveImageData, value: value)
+                
+                vc.navigationController?.pushViewController(DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: detailViewModel), animated: true)
+            }
+        }
     }
     
     @objc
@@ -60,6 +70,7 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
 
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.react(.cellTapped, value: indexPath)
+        let data = baseView.dataSource.snapshot(for: .main).items[indexPath.row]
+        viewModel.react(.cellTapped, value: data)
     }
 }

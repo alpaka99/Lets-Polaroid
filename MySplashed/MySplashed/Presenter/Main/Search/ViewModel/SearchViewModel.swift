@@ -20,6 +20,7 @@ final class SearchViewModel: ViewModel {
     struct Output: Equatable {
         var searchData: Observable<[UnsplashImageData]> = Observable([])
         var isInitialSearch = Observable(false)
+        var selectedImage: Observable<UnsplashImageData?> = Observable(nil)
     }
     
     lazy var input = Input()
@@ -125,6 +126,8 @@ final class SearchViewModel: ViewModel {
     }
     
     private func cellTapped<T: Equatable>(_ value: T) {
-        print(#function)
+        if let imageData = value as? UnsplashImageData {
+            reduce(\.selectedImage.value, into: imageData)
+        }
     }
 }
