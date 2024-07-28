@@ -14,6 +14,7 @@ final class MBTIViewCell: BaseCollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textAlignment = .center
+        label.clipsToBounds = true
         return label
     }()
     

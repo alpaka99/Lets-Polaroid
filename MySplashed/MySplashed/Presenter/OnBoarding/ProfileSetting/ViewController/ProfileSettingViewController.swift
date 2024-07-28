@@ -46,7 +46,6 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         viewModel.bind(\.isMovingToProfileSelectionView) {[weak self] _ in
             if let selectedImage = self?.viewModel(\.selectedProfileImage).value {
                 
-                
                 let profileSelectViewController = ProfileSelectViewController(baseView: ProfileSelectView(), viewModel: ProfileSelectViewModel(), profileImage: selectedImage)
                 
                 profileSelectViewController.delegate = self
@@ -58,7 +57,7 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
             }
         }
         
-        viewModel.bind(\.userMBTI) {[weak self] value in
+        viewModel.actionBind(\.userMBTI) {[weak self] value in
             self?.baseView.mbtiView.updateSnapShot(value)
         }
     

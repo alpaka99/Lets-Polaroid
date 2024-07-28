@@ -44,6 +44,32 @@ enum MBTIComponent: String, CaseIterable {
             return .fourth
         }
     }
+    
+    var index: Int {
+        switch self {
+        case .e:
+            return 0
+        case .i:
+            return 1
+        case .s:
+            return 2
+        case .n:
+            return 3
+        case .t:
+            return 4
+        case .f:
+            return 5
+        case .j:
+            return 6
+        case .p:
+            return 7
+        }
+    }
 }
 
 
+
+struct MBTIData: Hashable {
+    let mbtiComponent: MBTIComponent
+    var isSelected: Bool
+}

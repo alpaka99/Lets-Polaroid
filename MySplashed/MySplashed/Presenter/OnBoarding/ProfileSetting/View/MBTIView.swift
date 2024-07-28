@@ -19,13 +19,12 @@ final class MBTIView: BaseView {
     
     private(set) lazy var mbtiCollectionView  = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
-    private(set) var dataSource: UICollectionViewDiffableDataSource<MBTISection, MBTIComponent>!
+    private(set) var dataSource: UICollectionViewDiffableDataSource<MBTISection, MBTIData>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configureDataSource()
-        configureSnapShot()
     }
     
     override func configureHierarchy() {
@@ -77,28 +76,40 @@ final class MBTIView: BaseView {
     }
     
     private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<MBTIViewCell, MBTIComponent> { cell, indexPath, itemIdentifier in
+        let cellRegistration = UICollectionView.CellRegistration<MBTIViewCell, MBTIData> { cell, indexPath, itemIdentifier in
             
         }
         
-        dataSource = UICollectionViewDiffableDataSource<MBTISection, MBTIComponent>(
+        dataSource = UICollectionViewDiffableDataSource<MBTISection, MBTIData>(
             collectionView: mbtiCollectionView,
             cellProvider: { collectionView, indexPath, itemIdentifier in
                 let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-                cell.configureAlphabet(itemIdentifier.rawValue)
+                cell.configureAlphabet(itemIdentifier.mbtiComponent.rawValue)
+                if itemIdentifier.isSelected {
+                    cell.selected()
+                } else {
+                    cell.deselected()
+                }
                 
                 return cell
             })
     }
     
-    private func configureSnapShot() {
-        var snapShot = NSDiffableDataSourceSnapshot<MBTISection, MBTIComponent>()
-        snapShot.appendSections(MBTISection.allCases)
-        snapShot.appendItems(MBTIComponent.allCases, toSection: .main)
-        dataSource.apply(snapShot)
-    }
-    
     func updateSnapShot(_ userMBTI: [MBTIGroup:MBTIComponent?]) {
-        print(userMBTI)
+        var snapShot = NSDiffableDataSourceSnapshot<MBTISection, MBTIData>()
+        snapShot.appendSections([.main])
+        MBTIComponent.allCases.forEach { component in
+            if let value = userMBTI[component.group], let selectedComponent = value {
+                if selectedComponent == component { // 선택된 mbti라면?
+                    snapShot.appendItems([MBTIData(mbtiComponent: component, isSelected: true)], toSection: .main)
+                } else {
+                    snapShot.appendItems([MBTIData(mbtiComponent: component, isSelected: false)], toSection: .main)
+                }
+            } else { // 값이 nil임 -> 선택된 component가 없다
+                snapShot.appendItems([MBTIData(mbtiComponent: component, isSelected: false)], toSection: .main)
+            }
+        }
+        
+        dataSource.apply(snapShot)
     }
 }

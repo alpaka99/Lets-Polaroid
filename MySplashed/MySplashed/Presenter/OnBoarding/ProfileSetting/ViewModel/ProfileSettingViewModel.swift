@@ -100,9 +100,9 @@ final class ProfileSettingViewModel: ViewModel {
     }
     
     private func mbtiSelected<T: Equatable>(_ selectedMBTI: T) {
-        if let selectedMBTI = selectedMBTI as? MBTIComponent {
-            let group = selectedMBTI.group
-            reduce(\.userMBTI.value[group], into: selectedMBTI)
+        if let selectedMBTI = selectedMBTI as? MBTIData {
+            let group = selectedMBTI.mbtiComponent.group
+            reduce(\.userMBTI.value[group], into: selectedMBTI.mbtiComponent)
         }
     }
 }
