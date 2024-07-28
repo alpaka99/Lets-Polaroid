@@ -17,7 +17,7 @@ final class MBTIView: BaseView {
         return label
     }()
     
-    let mbtiCollectionView  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.createLayout(rows: 2, columns: 4, spacing: 8, groupDirection: .horizontal, scrollDirection: .vertical))
+    private lazy var mbtiCollectionView  = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
     var dataSource: UICollectionViewDiffableDataSource<MBTISection, MBTI>!
     
@@ -38,7 +38,8 @@ final class MBTIView: BaseView {
     override func configureUI() {
         super.configureUI()
         
-//        mbtiCollectionView.isScrollEnabled = false
+        mbtiCollectionView.isScrollEnabled = false
+        mbtiCollectionView.showsHorizontalScrollIndicator = false
     }
     
     override func configureLayout() {
@@ -58,6 +59,21 @@ final class MBTIView: BaseView {
                 .inset(16)
             collectionView.height.equalTo(150)
         }
+    }
+    
+    private func createLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.5))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2), heightDimension: .fractionalHeight(1))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.interGroupSpacing = 8
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
     
     func configureDataSource() {
