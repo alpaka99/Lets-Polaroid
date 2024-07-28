@@ -27,10 +27,12 @@ final class SearchViewModel: ViewModel {
     lazy var output = Output()
     
     enum Action: String {
+        case viewWillAppear
         case searchButtonTapped
         case prefetchImage
         case toggleSortOption
         case cellTapped
+        case likeStatusChanged
     }
     
     let repository = SearchRepository()
@@ -41,6 +43,8 @@ final class SearchViewModel: ViewModel {
     
     func react<U>(_ action: Action, value: U) where U : Equatable {
         switch action {
+        case .viewWillAppear:
+            viewWillAppearAction()
         case .searchButtonTapped:
             searchImage(value)
         case .prefetchImage:
@@ -49,6 +53,8 @@ final class SearchViewModel: ViewModel {
             toggleSortOption()
         case .cellTapped:
             cellTapped(value)
+        case .likeStatusChanged:
+            changeLikeStatus(of: value)
         }
     }
     
@@ -129,5 +135,16 @@ final class SearchViewModel: ViewModel {
         if let imageData = value as? UnsplashImageData {
             reduce(\.selectedImage.value, into: imageData)
         }
+    }
+    
+    private func changeLikeStatus<T: Equatable>(of data: T) {
+        if let imageData = data as? UnsplashImageData {
+            let changedData = repository.changeLikeStatus(of: imageData, sortOption: self(\.sortOption).value)
+            reduce(\.searchData.value, into: changedData)
+        }
+    }
+    
+    private func viewWillAppearAction() {
+        repository.loadLikedImage()
     }
 }

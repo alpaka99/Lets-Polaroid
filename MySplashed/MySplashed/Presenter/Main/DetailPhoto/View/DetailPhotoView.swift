@@ -28,7 +28,6 @@ final class DetailPhotoView: BaseView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: ProfileImage.randomProfile().rawValue)
         return imageView
     }()
     

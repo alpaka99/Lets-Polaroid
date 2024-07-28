@@ -9,6 +9,12 @@ import UIKit
 
 final class SearchViewController: BaseViewController<SearchView, SearchViewModel> {
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.react(.viewWillAppear, value: true)
+    }
+    
     override func configureNavigationItem() {
         super.configureNavigationItem()
         
@@ -39,7 +45,11 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
 
                 detailViewModel.react(.recieveImageData, value: value)
                 
-                vc.navigationController?.pushViewController(DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: detailViewModel), animated: true)
+                let detailSearchViewController = DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: detailViewModel)
+                
+                detailSearchViewController.delegate = vc
+                
+                vc.navigationController?.pushViewController(detailSearchViewController, animated: true)
             }
         }
     }
@@ -72,5 +82,11 @@ extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let data = baseView.dataSource.snapshot(for: .main).items[indexPath.row]
         viewModel.react(.cellTapped, value: data)
+    }
+}
+
+extension SearchViewController: DetailPhotoViewControllerDelegate {
+    func likeStatusChanged(of data: UnsplashImageData) {
+        viewModel.react(.likeStatusChanged, value: data)
     }
 }

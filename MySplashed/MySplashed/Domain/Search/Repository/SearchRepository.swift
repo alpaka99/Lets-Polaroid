@@ -91,4 +91,42 @@ final class SearchRepository {
             likedImage.id
         }))
     }
+    
+    func changeLikeStatus(of data: UnsplashImageData, sortOption: SearchSortOption) -> [UnsplashImageData] {
+        loadLikedImage()
+        
+        // MARK: 추후에 조금 더 효율적인 방법 생각해보기
+        if likedImageId.contains(data.unsplashResponse.id) { // undo like operation
+            toggleLike(of: data, with: true)
+        } else { // do like operation
+            toggleLike(of: data, with: false)
+        }
+        
+        switch sortOption {
+        case .relevant:
+            return relavantImageData
+        case .latest:
+            return latestImageData
+        }
+    }
+    
+    private func toggleLike(of data: UnsplashImageData, with isLiked: Bool) {
+        for index in 0..<latestImageData.count {
+            var targetData = latestImageData[index]
+            if targetData.unsplashResponse.id == data.unsplashResponse.id {
+                targetData.isLiked = isLiked
+                latestImageData[index] = targetData
+                break
+            }
+        }
+        
+        for index in 0..<relavantImageData.count {
+            var targetData = relavantImageData[index]
+            if targetData.unsplashResponse.id == data.unsplashResponse.id {
+                targetData.isLiked = isLiked
+                relavantImageData[index] = targetData
+                break
+            }
+        }
+    }
 }
