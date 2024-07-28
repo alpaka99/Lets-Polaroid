@@ -18,7 +18,7 @@ final class ProfileSelectViewController: BaseViewController<ProfileSelectView, P
     override func configureNavigationItem() {
         super.configureNavigationItem()
         
-        navigationItem.title = "EDIT PROFILE"
+        navigationItem.title = "SELECT PROFILE IMAGE"
     }
     
     override func configureDelegate() {

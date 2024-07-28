@@ -17,7 +17,7 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
     override func configureNavigationItem() {
         super.configureNavigationItem()
         
-        navigationItem.title = "PROFILE SETTING"
+        
     }
     
     override func configureDelegate() {
@@ -33,7 +33,11 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         
         viewModel.actionBind(\.profileSettingMode) {[weak self] mode in
             self?.baseView.configureMode(mode)
-            if mode == .edit {
+            switch mode {
+            case .onboarding:
+                self?.navigationItem.title = "PROFILE SETTING"
+            case .edit:
+                self?.navigationItem.title = "Edit Profile"
                 let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(self?.saveButtonTapped))
                 self?.navigationItem.rightBarButtonItem = saveButton
             }
