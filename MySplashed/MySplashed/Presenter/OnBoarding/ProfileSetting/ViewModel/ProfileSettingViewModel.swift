@@ -53,10 +53,6 @@ final class ProfileSettingViewModel: ViewModel {
         bind(\.textFieldInput) { [weak self] value in
             self?.validateTextInput(value)
         }
-        
-        actionBind(\.selectedProfileImage) {[weak self] value in
-            self?.reduce(\.isMovingToProfileSelectionView, into: value)
-        }
     }
     
     private func profileImageTapped() {

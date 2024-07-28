@@ -26,6 +26,10 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
     override func configureDataBinding() {
         super.configureDataBinding()
         
+        viewModel.actionBind(\.selectedProfileImage) {[weak self] profileImage in
+            self?.baseView.profileImage.setProfileImage(profileImage)
+        }
+        
         viewModel.bind(\.isMovingToProfileSelectionView) {[weak self] _ in
             self?.navigationController?.pushViewController(
                 ProfileSelectViewController(
@@ -33,10 +37,6 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
                     viewModel: ProfileSelectViewModel()
                 ),
                 animated: true)
-        }
-        
-        viewModel.actionBind(\.selectedProfileImage) {[weak self] profileImage in
-            self?.baseView.profileImage.setProfileImage(profileImage)
         }
     
         viewModel.bind(\.completeButtonTapped) {[weak self] _ in
