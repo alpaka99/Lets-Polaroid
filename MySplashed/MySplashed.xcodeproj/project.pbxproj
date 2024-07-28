@@ -40,7 +40,7 @@
 		CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C362C511FD600327314 /* UICollectionViewLayout+.swift */; };
 		CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C382C5139AC00327314 /* MBTIViewCell.swift */; };
 		CEB45C3B2C5153F300327314 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C3A2C5153F300327314 /* Sections.swift */; };
-		CEB45C3D2C51545700327314 /* MBTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C3C2C51545700327314 /* MBTI.swift */; };
+		CEB45C3D2C51545700327314 /* MBTIComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C3C2C51545700327314 /* MBTIComponent.swift */; };
 		CEB45C4A2C51EB1A00327314 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C492C51EB1A00327314 /* TabBarController.swift */; };
 		CEB45C642C5231E200327314 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C632C5231E200327314 /* TopicViewController.swift */; };
 		CEB45C662C5231EE00327314 /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C652C5231EE00327314 /* TopicView.swift */; };
@@ -79,9 +79,13 @@
 		CEFBB2182C553CF600454193 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB2172C553CF600454193 /* SnapKit */; };
 		CEFBB21B2C553CFF00454193 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB21A2C553CFF00454193 /* Kingfisher */; };
 		CEFBB21E2C5540A400454193 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB21D2C5540A400454193 /* RealmSwift */; };
-		CEFBB2202C556C2300454193 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB21F2C556C2300454193 /* FileManager.swift */; };
+		CEFBB2202C556C2300454193 /* FileManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB21F2C556C2300454193 /* FileManager+.swift */; };
 		CEFBB2222C55812900454193 /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2212C55812900454193 /* Dictionary+.swift */; };
 		CEFBB2262C55894300454193 /* LikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2252C55894300454193 /* LikeRepository.swift */; };
+		CEFBB2282C5693DB00454193 /* StringValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2272C5693DB00454193 /* StringValidation.swift */; };
+		CEFBB22B2C56941C00454193 /* ProfileSettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB22A2C56941C00454193 /* ProfileSettingRepository.swift */; };
+		CEFBB22E2C56944900454193 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB22D2C56944900454193 /* UserData.swift */; };
+		CEFBB2322C56978500454193 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2312C56978500454193 /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,7 +124,7 @@
 		CEB45C362C511FD600327314 /* UICollectionViewLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+.swift"; sourceTree = "<group>"; };
 		CEB45C382C5139AC00327314 /* MBTIViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTIViewCell.swift; sourceTree = "<group>"; };
 		CEB45C3A2C5153F300327314 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
-		CEB45C3C2C51545700327314 /* MBTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTI.swift; sourceTree = "<group>"; };
+		CEB45C3C2C51545700327314 /* MBTIComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTIComponent.swift; sourceTree = "<group>"; };
 		CEB45C492C51EB1A00327314 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CEB45C632C5231E200327314 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		CEB45C652C5231EE00327314 /* TopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
@@ -156,9 +160,13 @@
 		CEB45CC62C54EBAE00327314 /* LikedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedImage.swift; sourceTree = "<group>"; };
 		CEB45CC82C54F4AF00327314 /* JSONConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConstant.swift; sourceTree = "<group>"; };
 		CEB45CCB2C5531A700327314 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		CEFBB21F2C556C2300454193 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		CEFBB21F2C556C2300454193 /* FileManager+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+.swift"; sourceTree = "<group>"; };
 		CEFBB2212C55812900454193 /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
 		CEFBB2252C55894300454193 /* LikeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeRepository.swift; sourceTree = "<group>"; };
+		CEFBB2272C5693DB00454193 /* StringValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringValidation.swift; sourceTree = "<group>"; };
+		CEFBB22A2C56941C00454193 /* ProfileSettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingRepository.swift; sourceTree = "<group>"; };
+		CEFBB22D2C56944900454193 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		CEFBB2312C56978500454193 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,9 +326,10 @@
 				CEB45BE52C4FEBA600327314 /* MSColor.swift */,
 				CEB45C322C51186E00327314 /* ProfileImage.swift */,
 				CEB45C3A2C5153F300327314 /* Sections.swift */,
-				CEB45C3C2C51545700327314 /* MBTI.swift */,
+				CEB45C3C2C51545700327314 /* MBTIComponent.swift */,
 				CEB45C9A2C539DE300327314 /* TopicType.swift */,
 				CEB45CC82C54F4AF00327314 /* JSONConstant.swift */,
+				CEFBB2272C5693DB00454193 /* StringValidation.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -328,6 +337,7 @@
 		CEB45BE72C4FEDA800327314 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CEFBB21F2C556C2300454193 /* FileManager+.swift */,
 				CEB45BE82C4FEDD000327314 /* String+.swift */,
 				CEB45BEA2C4FEDF300327314 /* UIColor+.swift */,
 				CEB45CA32C53B11B00327314 /* UIButton+.swift */,
@@ -335,6 +345,7 @@
 				CEB45BEE2C50081800327314 /* UIViewController+.swift */,
 				CEB45C362C511FD600327314 /* UICollectionViewLayout+.swift */,
 				CEFBB2212C55812900454193 /* Dictionary+.swift */,
+				CEFBB2312C56978500454193 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -564,7 +575,6 @@
 			children = (
 				CEB45C7E2C526AD200327314 /* NetworkManager.swift */,
 				CEB45CCB2C5531A700327314 /* RealmManager.swift */,
-				CEFBB21F2C556C2300454193 /* FileManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -588,6 +598,7 @@
 		CEB45C932C5292CB00327314 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				CEFBB2292C56941200454193 /* ProfileSetting */,
 				CEFBB2232C55892100454193 /* Like */,
 				CEB45CB62C54CFC600327314 /* DetailPhoto */,
 				CEB45C9C2C53A0BD00327314 /* Search */,
@@ -673,6 +684,7 @@
 				CEB45C892C527B2700327314 /* UnsplashResponse.swift */,
 				CEB45C8B2C527C5200327314 /* Photographer.swift */,
 				CEB45C962C52D4CC00327314 /* UnsplashImageData.swift */,
+				CEFBB22D2C56944900454193 /* UserData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -718,6 +730,14 @@
 				CEFBB2252C55894300454193 /* LikeRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		CEFBB2292C56941200454193 /* ProfileSetting */ = {
+			isa = PBXGroup;
+			children = (
+				CEFBB22A2C56941C00454193 /* ProfileSettingRepository.swift */,
+			);
+			path = ProfileSetting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -811,14 +831,16 @@
 				CEB45CB82C54CFD400327314 /* PhotographerData.swift in Sources */,
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
 				CEB45C712C5234A500327314 /* SearchViewModel.swift in Sources */,
+				CEFBB22B2C56941C00454193 /* ProfileSettingRepository.swift in Sources */,
 				CEB45CB42C544A8D00327314 /* InfoLabel.swift in Sources */,
+				CEFBB2282C5693DB00454193 /* StringValidation.swift in Sources */,
 				CEB45C2B2C50ECCE00327314 /* ProfileSelectViewModel.swift in Sources */,
 				CEB45CA42C53B11B00327314 /* UIButton+.swift in Sources */,
 				CEB45C7A2C5235EB00327314 /* LikeViewController.swift in Sources */,
 				CEB45C332C51186E00327314 /* ProfileImage.swift in Sources */,
 				CEB45B9A2C4E4B9600327314 /* BaseViewController.swift in Sources */,
 				CEB45B7A2C4E3D0400327314 /* AppDelegate.swift in Sources */,
-				CEB45C3D2C51545700327314 /* MBTI.swift in Sources */,
+				CEB45C3D2C51545700327314 /* MBTIComponent.swift in Sources */,
 				CEB45B7C2C4E3D0400327314 /* SceneDelegate.swift in Sources */,
 				CEB45B9D2C4E4E9000327314 /* Observable.swift in Sources */,
 				CEB45CBE2C54D05D00327314 /* DetailPhotoRepository.swift in Sources */,
@@ -844,6 +866,7 @@
 				CEB45C9F2C53A0CF00327314 /* SearchRepository.swift in Sources */,
 				CEB45C992C53720400327314 /* SearchView.swift in Sources */,
 				CEFBB2222C55812900454193 /* Dictionary+.swift in Sources */,
+				CEFBB22E2C56944900454193 /* UserData.swift in Sources */,
 				CEB45CA22C53A79A00327314 /* SearchResponse.swift in Sources */,
 				CEB45BE92C4FEDD000327314 /* String+.swift in Sources */,
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
@@ -856,7 +879,7 @@
 				CEB45C662C5231EE00327314 /* TopicView.swift in Sources */,
 				CEB45BD92C4FE05300327314 /* SplashViewController.swift in Sources */,
 				CEB45C3B2C5153F300327314 /* Sections.swift in Sources */,
-				CEFBB2202C556C2300454193 /* FileManager.swift in Sources */,
+				CEFBB2202C556C2300454193 /* FileManager+.swift in Sources */,
 				CEB45BF72C5009F500327314 /* ProfileSettingViewModel.swift in Sources */,
 				CEB45CCC2C5531A700327314 /* RealmManager.swift in Sources */,
 				CEB45C6D2C52347100327314 /* SearchViewController.swift in Sources */,
@@ -868,6 +891,7 @@
 				CEB45C642C5231E200327314 /* TopicViewController.swift in Sources */,
 				CEB45C7C2C525F6300327314 /* PictureViewCell.swift in Sources */,
 				CEB45C682C52320100327314 /* TopicViewModel.swift in Sources */,
+				CEFBB2322C56978500454193 /* UserDefaults.swift in Sources */,
 				CEB45C7F2C526AD200327314 /* NetworkManager.swift in Sources */,
 				CEB45C922C52915D00327314 /* TopicRepository.swift in Sources */,
 				CEB45C782C52355200327314 /* LikeViewModel.swift in Sources */,

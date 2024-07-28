@@ -14,11 +14,11 @@ final class DetailPhotoRepository {
             KingfisherManager.shared.retrieveImage(with: url) { result in
                 switch result {
                 case .success(let image):
-                    let userData = PhotographerData(
+                    let photographerData = PhotographerData(
                         photographer: photographer,
                         profileImage: image.image
                     )
-                    completionHandler(userData)
+                    completionHandler(photographerData)
                 case .failure(let error):
                     print("KingFisher ImageFetch Error", error)
                 }

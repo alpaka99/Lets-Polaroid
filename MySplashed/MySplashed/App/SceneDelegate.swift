@@ -18,13 +18,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-//        let rootViewController = UINavigationController(rootViewController: SplashViewController(
-//            baseView: SplashView(),
-//            viewModel: SplashViewModel())
-//        )
-        let rootViewController = UINavigationController(rootViewController: TabBarController())
-        window?.rootViewController = rootViewController
-        window?.makeKeyAndVisible()
+        
+//        do {
+//            let userData = try UserDefaults.standard.readAll(ofType: UserData.self)
+//            if let _ = userData {
+//                let rootViewController = UINavigationController(rootViewController: TabBarController())
+//                window?.rootViewController = rootViewController
+//                window?.makeKeyAndVisible()
+//            } else {
+                let rootViewController = UINavigationController(rootViewController: SplashViewController(
+                    baseView: SplashView(),
+                    viewModel: SplashViewModel())
+                )
+                window?.rootViewController = rootViewController
+                window?.makeKeyAndVisible()
+//            }
+//        } catch {
+//            print("Load UserData Error")
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

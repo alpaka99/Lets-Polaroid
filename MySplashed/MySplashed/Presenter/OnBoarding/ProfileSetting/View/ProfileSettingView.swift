@@ -12,7 +12,7 @@ import SnapKit
 final class ProfileSettingView: BaseView {
     private(set) var profileImage = {
         let imageView = RoundImageView()
-        imageView.image.image = UIImage(named: "profile_0")
+        imageView.image.image = UIImage(named: ProfileImage.randomProfile().rawValue)
         imageView.showBadge()
         imageView.selected()
         return imageView
@@ -25,10 +25,9 @@ final class ProfileSettingView: BaseView {
     private let validationLabel = {
         let label = UILabel()
         label.textColor = MSColor.magenta.color
-        label.text = "validation label"
         return label
     }()
-    private let mbtiView = {
+    private(set) var mbtiView = {
         let view = MBTIView()
         return view
     }()
@@ -39,6 +38,15 @@ final class ProfileSettingView: BaseView {
             .backgroundColor(MSColor.blue.color ?? .systemBlue)
             .build()
         button.tintColor = .white
+        button.alpha = 0
+        return button
+    }()
+    private(set) var deleteAccountButton = {
+        let button = UIButton.Configuration.plain()
+            .title("회원탈퇴")
+            .backgroundColor(MSColor.white.color ?? .white)
+            .build()
+        button.tintColor = MSColor.blue.color
         return button
     }()
     
@@ -50,6 +58,7 @@ final class ProfileSettingView: BaseView {
         self.addSubview(validationLabel)
         self.addSubview(mbtiView)
         self.addSubview(completeButton)
+        self.addSubview(deleteAccountButton)
     }
     
     override func configureLayout() {
@@ -88,12 +97,50 @@ final class ProfileSettingView: BaseView {
                 .inset(16)
             btn.height.equalTo(44)
         }
+        deleteAccountButton.snp.makeConstraints { btn in
+            btn.top.greaterThanOrEqualTo(mbtiView.snp.bottom)
+                .offset(16)
+            btn.horizontalEdges.equalTo(nicknameTextField.snp.horizontalEdges)
+            btn.bottom.equalTo(self.safeAreaLayoutGuide)
+                .inset(16)
+            btn.height.equalTo(44)
+        }
     }
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
-//        profileImage.layer.cornerRadius = self.frame.height  / 2
         profileImage.clipsToBounds = true
+    }
+    
+    func configureMode(_ mode: ProfileSettingMode) {
+        switch mode {
+        case .onboarding:
+            completeButton.alpha = 1
+            deleteAccountButton.alpha = 0
+        case .edit:
+            completeButton.alpha = 0
+            deleteAccountButton.alpha = 1
+        }
+    }
+    
+    func setValidationLabel(with text: String) {
+        validationLabel.text = text
+    }
+    
+    func setValidationLabelColor(_ value: Bool) {
+        validationLabel.textColor = value ? MSColor.blue.color : MSColor.magenta.color
+    }
+    
+    func setCompleteButtonStatus(_ isEnabled: Bool) {
+        completeButton.isEnabled = isEnabled
+        
+        if isEnabled {
+            completeButton.updateColor(MSColor.blue.color ?? .systemBlue)
+            completeButton.updateForegroundColor(MSColor.white.color ?? .white)
+            
+        } else {
+            completeButton.updateColor(MSColor.darkGray.color ?? .darkGray)
+            completeButton.updateForegroundColor(MSColor.black.color ?? .black)
+        }
     }
 }

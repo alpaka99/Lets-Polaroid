@@ -17,8 +17,8 @@ final class ProfileSelectViewModel: ViewModel {
         var profileImages = Observable(ProfileImage.allData)
     }
     
-    var input = Input()
-    var output = Output()
+    lazy var input = Input()
+    lazy var output = Output()
     
     init() {
         configureBind()

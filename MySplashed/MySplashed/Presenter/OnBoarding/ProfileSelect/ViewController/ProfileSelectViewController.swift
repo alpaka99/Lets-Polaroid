@@ -8,6 +8,7 @@
 import UIKit
 
 final class ProfileSelectViewController: BaseViewController<ProfileSelectView, ProfileSelectViewModel> {
+    weak var delegate: ProfileSelectViewControllerDelegate?
     
     convenience init(baseView: ProfileSelectView, viewModel: ProfileSelectViewModel, profileImage: ProfileImage) {
         self.init(baseView: baseView, viewModel: viewModel)
@@ -17,7 +18,7 @@ final class ProfileSelectViewController: BaseViewController<ProfileSelectView, P
     override func configureNavigationItem() {
         super.configureNavigationItem()
         
-        navigationItem.title = "EDIT PROFILE"
+        navigationItem.title = "SELECT PROFILE IMAGE"
     }
     
     override func configureDelegate() {
@@ -31,6 +32,8 @@ final class ProfileSelectViewController: BaseViewController<ProfileSelectView, P
         
         viewModel.actionBind(\.selectedProfileImage) {[weak self] profileImage in
             self?.baseView.selectedProfileImage.setProfileImage(profileImage)
+            
+            self?.delegate?.profileImageSelected(profileImage)
         }
         
         viewModel.actionBind(\.profileImages) { [weak self] value in
@@ -46,4 +49,9 @@ extension ProfileSelectViewController: UICollectionViewDelegate {
             viewModel.react(.profileImageSelected, value: profileImage)
         }
     }
+}
+
+
+protocol ProfileSelectViewControllerDelegate: AnyObject {
+    func profileImageSelected(_ profileImage: ProfileImage)
 }

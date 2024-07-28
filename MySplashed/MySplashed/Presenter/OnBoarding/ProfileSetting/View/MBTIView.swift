@@ -10,22 +10,21 @@ import UIKit
 import SnapKit
 
 final class MBTIView: BaseView {
-    let title = {
+    private let title = {
         let label = UILabel()
         label.text = "MBTI"
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
     
-    let mbtiCollectionView  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.createLayout(rows: 2, columns: 4, spacing: 8, groupDirection: .horizontal, scrollDirection: .vertical))
+    private(set) lazy var mbtiCollectionView  = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
-    var dataSource: UICollectionViewDiffableDataSource<MBTISection, MBTI>!
+    private(set) var dataSource: UICollectionViewDiffableDataSource<MBTISection, MBTIData>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configureDataSource()
-        updateSnapShot()
     }
     
     override func configureHierarchy() {
@@ -38,7 +37,8 @@ final class MBTIView: BaseView {
     override func configureUI() {
         super.configureUI()
         
-//        mbtiCollectionView.isScrollEnabled = false
+        mbtiCollectionView.isScrollEnabled = false
+        mbtiCollectionView.showsHorizontalScrollIndicator = false
     }
     
     override func configureLayout() {
@@ -60,24 +60,56 @@ final class MBTIView: BaseView {
         }
     }
     
-    func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<MBTIViewCell, MBTI> { cell, indexPath, itemIdentifier in
+    private func createLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.5))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.22), heightDimension: .fractionalHeight(1))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.interGroupSpacing = 8
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
+    
+    private func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<MBTIViewCell, MBTIData> { cell, indexPath, itemIdentifier in
             
         }
         
-        dataSource = UICollectionViewDiffableDataSource<MBTISection, MBTI>(
+        dataSource = UICollectionViewDiffableDataSource<MBTISection, MBTIData>(
             collectionView: mbtiCollectionView,
             cellProvider: { collectionView, indexPath, itemIdentifier in
                 let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-                cell.configureAlphabet(itemIdentifier.rawValue)
+                cell.configureAlphabet(itemIdentifier.mbtiComponent.rawValue)
+                if itemIdentifier.isSelected {
+                    cell.selected()
+                } else {
+                    cell.deselected()
+                }
+                
                 return cell
             })
     }
     
-    func updateSnapShot() {
-        var snapShot = NSDiffableDataSourceSnapshot<MBTISection, MBTI>()
-        snapShot.appendSections(MBTISection.allCases)
-        snapShot.appendItems(MBTI.allCases, toSection: .main)
+    func updateSnapShot(_ userMBTI: [MBTIGroup:MBTIComponent?]) {
+        var snapShot = NSDiffableDataSourceSnapshot<MBTISection, MBTIData>()
+        snapShot.appendSections([.main])
+        MBTIComponent.allCases.forEach { component in
+            if let group = component.group, let value = userMBTI[group], let selectedComponent = value {
+                if selectedComponent == component { // 선택된 mbti라면?
+                    snapShot.appendItems([MBTIData(mbtiComponent: component, isSelected: true)], toSection: .main)
+                } else {
+                    snapShot.appendItems([MBTIData(mbtiComponent: component, isSelected: false)], toSection: .main)
+                }
+            } else { // 값이 nil임 -> 선택된 component가 없다
+                snapShot.appendItems([MBTIData(mbtiComponent: component, isSelected: false)], toSection: .main)
+            }
+        }
+        
         dataSource.apply(snapShot)
     }
 }

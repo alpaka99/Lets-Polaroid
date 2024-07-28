@@ -104,9 +104,9 @@ final class PictureViewCell: BaseCollectionViewCell {
     
     func setLikedButton(_ isLiked: Bool) {
         if isLiked {
-            likeButton.updateImge("heart.fill")
+            likeButton.updateImage("heart.fill")
         } else {
-            likeButton.updateImge("heart")
+            likeButton.updateImage("heart")
         }
     }
 }
