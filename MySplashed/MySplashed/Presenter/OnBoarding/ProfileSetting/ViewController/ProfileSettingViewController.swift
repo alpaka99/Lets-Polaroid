@@ -61,12 +61,20 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
             self?.baseView.setValidationLabel(with: value)
         }
         
-        viewModel.bind(\.isNicknameValidated) {[weak self] value in
+        viewModel.actionBind(\.isNicknameValidated) {[weak self] value in
             self?.baseView.setValidationLabelColor(value)
+            self?.viewModel.react(.checkSaveEnabled, value: true)
         }
         
         viewModel.actionBind(\.userMBTI) {[weak self] value in
             self?.baseView.mbtiView.updateSnapShot(value)
+            self?.viewModel.react(.validateMBTI, value: true)
+            self?.viewModel.react(.checkSaveEnabled, value: true)
+        }
+        
+        viewModel.actionBind(\.isCompleteButtonEnabled) {[weak self] value in
+            self?.baseView.completeButton.isEnabled = value
+            self?.navigationItem.rightBarButtonItem?.isEnabled = value
         }
     
         viewModel.bind(\.completeButtonTapped) {[weak self] _ in

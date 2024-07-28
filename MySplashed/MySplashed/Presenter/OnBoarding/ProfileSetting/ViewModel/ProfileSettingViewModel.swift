@@ -19,6 +19,7 @@ final class ProfileSettingViewModel: ViewModel {
     struct Output: Equatable {
         var isMovingToProfileSelectionView = Observable(false)
         var isNicknameValidated = Observable(false)
+        var isMBTIValidated = Observable(false)
         var isCompleteButtonEnabled = Observable(false)
         var nickname = Observable("")
         var userMBTI: Observable<[MBTIGroup : MBTIComponent?]> = Observable(MBTIComponent.initialMBTI())
@@ -35,6 +36,8 @@ final class ProfileSettingViewModel: ViewModel {
         case profileImageSelected
         case setProfileSettingMode
         case mbtiSelected
+        case validateMBTI
+        case checkSaveEnabled
     }
     
     init() {
@@ -55,6 +58,10 @@ final class ProfileSettingViewModel: ViewModel {
             setProfileSettingMode(value)
         case .mbtiSelected:
             mbtiSelected(value)
+        case .validateMBTI:
+            validateMBTI()
+        case .checkSaveEnabled:
+            checkSaveEnabled()
         }
     }
     
@@ -124,6 +131,21 @@ final class ProfileSettingViewModel: ViewModel {
         } else {
             throw StringValidationError.isEmpty
         }
+    }
+    
+    private func validateMBTI() {
+        if self(\.userMBTI).value.values.count == 4 {
+            reduce(\.isMBTIValidated.value, into: true)
+        } else {
+            reduce(\.isMBTIValidated.value, into: false)
+        }
+    }
+    
+    private func checkSaveEnabled() {
+        let isNicknameValidated = self(\.isNicknameValidated).value
+        let isMBTIValidated = self(\.isMBTIValidated).value
+        
+        reduce(\.isCompleteButtonEnabled.value, into: isNicknameValidated && isMBTIValidated)
     }
 }
 
