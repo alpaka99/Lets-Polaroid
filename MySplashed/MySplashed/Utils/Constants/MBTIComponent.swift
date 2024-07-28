@@ -23,16 +23,17 @@ enum MBTIComponent: String, CaseIterable, Codable {
     case f
     case j
     case p
+    case none
     
-    static func initialMBTI() -> [MBTIGroup : MBTIComponent?] {
+    static func initialMBTI() -> [MBTIGroup : MBTIComponent] {
         var mbti = [MBTIGroup:MBTIComponent]()
         MBTIGroup.allCases.forEach { group in
-            mbti[group] = nil
+            mbti[group] = .none
         }
         return mbti
     }
     
-    var group: MBTIGroup {
+    var group: MBTIGroup? {
         switch self {
         case .e, .i:
             return .first
@@ -42,10 +43,12 @@ enum MBTIComponent: String, CaseIterable, Codable {
             return .third
         case .j, .p:
             return .fourth
+        case .none:
+            return nil
         }
     }
     
-    var index: Int {
+    var index: Int? {
         switch self {
         case .e:
             return 0
@@ -63,6 +66,8 @@ enum MBTIComponent: String, CaseIterable, Codable {
             return 6
         case .p:
             return 7
+        case .none:
+            return nil
         }
     }
 }

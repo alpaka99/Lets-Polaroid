@@ -74,9 +74,9 @@ final class PhotoHeaderView: BaseView {
         photographerName.text = data.photographerData.photographer.name
         photoCreated.text = data.imageData.unsplashResponse.createdAt // TODO: DateFormatter formatting
         if data.imageData.isLiked {
-            likeButton.updateImge("heart.fill")
+            likeButton.updateImage("heart.fill")
         } else {
-            likeButton.updateImge("heart")
+            likeButton.updateImage("heart")
         }
     }
 }

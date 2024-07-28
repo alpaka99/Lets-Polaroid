@@ -130,4 +130,17 @@ final class ProfileSettingView: BaseView {
     func setValidationLabelColor(_ value: Bool) {
         validationLabel.textColor = value ? MSColor.blue.color : MSColor.magenta.color
     }
+    
+    func setCompleteButtonStatus(_ isEnabled: Bool) {
+        completeButton.isEnabled = isEnabled
+        
+        if isEnabled {
+            completeButton.updateColor(MSColor.blue.color ?? .systemBlue)
+            completeButton.updateForegroundColor(MSColor.white.color ?? .white)
+            
+        } else {
+            completeButton.updateColor(MSColor.darkGray.color ?? .darkGray)
+            completeButton.updateForegroundColor(MSColor.black.color ?? .black)
+        }
+    }
 }

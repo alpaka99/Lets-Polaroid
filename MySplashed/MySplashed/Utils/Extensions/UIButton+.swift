@@ -12,13 +12,23 @@ extension UIButton {
         return self.configuration ?? UIButton.Configuration.plain()
     }
     
-    func updateImge(_ systemName: String) {
-        var config = self.config
+    func updateImage(_ systemName: String) {
+        let config = self.config
         self.configuration = config.image(systemName: systemName)
     }
     
     func updateTitle(_ title: String) {
-        var config = self.config
+        let config = self.config
         self.configuration = config.title(title)
+    }
+    
+    func updateColor(_ color: UIColor) {
+        let config = self.config
+        self.configuration = config.backgroundColor(color)
+    }
+    
+    func updateForegroundColor(_ color: UIColor) {
+        let config = self.config
+        self.configuration = config.foregroundColor(color)
     }
 }

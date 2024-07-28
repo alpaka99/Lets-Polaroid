@@ -99,7 +99,7 @@ final class MBTIView: BaseView {
         var snapShot = NSDiffableDataSourceSnapshot<MBTISection, MBTIData>()
         snapShot.appendSections([.main])
         MBTIComponent.allCases.forEach { component in
-            if let value = userMBTI[component.group], let selectedComponent = value {
+            if let group = component.group, let value = userMBTI[group], let selectedComponent = value {
                 if selectedComponent == component { // 선택된 mbti라면?
                     snapShot.appendItems([MBTIData(mbtiComponent: component, isSelected: true)], toSection: .main)
                 } else {

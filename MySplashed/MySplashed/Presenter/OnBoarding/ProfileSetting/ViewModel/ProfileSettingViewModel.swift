@@ -22,7 +22,7 @@ final class ProfileSettingViewModel: ViewModel {
         var isMBTIValidated = Observable(false)
         var isCompleteButtonEnabled = Observable(false)
         var nickname = Observable("")
-        var userMBTI: Observable<[MBTIGroup : MBTIComponent?]> = Observable(MBTIComponent.initialMBTI())
+        var userMBTI: Observable<[MBTIGroup : MBTIComponent]> = Observable(MBTIComponent.initialMBTI())
         var validationLabelText = Observable("")
     }
     
@@ -111,8 +111,9 @@ final class ProfileSettingViewModel: ViewModel {
     
     private func mbtiSelected<T: Equatable>(_ selectedMBTI: T) {
         if let selectedMBTI = selectedMBTI as? MBTIData {
-            let group = selectedMBTI.mbtiComponent.group
-            reduce(\.userMBTI.value[group], into: selectedMBTI.mbtiComponent)
+            if let group = selectedMBTI.mbtiComponent.group {
+                reduce(\.userMBTI.value[group], into: selectedMBTI.mbtiComponent)
+            }
         }
     }
     
@@ -151,8 +152,8 @@ final class ProfileSettingViewModel: ViewModel {
         let mbti = self(\.userMBTI).value
         var convertedMBTI = [MBTIGroup:MBTIComponent]()
         mbti.keys.forEach { key in
-            if let value = mbti[key], let unwrappedValue = value {
-                convertedMBTI[key] = unwrappedValue
+            if let value = mbti[key] {
+                convertedMBTI[key] = value
             }
         }
         do {

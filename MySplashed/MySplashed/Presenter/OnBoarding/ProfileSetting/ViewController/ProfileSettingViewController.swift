@@ -73,7 +73,7 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         }
         
         viewModel.actionBind(\.isCompleteButtonEnabled) {[weak self] value in
-            self?.baseView.completeButton.isEnabled = value
+            self?.baseView.setCompleteButtonStatus(value)
             self?.navigationItem.rightBarButtonItem?.isEnabled = value
         }
     
