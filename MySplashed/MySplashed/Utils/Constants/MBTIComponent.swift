@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum MBTIGroup: CaseIterable {
+enum MBTIGroup: CaseIterable, Codable {
     case first
     case second
     case third
     case fourth
 }
 
-enum MBTIComponent: String, CaseIterable {
+enum MBTIComponent: String, CaseIterable, Codable {
     case e
     case i
     case s

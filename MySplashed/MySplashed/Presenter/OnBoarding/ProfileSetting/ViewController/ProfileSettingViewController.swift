@@ -100,7 +100,7 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
     
     @objc
     func saveButtonTapped(_ sender: UIBarButtonItem) {
-        print(#function)
+        viewModel.react(.completeButtonTapped, value: true)
     }
 }
 

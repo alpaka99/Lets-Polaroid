@@ -5,7 +5,7 @@
 //  Created by user on 7/24/24.
 //
 
-enum ProfileImage: String, CaseIterable {
+enum ProfileImage: String, CaseIterable, Codable {
     case profile0 = "profile_0"
     case profile1 = "profile_1"
     case profile2 = "profile_2"
