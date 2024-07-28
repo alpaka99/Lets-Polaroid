@@ -21,7 +21,7 @@ final class ProfileSettingViewModel: ViewModel {
         var isNicknameValidated = Observable(false)
         var isMBTIValidated = Observable(false)
         var isCompleteButtonEnabled = Observable(false)
-        var nickname = Observable("")
+        var validatedNickname = Observable("")
         var userMBTI: Observable<[MBTIGroup : MBTIComponent]> = Observable(MBTIComponent.initialMBTI())
         var validationLabelText = Observable("")
     }
@@ -44,6 +44,8 @@ final class ProfileSettingViewModel: ViewModel {
     
     init() {
         configureBind()
+        loadUserData()
+        checkSaveEnabled()
     }
     
     func react<U>(_ action: Action, value: U) where U : Equatable {
@@ -76,7 +78,7 @@ final class ProfileSettingViewModel: ViewModel {
             guard let vm = self else { return }
             do {
                 let nickname = try vm.validateTextInput(value)
-                vm.reduce(\.nickname.value, into: nickname)
+                vm.reduce(\.validatedNickname.value, into: nickname) //  무한루프 생기는거 아님?
                 vm.reduce(\.validationLabelText.value, into: "사용가능한 닉네임입니다")
                 vm.reduce(\.isNicknameValidated.value, into: true)
             } catch {
@@ -148,7 +150,7 @@ final class ProfileSettingViewModel: ViewModel {
     private func completeButtonTapped() {
         
         let profileImage = self(\.selectedProfileImage).value
-        let nickname = self(\.nickname).value
+        let nickname = self(\.validatedNickname).value
         let mbti = self(\.userMBTI).value
         var convertedMBTI = [MBTIGroup:MBTIComponent]()
         mbti.keys.forEach { key in
@@ -162,6 +164,21 @@ final class ProfileSettingViewModel: ViewModel {
             let toggledValue = !self(\.completeButtonTapped).value
             reduce(\.completeButtonTapped.value, into: toggledValue)
         } catch {
+            print(error)
+        }
+    }
+    
+    func loadUserData() {
+        do {
+            let userData = try repository.readUserData()
+            if let userData = userData {
+                reduce(\.selectedProfileImage.value, into: userData.profileImage)
+                reduce(\.textFieldInput.value, into: userData.nickname)
+                reduce(\.userMBTI.value, into: userData.mbti)
+                
+            }
+        } catch {
+            print("UserData Load Error")
             print(error)
         }
     }

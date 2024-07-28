@@ -57,7 +57,11 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
             }
         }
         
-        viewModel.bind(\.validationLabelText) {[weak self] value in
+        viewModel.actionBind(\.validatedNickname) {[weak self] value in
+            self?.baseView.nicknameTextField.text = value
+        }
+        
+        viewModel.actionBind(\.validationLabelText) {[weak self] value in
             self?.baseView.setValidationLabel(with: value)
         }
         

@@ -8,7 +8,6 @@ import Foundation
 
 final class ProfileSettingRepository {
     func createUserData(profileImage: ProfileImage, nickname: String, mbti: [MBTIGroup:MBTIComponent]) throws {
-        
         let userData = UserData(profileImage: profileImage, nickname: nickname, mbti: mbti)
         
         try UserDefaults.standard.create(userData)
