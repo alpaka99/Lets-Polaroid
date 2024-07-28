@@ -86,6 +86,7 @@
 		CEFBB22B2C56941C00454193 /* ProfileSettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB22A2C56941C00454193 /* ProfileSettingRepository.swift */; };
 		CEFBB22E2C56944900454193 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB22D2C56944900454193 /* UserData.swift */; };
 		CEFBB2322C56978500454193 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2312C56978500454193 /* UserDefaults.swift */; };
+		CEFBB2352C56B9CB00454193 /* DateFormatterConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2342C56B9CB00454193 /* DateFormatterConstant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +168,7 @@
 		CEFBB22A2C56941C00454193 /* ProfileSettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingRepository.swift; sourceTree = "<group>"; };
 		CEFBB22D2C56944900454193 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		CEFBB2312C56978500454193 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		CEFBB2342C56B9CB00454193 /* DateFormatterConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterConstant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +332,7 @@
 				CEB45C9A2C539DE300327314 /* TopicType.swift */,
 				CEB45CC82C54F4AF00327314 /* JSONConstant.swift */,
 				CEFBB2272C5693DB00454193 /* StringValidation.swift */,
+				CEFBB2342C56B9CB00454193 /* DateFormatterConstant.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -889,6 +892,7 @@
 				CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */,
 				CEB45BFC2C5020FB00327314 /* RoundImageView.swift in Sources */,
 				CEB45C642C5231E200327314 /* TopicViewController.swift in Sources */,
+				CEFBB2352C56B9CB00454193 /* DateFormatterConstant.swift in Sources */,
 				CEB45C7C2C525F6300327314 /* PictureViewCell.swift in Sources */,
 				CEB45C682C52320100327314 /* TopicViewModel.swift in Sources */,
 				CEFBB2322C56978500454193 /* UserDefaults.swift in Sources */,

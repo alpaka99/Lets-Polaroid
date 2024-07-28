@@ -19,23 +19,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-//        do {
-//            let userData = try UserDefaults.standard.readAll(ofType: UserData.self)
-//            if let _ = userData {
-//                let rootViewController = UINavigationController(rootViewController: TabBarController())
-//                window?.rootViewController = rootViewController
-//                window?.makeKeyAndVisible()
-//            } else {
+        do {
+            let userData = try UserDefaults.standard.readAll(ofType: UserData.self)
+            if let _ = userData {
+                let rootViewController = UINavigationController(rootViewController: TabBarController())
+                window?.rootViewController = rootViewController
+                window?.makeKeyAndVisible()
+            } else {
                 let rootViewController = UINavigationController(rootViewController: SplashViewController(
                     baseView: SplashView(),
                     viewModel: SplashViewModel())
                 )
                 window?.rootViewController = rootViewController
                 window?.makeKeyAndVisible()
-//            }
-//        } catch {
-//            print("Load UserData Error")
-//        }
+            }
+        } catch {
+            print("Load UserData Error")
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

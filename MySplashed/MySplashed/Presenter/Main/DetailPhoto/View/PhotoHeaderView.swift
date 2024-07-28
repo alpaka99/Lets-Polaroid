@@ -72,7 +72,11 @@ final class PhotoHeaderView: BaseView {
     func configureHeaderData(_ data: DetailPhotoModel) {
         photographerProfile.image.image = data.photographerData.profileImage
         photographerName.text = data.photographerData.photographer.name
-        photoCreated.text = data.imageData.unsplashResponse.createdAt // TODO: DateFormatter formatting
+        if let createdAt = DateFormatterConstant.iso8601DateFormatter.date(from: data.imageData.unsplashResponse.createdAt) {
+            DateFormatterConstant.dateFormatter.dateFormat = DateFormatterConstant.detailHeaderDateFormat
+            photoCreated.text = "\(DateFormatterConstant.dateFormatter.string(from: createdAt)) 게시됨"
+        }
+        
         if data.imageData.isLiked {
             likeButton.updateImage("heart.fill")
         } else {
