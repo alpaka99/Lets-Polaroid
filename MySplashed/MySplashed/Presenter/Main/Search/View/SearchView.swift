@@ -14,6 +14,8 @@ final class SearchView: BaseView {
         case main
     }
     
+    weak var delegate: SearchViewDelegate?
+    
     private(set) var searchBar = UISearchBar()
     
     private(set) var sortButton = {
@@ -113,8 +115,10 @@ final class SearchView: BaseView {
             cell.setLikedButton(itemIdentifier.isLiked)
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: {[weak self] collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+            cell.likeButton.tag = indexPath.row
+            cell.likeButton.addTarget(self, action: #selector(self?.likeButtonTapped), for: .touchUpInside)
             cell.setImage(itemIdentifier.image)
             return cell
         })
@@ -150,6 +154,11 @@ final class SearchView: BaseView {
     func toggleSortOption(_ sortOption: SearchSortOption) {
         sortButton.updateTitle(sortOption.rawValue + "으로")
     }
+    
+    @objc
+    func likeButtonTapped(_ sender: UIButton) {
+        delegate?.likeButtonTapped(sender.tag)
+    }
 }
 
 enum SearchSortOption: String {
@@ -164,4 +173,8 @@ enum SearchSortOption: String {
             return .relevant
         }
     }
+}
+
+protocol SearchViewDelegate: AnyObject {
+    func likeButtonTapped(_ index: Int)
 }

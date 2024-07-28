@@ -25,6 +25,7 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
         super.configureDelegate()
         
         baseView.searchBar.delegate = self
+        baseView.delegate = self
         baseView.collectionView.prefetchDataSource = self
         baseView.collectionView.delegate = self
         baseView.sortButton.addTarget(self, action: #selector(toggleSort), for: .touchUpInside)
@@ -82,6 +83,13 @@ extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let data = baseView.dataSource.snapshot(for: .main).items[indexPath.row]
         viewModel.react(.cellTapped, value: data)
+    }
+}
+
+extension SearchViewController: SearchViewDelegate {
+    func likeButtonTapped(_ index: Int) {
+        let imageData = baseView.dataSource.snapshot(for: .main).items[index]
+        viewModel.react(.likeButtonTapped, value: imageData)
     }
 }
 

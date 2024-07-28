@@ -95,7 +95,7 @@ final class SearchRepository {
     func changeLikeStatus(of data: UnsplashImageData, sortOption: SearchSortOption) -> [UnsplashImageData] {
         loadLikedImage()
         
-        // MARK: 추후에 조금 더 효율적인 방법 생각해보기
+        // MARK: 추후에 조금 더 효율적인 방법 생각해복
         if likedImageId.contains(data.unsplashResponse.id) { // undo like operation
             toggleLike(of: data, with: true)
         } else { // do like operation
@@ -128,5 +128,30 @@ final class SearchRepository {
                 break
             }
         }
+    }
+    
+    func deleteDataFromLikedImage(_ imageData: UnsplashImageData, sortOption: SearchSortOption) {
+        var toggledData = imageData
+        toggledData.isLiked.toggle()
+        
+        do {
+            let realmImage = try makeRealmImage(with: toggledData)
+            if realmImage.isLiked {
+                try RealmManager.shared.create(realmImage)
+                FileManager.default.saveImageToDocument(image: toggledData.image, filename: realmImage.id)
+            } else {
+                if let target = RealmManager.shared.readAll(LikedImage.self).filter({$0.id == imageData.unsplashResponse.id}).first {
+                    FileManager.default.removeImageFromDocument(filename: imageData.unsplashResponse.id)
+                    try RealmManager.shared.delete(target)
+                }
+            }
+        } catch {
+            print("toggle data error")
+        }
+    }
+    
+    private func makeRealmImage(with data: UnsplashImageData) throws -> LikedImage {
+        let likedImage = try LikedImage(unsplashImageData: data)
+        return likedImage
     }
 }

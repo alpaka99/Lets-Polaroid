@@ -32,6 +32,7 @@ final class SearchViewModel: ViewModel {
         case prefetchImage
         case toggleSortOption
         case cellTapped
+        case likeButtonTapped
         case likeStatusChanged
     }
     
@@ -53,6 +54,8 @@ final class SearchViewModel: ViewModel {
             toggleSortOption()
         case .cellTapped:
             cellTapped(value)
+        case .likeButtonTapped:
+            likeButtonTapped(value)
         case .likeStatusChanged:
             changeLikeStatus(of: value)
         }
@@ -134,6 +137,13 @@ final class SearchViewModel: ViewModel {
     private func cellTapped<T: Equatable>(_ value: T) {
         if let imageData = value as? UnsplashImageData {
             reduce(\.selectedImage.value, into: imageData)
+        }
+    }
+    
+    private func likeButtonTapped<T: Equatable>(_ value: T) {
+        if let imageData = value as? UnsplashImageData {
+            repository.deleteDataFromLikedImage(imageData, sortOption: self(\.sortOption).value)
+            changeLikeStatus(of: imageData)
         }
     }
     

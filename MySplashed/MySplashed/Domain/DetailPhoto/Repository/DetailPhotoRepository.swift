@@ -47,7 +47,7 @@ final class DetailPhotoRepository {
         return toggledData
     }
     
-    func makeRealmImage(with data: UnsplashImageData) throws -> LikedImage {
+    private func makeRealmImage(with data: UnsplashImageData) throws -> LikedImage {
         let likedImage = try LikedImage(unsplashImageData: data)
         return likedImage
     }
