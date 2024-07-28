@@ -110,9 +110,3 @@ final class PictureViewCell: BaseCollectionViewCell {
         }
     }
 }
-
-enum PictureCellType {
-    case topic
-    case search
-    case like
-}

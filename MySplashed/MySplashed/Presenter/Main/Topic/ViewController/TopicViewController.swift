@@ -73,7 +73,7 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
     }
     
     @objc
-    func profileEditButtonTapped(_ sender: UIBarButtonItem) {
+    private func profileEditButtonTapped(_ sender: UIBarButtonItem) {
         viewModel.react(.profileEditButtonTapped, value: true)
     }
 }
@@ -84,23 +84,5 @@ extension TopicViewController: UICollectionViewDelegate {
             let data = baseView.dataSource.snapshot(for: section).items[indexPath.row]
             viewModel.react(.cellTapped, value: data)
         }
-    }
-}
-
-extension UIBarButtonItem {
-    static func customSizeBarButton(_ target: Any?, action: Selector, imageName: String? = nil, size: CGSize) -> UIBarButtonItem {
-        var buttonConfig = UIButton.Configuration.plain()
-        if let imageName = imageName {
-            buttonConfig = buttonConfig.image(named: imageName)
-        }
-        let button = buttonConfig.build()
-        button.addTarget(target, action: action, for: .touchUpInside)
-        
-        let customBarButton = UIBarButtonItem(customView: button)
-        customBarButton.customView?.translatesAutoresizingMaskIntoConstraints = false
-        customBarButton.customView?.heightAnchor.constraint(equalToConstant: size.height).isActive = true
-        customBarButton.customView?.widthAnchor.constraint(equalToConstant: size.width).isActive = true
-        
-        return customBarButton
     }
 }

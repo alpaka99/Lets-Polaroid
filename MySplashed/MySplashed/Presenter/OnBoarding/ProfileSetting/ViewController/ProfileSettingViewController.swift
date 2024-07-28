@@ -98,33 +98,33 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
     }
     
     @objc
-    func profileImageTapped(_ sender: UITapGestureRecognizer) {
+    private func profileImageTapped(_ sender: UITapGestureRecognizer) {
         viewModel.react(.profileImageTapped, value: true)
     }
     
     @objc
-    func textFieldValueChanged(_ sender: UITextField) {
+    private func textFieldValueChanged(_ sender: UITextField) {
         if let text = sender.text {
             viewModel.react(.textFieldInputChanged, value: text)
         }
     }
     @objc
-    func completeButtonTapped(_ sender: UIButton) {
+    private func completeButtonTapped(_ sender: UIButton) {
         viewModel.react(.completeButtonTapped, value: true)
     }
     
     @objc
-    func saveButtonTapped(_ sender: UIBarButtonItem) {
+    private func saveButtonTapped(_ sender: UIBarButtonItem) {
         viewModel.react(.completeButtonTapped, value: true)
     }
     
     @objc
-    func showDeleteAlert(_ sender: UIButton) {
+    private func showDeleteAlert(_ sender: UIButton) {
         viewModel.react(.isShowingDeleteAlert, value: true)
     }
     
     
-    func deleteAccountButtonTapped() {
+    private func deleteAccountButtonTapped() {
         viewModel.react(.deleteAccountButtonTapped, value: true)
     }
 }
@@ -140,32 +140,4 @@ extension ProfileSettingViewController: UICollectionViewDelegate {
         let selectedMBTI = baseView.mbtiView.dataSource.snapshot(for: .main).items[indexPath.row]
         viewModel.react(.mbtiSelected, value: selectedMBTI)
     }
-}
-
-enum ProfileSettingMode: Int {
-    case onboarding = 0
-    case edit = 1
-}
-
-extension UIViewController {
-    func showAlert(alertData: [AlertData]) {
-        let ac = UIAlertController(title: "계정 삭제", message: "MySplashed 계정을 삭제하실건가요?", preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-        ac.addAction(cancelAction)
-        alertData.forEach { data in
-            let alertAction = UIAlertAction(title: data.title, style: data.style) { _ in
-                data.closure()
-            }
-            ac.addAction(alertAction)
-        }
-        
-        self.present(ac, animated: true)
-    }
-}
-
-struct AlertData {
-    let title: String
-    let style: UIAlertAction.Style
-    let closure: ()->()
 }

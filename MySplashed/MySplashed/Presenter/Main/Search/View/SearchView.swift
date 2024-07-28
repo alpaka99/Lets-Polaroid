@@ -46,7 +46,7 @@ final class SearchView: BaseView {
         return collectionView
     }()
     
-    var dataSource: UICollectionViewDiffableDataSource<Section,UnsplashImageData>!
+    private(set) var dataSource: UICollectionViewDiffableDataSource<Section,UnsplashImageData>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,7 +55,7 @@ final class SearchView: BaseView {
         updateSnapShot([])
     }
     
-    func createLayout() -> UICollectionViewLayout {
+    private func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -107,7 +107,7 @@ final class SearchView: BaseView {
         setEmptyState()
     }
     
-    func configureDataSource() {
+    private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<PictureViewCell, UnsplashImageData> { cell, indexPath, itemIdentifier in
             cell.configureUI(.search)
             cell.setImage(UIImage(systemName: "star.fill")!)
@@ -156,22 +156,8 @@ final class SearchView: BaseView {
     }
     
     @objc
-    func likeButtonTapped(_ sender: UIButton) {
+    private func likeButtonTapped(_ sender: UIButton) {
         delegate?.likeButtonTapped(sender.tag)
-    }
-}
-
-enum SearchSortOption: String {
-    case relevant = "관련순"
-    case latest = "최신순"
-    
-    var toggled: Self {
-        switch self {
-        case .relevant:
-            return .latest
-        case .latest:
-            return .relevant
-        }
     }
 }
 

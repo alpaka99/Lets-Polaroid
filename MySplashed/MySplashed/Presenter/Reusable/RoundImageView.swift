@@ -43,7 +43,6 @@ final class RoundImageView: BaseView {
         super.configureLayout()
         
         image.snp.makeConstraints { view in
-//            image.edges.equalTo(self.safeAreaLayoutGuide)
             view.center.equalTo(self.safeAreaLayoutGuide)
             view.height.equalTo(self.safeAreaLayoutGuide.snp.height)
             view.width.equalTo(image.snp.height)
@@ -99,8 +98,8 @@ final class RoundImageView: BaseView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        image.clipsToBounds = true
         image.layer.cornerRadius = image.frame.width / 2
+        image.clipsToBounds = true
         
         badgeBackground.layer.cornerRadius = badgeBackground.frame.width / 2
         badge.clipsToBounds = true

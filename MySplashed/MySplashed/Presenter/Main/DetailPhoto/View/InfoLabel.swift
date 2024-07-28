@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 
 final class InfoLabel: BaseView {
-    let title = {
+    private let title = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .bold)
         label.text = "크기"
         return label
     }()
-    let content = {
+    private let content = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.textColor = .darkGray

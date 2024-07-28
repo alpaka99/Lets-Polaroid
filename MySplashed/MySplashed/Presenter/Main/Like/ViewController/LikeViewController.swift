@@ -44,7 +44,7 @@ final class LikeViewController: BaseViewController<LikeView, LikeViewModel> {
     }
     
     @objc
-    func sortButtonTapped(_ sender: UIButton) {
+    private func sortButtonTapped(_ sender: UIButton) {
         viewModel.react(.toggleSortOption, value: true)
         baseView.toggleSortOption(viewModel(\.sortOption).value.toggled)
     }

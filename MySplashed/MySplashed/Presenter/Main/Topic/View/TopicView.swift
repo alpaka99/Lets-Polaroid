@@ -11,11 +11,9 @@ import Kingfisher
 import SnapKit
 
 final class TopicView: BaseView {
-    
-    
     private(set) lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
-    var dataSource: UICollectionViewDiffableDataSource<TopicSection, UnsplashImageData>!
+    private(set) var dataSource: UICollectionViewDiffableDataSource<TopicSection, UnsplashImageData>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -75,8 +73,8 @@ final class TopicView: BaseView {
         return layout
     }
     
-    func configureDataSource() {
-        var cellRegistration = UICollectionView.CellRegistration<PictureViewCell, UnsplashImageData> { cell, indexPath, itemIdentifier in
+    private func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<PictureViewCell, UnsplashImageData> { cell, indexPath, itemIdentifier in
             
         }
         
@@ -98,7 +96,7 @@ final class TopicView: BaseView {
         }
     }
     
-    func configureSnapShot() {
+    private func configureSnapShot() {
         var snapShot = NSDiffableDataSourceSnapshot<TopicSection, UnsplashImageData>()
         snapShot.appendSections(TopicSection.allCases)
         dataSource.apply(snapShot)

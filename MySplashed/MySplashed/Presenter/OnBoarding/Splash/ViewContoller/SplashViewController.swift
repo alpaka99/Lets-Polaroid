@@ -25,7 +25,7 @@ final class SplashViewController: BaseViewController<SplashView, SplashViewModel
     }
     
     @objc
-    func startButtonTapped(_ sender: UIButton) {
+    private func startButtonTapped(_ sender: UIButton) {
         viewModel.react(.startButtonTapped, value: true)
     }
 }

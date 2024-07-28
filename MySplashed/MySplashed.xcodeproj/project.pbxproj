@@ -87,6 +87,10 @@
 		CEFBB22E2C56944900454193 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB22D2C56944900454193 /* UserData.swift */; };
 		CEFBB2322C56978500454193 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2312C56978500454193 /* UserDefaults.swift */; };
 		CEFBB2352C56B9CB00454193 /* DateFormatterConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2342C56B9CB00454193 /* DateFormatterConstant.swift */; };
+		CEFBB2372C56F00C00454193 /* AlertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2362C56F00C00454193 /* AlertData.swift */; };
+		CEFBB2392C56F32A00454193 /* SearchSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2382C56F32A00454193 /* SearchSortOption.swift */; };
+		CEFBB23B2C56F40D00454193 /* ProfileSettingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */; };
+		CEFBB23D2C56F4B000454193 /* PictureCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB23C2C56F4B000454193 /* PictureCellType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +173,10 @@
 		CEFBB22D2C56944900454193 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		CEFBB2312C56978500454193 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		CEFBB2342C56B9CB00454193 /* DateFormatterConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterConstant.swift; sourceTree = "<group>"; };
+		CEFBB2362C56F00C00454193 /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
+		CEFBB2382C56F32A00454193 /* SearchSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSortOption.swift; sourceTree = "<group>"; };
+		CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingMode.swift; sourceTree = "<group>"; };
+		CEFBB23C2C56F4B000454193 /* PictureCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCellType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +341,9 @@
 				CEB45CC82C54F4AF00327314 /* JSONConstant.swift */,
 				CEFBB2272C5693DB00454193 /* StringValidation.swift */,
 				CEFBB2342C56B9CB00454193 /* DateFormatterConstant.swift */,
+				CEFBB2382C56F32A00454193 /* SearchSortOption.swift */,
+				CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */,
+				CEFBB23C2C56F4B000454193 /* PictureCellType.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -688,6 +699,7 @@
 				CEB45C8B2C527C5200327314 /* Photographer.swift */,
 				CEB45C962C52D4CC00327314 /* UnsplashImageData.swift */,
 				CEFBB22D2C56944900454193 /* UserData.swift */,
+				CEFBB2362C56F00C00454193 /* AlertData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -831,6 +843,7 @@
 				CEB45C4A2C51EB1A00327314 /* TabBarController.swift in Sources */,
 				CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */,
 				CEB45C762C52354100327314 /* LikeView.swift in Sources */,
+				CEFBB23B2C56F40D00454193 /* ProfileSettingMode.swift in Sources */,
 				CEB45CB82C54CFD400327314 /* PhotographerData.swift in Sources */,
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
 				CEB45C712C5234A500327314 /* SearchViewModel.swift in Sources */,
@@ -856,6 +869,7 @@
 				CEB45C352C511C0800327314 /* MBTIView.swift in Sources */,
 				CEB45CB02C544A5C00327314 /* PhotoHeaderView.swift in Sources */,
 				CEB45CC72C54EBAE00327314 /* LikedImage.swift in Sources */,
+				CEFBB2372C56F00C00454193 /* AlertData.swift in Sources */,
 				CEB45CAC2C543AB900327314 /* DetailPhotoViewModel.swift in Sources */,
 				CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */,
 				CEB45CB22C544A7E00327314 /* InfoView.swift in Sources */,
@@ -866,6 +880,7 @@
 				CEB45C312C50F9F200327314 /* BaseCollectionViewCell.swift in Sources */,
 				CEB45CAA2C543A9400327314 /* DetailPhotoView.swift in Sources */,
 				CEB45CC92C54F4AF00327314 /* JSONConstant.swift in Sources */,
+				CEFBB2392C56F32A00454193 /* SearchSortOption.swift in Sources */,
 				CEB45C9F2C53A0CF00327314 /* SearchRepository.swift in Sources */,
 				CEB45C992C53720400327314 /* SearchView.swift in Sources */,
 				CEFBB2222C55812900454193 /* Dictionary+.swift in Sources */,
@@ -877,6 +892,7 @@
 				CEB45BF92C500A2F00327314 /* ProfileSettingViewController.swift in Sources */,
 				CEB45BFE2C50265A00327314 /* PaddingImageView.swift in Sources */,
 				CEB45CAE2C543B1900327314 /* DetailPhotoViewController.swift in Sources */,
+				CEFBB23D2C56F4B000454193 /* PictureCellType.swift in Sources */,
 				CEB45C9B2C539DE300327314 /* TopicType.swift in Sources */,
 				CEB45C2F2C50F45100327314 /* ProfileSelectCell.swift in Sources */,
 				CEB45C662C5231EE00327314 /* TopicView.swift in Sources */,

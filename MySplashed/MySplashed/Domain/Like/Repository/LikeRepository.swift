@@ -43,7 +43,6 @@ final class LikeRepository {
                 try completionHandler(.success(true))
             } catch {
                 print(error)
-//                try completionHandler(.failure(error))
             }
         }
     }

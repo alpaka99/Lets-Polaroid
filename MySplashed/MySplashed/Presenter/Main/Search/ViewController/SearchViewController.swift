@@ -56,7 +56,7 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
     }
     
     @objc
-    func toggleSort(_ sender: UIButton) {
+    private func toggleSort(_ sender: UIButton) {
         viewModel.react(.toggleSortOption, value: true)
         baseView.toggleSortOption(viewModel(\.sortOption).value.toggled)
     }

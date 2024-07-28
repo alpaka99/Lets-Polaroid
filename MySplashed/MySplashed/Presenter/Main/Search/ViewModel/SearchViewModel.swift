@@ -36,7 +36,7 @@ final class SearchViewModel: ViewModel {
         case likeStatusChanged
     }
     
-    let repository = SearchRepository()
+    private let repository = SearchRepository()
     
     init() {
         configureBind()

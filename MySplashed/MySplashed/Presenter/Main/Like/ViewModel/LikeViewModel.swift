@@ -29,7 +29,7 @@ final class LikeViewModel: ViewModel {
         case likeButtonTapped
     }
     
-    let repository = LikeRepository()
+    private let repository = LikeRepository()
     
     init() {
         configureBind()

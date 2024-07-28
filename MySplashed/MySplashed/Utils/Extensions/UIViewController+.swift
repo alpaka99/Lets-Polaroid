@@ -23,3 +23,20 @@ extension UIViewController {
         sceneDelegate?.window?.makeKeyAndVisible()
     }
 }
+
+extension UIViewController {
+    func showAlert(alertData: [AlertData]) {
+        let ac = UIAlertController(title: "계정 삭제", message: "MySplashed 계정을 삭제하실건가요?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        ac.addAction(cancelAction)
+        alertData.forEach { data in
+            let alertAction = UIAlertAction(title: data.title, style: data.style) { _ in
+                data.closure()
+            }
+            ac.addAction(alertAction)
+        }
+        
+        self.present(ac, animated: true)
+    }
+}

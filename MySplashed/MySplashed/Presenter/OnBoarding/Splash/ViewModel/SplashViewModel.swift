@@ -35,6 +35,10 @@ final class SplashViewModel: ViewModel {
         }
     }
     
+    func configureBind() {
+        bindStartButtonTapped()
+    }
+    
     private func startButtonTapped() {
         let toggledValue = !self(\.startButtonTapped).value
         reduce(\.startButtonTapped.value, into: toggledValue)
@@ -46,7 +50,5 @@ final class SplashViewModel: ViewModel {
         }
     }
     
-    func configureBind() {
-        bindStartButtonTapped()
-    }
+    
 }

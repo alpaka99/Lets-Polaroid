@@ -33,7 +33,7 @@ final class DetailPhotoViewController: BaseViewController<DetailPhotoView, Detai
     }
     
     @objc
-    func likeButtonTapped(_ sender: UIButton) {
+    private func likeButtonTapped(_ sender: UIButton) {
         viewModel.react(.likeButtonTapped, value: true)
         if let imageData = viewModel(\.selectedImage).value {
             delegate?.likeStatusChanged(of: imageData)
