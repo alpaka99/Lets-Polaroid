@@ -14,18 +14,14 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         viewModel.react(.setProfileSettingMode, value: mode)
     }
     
-    override func configureNavigationItem() {
-        super.configureNavigationItem()
-        
-        
-    }
-    
     override func configureDelegate() {
         super.configureDelegate()
         
         baseView.profileImage.tapGestureRecognizer.addTarget(self, action: #selector(profileImageTapped))
         baseView.nicknameTextField.addTarget(self, action: #selector(textFieldValueChanged), for: .editingChanged)
         baseView.completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
+        
+        baseView.mbtiView.mbtiCollectionView.delegate = self
     }
     
     override func configureDataBinding() {
@@ -61,6 +57,10 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
                     animated: true)
             }
         }
+        
+        viewModel.bind(\.userMBTI) {[weak self] value in
+            self?.baseView.mbtiView.updateSnapShot(value)
+        }
     
         viewModel.bind(\.completeButtonTapped) {[weak self] _ in
             self?.setNewViewController(nextViewController: TabBarController(), isNavigation: false)
@@ -92,6 +92,13 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
 extension ProfileSettingViewController: ProfileSelectViewControllerDelegate {
     func profileImageSelected(_ profileImage: ProfileImage) {
         viewModel.react(.profileImageSelected, value: profileImage)
+    }
+}
+
+extension ProfileSettingViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedMBTI = baseView.mbtiView.dataSource.snapshot(for: .main).items[indexPath.row]
+        viewModel.react(.mbtiSelected, value: selectedMBTI)
     }
 }
 

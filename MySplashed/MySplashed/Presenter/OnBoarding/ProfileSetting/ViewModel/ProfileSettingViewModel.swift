@@ -20,6 +20,7 @@ final class ProfileSettingViewModel: ViewModel {
         var isMovingToProfileSelectionView = Observable(false)
         var isNicknameValidated = Observable(false)
         var isCompleteButtonEnabled = Observable(false)
+        var userMBTI: Observable<[MBTIGroup : MBTIComponent?]> = Observable(MBTIComponent.initialMBTI())
     }
     
     lazy var input = Input()
@@ -31,6 +32,7 @@ final class ProfileSettingViewModel: ViewModel {
         case completeButtonTapped
         case profileImageSelected
         case setProfileSettingMode
+        case mbtiSelected
     }
     
     init() {
@@ -49,6 +51,8 @@ final class ProfileSettingViewModel: ViewModel {
             profileImageSelected(value)
         case .setProfileSettingMode:
             setProfileSettingMode(value)
+        case .mbtiSelected:
+            mbtiSelected(value)
         }
     }
     
@@ -94,4 +98,12 @@ final class ProfileSettingViewModel: ViewModel {
             reduce(\.profileSettingMode.value, into: value)
         }
     }
+    
+    private func mbtiSelected<T: Equatable>(_ selectedMBTI: T) {
+        if let selectedMBTI = selectedMBTI as? MBTIComponent {
+            let group = selectedMBTI.group
+            reduce(\.userMBTI.value[group], into: selectedMBTI)
+        }
+    }
 }
+

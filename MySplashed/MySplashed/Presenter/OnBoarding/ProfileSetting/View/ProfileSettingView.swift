@@ -28,7 +28,7 @@ final class ProfileSettingView: BaseView {
         label.text = "validation label"
         return label
     }()
-    private let mbtiView = {
+    private(set) var mbtiView = {
         let view = MBTIView()
         return view
     }()
