@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            baseView: SplashView(),
 //            viewModel: SplashViewModel())
 //        )
-        let rootViewController = UINavigationController(rootViewController: ProfileSettingViewController(baseView: ProfileSettingView(), viewModel: ProfileSettingViewModel()))
+        let rootViewController = UINavigationController(rootViewController: ProfileSettingViewController(baseView: ProfileSettingView(), viewModel: ProfileSettingViewModel(), mode: .edit))
 //        let rootViewController = UINavigationController(rootViewController: TabBarController())
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()

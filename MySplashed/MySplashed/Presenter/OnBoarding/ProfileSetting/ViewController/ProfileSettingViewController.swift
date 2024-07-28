@@ -9,6 +9,11 @@ import UIKit
 
 final class ProfileSettingViewController: BaseViewController<ProfileSettingView, ProfileSettingViewModel> {
     
+    convenience init(baseView: ProfileSettingView, viewModel: ProfileSettingViewModel, mode: ProfileSettingMode) {
+        self.init(baseView: baseView, viewModel: viewModel)
+        viewModel.react(.setProfileSettingMode, value: mode)
+    }
+    
     override func configureNavigationItem() {
         super.configureNavigationItem()
         
@@ -25,6 +30,14 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
     
     override func configureDataBinding() {
         super.configureDataBinding()
+        
+        viewModel.actionBind(\.profileSettingMode) {[weak self] mode in
+            self?.baseView.configureMode(mode)
+            if mode == .edit {
+                let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(self?.saveButtonTapped))
+                self?.navigationItem.rightBarButtonItem = saveButton
+            }
+        }
         
         viewModel.actionBind(\.selectedProfileImage) {[weak self] profileImage in
             self?.baseView.profileImage.setProfileImage(profileImage)
@@ -65,10 +78,20 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
     func completeButtonTapped(_ sender: UIButton) {
         viewModel.react(.completeButtonTapped, value: true)
     }
+    
+    @objc
+    func saveButtonTapped(_ sender: UIBarButtonItem) {
+        print(#function)
+    }
 }
 
 extension ProfileSettingViewController: ProfileSelectViewControllerDelegate {
     func profileImageSelected(_ profileImage: ProfileImage) {
         viewModel.react(.profileImageSelected, value: profileImage)
     }
+}
+
+enum ProfileSettingMode: Int {
+    case onboarding = 0
+    case edit = 1
 }

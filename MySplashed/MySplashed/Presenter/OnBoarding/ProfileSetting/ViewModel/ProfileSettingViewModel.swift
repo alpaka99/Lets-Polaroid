@@ -13,6 +13,7 @@ final class ProfileSettingViewModel: ViewModel {
         var completeButtonTapped = Observable(false)
         var textFieldInput = Observable("")
         var selectedProfileImage = Observable(ProfileImage.randomProfile())
+        var profileSettingMode = Observable(ProfileSettingMode.onboarding)
     }
     
     struct Output: Equatable {
@@ -29,6 +30,7 @@ final class ProfileSettingViewModel: ViewModel {
         case textFieldInputChanged
         case completeButtonTapped
         case profileImageSelected
+        case setProfileSettingMode
     }
     
     init() {
@@ -45,6 +47,8 @@ final class ProfileSettingViewModel: ViewModel {
             completeButtonTapped()
         case .profileImageSelected:
             profileImageSelected(value)
+        case .setProfileSettingMode:
+            setProfileSettingMode(value)
         }
     }
     
@@ -82,6 +86,12 @@ final class ProfileSettingViewModel: ViewModel {
     func profileImageSelected<T: Equatable>(_ profileImage: T) {
         if let profileImage = profileImage as? ProfileImage {
             reduce(\.selectedProfileImage.value, into: profileImage)
+        }
+    }
+    
+    private func setProfileSettingMode<T: Equatable>(_ value: T) {
+        if let value = value as? ProfileSettingMode {
+            reduce(\.profileSettingMode.value, into: value)
         }
     }
 }
