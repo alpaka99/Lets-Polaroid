@@ -48,8 +48,11 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
                 let detailViewModel = DetailPhotoViewModel()
 
                 detailViewModel.react(.recieveImageData, value: value)
+                let detailViewController = DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: detailViewModel)
                 
-                vc.navigationController?.pushViewController(DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: detailViewModel), animated: true)
+                let navigationController = UINavigationController(rootViewController: detailViewController)
+                navigationController.modalPresentationStyle = .fullScreen
+                vc.present(navigationController, animated: true)
             }
         }
         

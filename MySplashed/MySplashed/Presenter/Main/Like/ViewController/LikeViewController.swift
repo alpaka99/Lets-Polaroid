@@ -25,7 +25,10 @@ final class LikeViewController: BaseViewController<LikeView, LikeViewModel> {
             let detailViewModel = DetailPhotoViewModel()
             detailViewModel.react(.recieveImageData, value: value)
             let detailViewController = DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: detailViewModel)
-            self?.navigationController?.pushViewController(detailViewController, animated: true)
+            let navigationController = UINavigationController(rootViewController: detailViewController)
+            navigationController.modalPresentationStyle = .fullScreen
+
+            self?.present(navigationController, animated: true)
         }
     }
     
