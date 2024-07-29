@@ -7,6 +7,8 @@
 
 import UIKit
 
+import CLToaster
+
 final class DetailPhotoViewController: BaseViewController<DetailPhotoView, DetailPhotoViewModel> {
     
     weak var delegate: DetailPhotoViewControllerDelegate?
@@ -29,6 +31,13 @@ final class DetailPhotoViewController: BaseViewController<DetailPhotoView, Detai
             if let value = value {
                 self?.baseView.configureDetailData(value)
             }
+        }
+        
+        viewModel.bind(\.toastMessage) {[weak self] value in
+            guard let vc = self else { return }
+            let toastStyle = CLToastStyle(title: value)
+            CLToast(with: toastStyle, section: .top)
+                .present(in: vc.baseView)
         }
     }
     

@@ -13,7 +13,7 @@ import Kingfisher
 final class DetailPhotoRepository {
     var likedImages = Set<String>()
     
-    func requestImage(of photographer: Photographer, completionHandler: @escaping (PhotographerData)->Void) {
+    func requestImage(of photographer: Photographer, completionHandler: @escaping (Result<PhotographerData, DetailRepositoryError>)->Void) {
         if let imageURL = photographer.profileImageURL["large"], let url = URL(string: imageURL) {
             KingfisherManager.shared.retrieveImage(with: url) { result in
                 switch result {
@@ -22,9 +22,10 @@ final class DetailPhotoRepository {
                         photographer: photographer,
                         profileImage: image.image
                     )
-                    completionHandler(photographerData)
+                    completionHandler(.success(photographerData))
                 case .failure(let error):
-                    print("KingFisher ImageFetch Error", error)
+//                    print("KingFisher ImageFetch Error", error)
+                    completionHandler(.failure(.photographerFetchFailure))
                 }
             }
         }
@@ -79,7 +80,7 @@ final class DetailPhotoRepository {
         return likedImage
     }
     
-    func requestStatisticsData(with data: UnsplashImageData, completionHandler: @escaping (Result<StatisticsData, Error>)->Void)  {
+    func requestStatisticsData(with data: UnsplashImageData, completionHandler: @escaping (Result<StatisticsData, DetailRepositoryError>)->Void)  {
         let id = data.unsplashResponse.id
         do {
             let url = try Router.statistic(imageID: id).asURLRequest()
@@ -90,15 +91,16 @@ final class DetailPhotoRepository {
                     case .success(let value):
                         completionHandler(.success(value))
                     case .failure(_):
-                        completionHandler(.failure(DetailRepositoryError.statisticsLoadFailure))
+                        completionHandler(.failure(.statisticsFetchFailure))
                     }
                 }
         } catch {
-            completionHandler(.failure(error))
+            completionHandler(.failure(.statisticsFetchFailure))
         }
     }
 }
 
 enum DetailRepositoryError: Error {
-    case statisticsLoadFailure
+    case statisticsFetchFailure
+    case photographerFetchFailure
 }

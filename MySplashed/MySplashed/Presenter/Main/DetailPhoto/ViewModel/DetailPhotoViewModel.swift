@@ -18,6 +18,7 @@ final class DetailPhotoViewModel: ViewModel {
         var statisticsData: Observable<StatisticsData?> = Observable(nil)
         var detailPhotoData: Observable<DetailPhotoModel?> = Observable(nil)
         var unconnectedSelectedImage: Observable<UnsplashImageData?> = Observable(nil)
+        var toastMessage = Observable("")
     }
     
     lazy var input: Input = Input()
@@ -108,24 +109,30 @@ final class DetailPhotoViewModel: ViewModel {
     
     private func asyncRequestPhotographerData(_ imageData: UnsplashImageData) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.repository.requestImage(of: imageData.unsplashResponse.photographer) { photographerData in
-                DispatchQueue.main.async {
-                    self?.reduce(\.photographerData.value, into: photographerData)
+            self?.repository.requestImage(of: imageData.unsplashResponse.photographer) { photographerResponse in
+                switch photographerResponse {
+                case .success(let photographerData):
+                    DispatchQueue.main.async {
+                        self?.reduce(\.photographerData.value, into: photographerData)
+                    }
+                case .failure:
+                    self?.reduce(\.toastMessage.value, into: "사진작가 정보 불러오기 실패")
                 }
+                
             }
         }
     }
     
     private func asyncRequestStatisticsData(_ imageData: UnsplashImageData) {
         DispatchQueue.global(qos: .userInitiated).async {[weak self] in
-            self?.repository.requestStatisticsData(with: imageData) { result in
-                switch result {
+            self?.repository.requestStatisticsData(with: imageData) { statisticsResponse in
+                switch statisticsResponse {
                 case .success(let value):
                     DispatchQueue.main.async {
                         self?.reduce(\.statisticsData.value, into: value)
                     }
                 case .failure(let error):
-                    print(error)
+                    self?.reduce(\.toastMessage.value, into: "사진 통계 정보 불러오기 실패")
                 }
             }
         }
