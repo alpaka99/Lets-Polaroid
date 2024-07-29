@@ -9,6 +9,8 @@ import Foundation
 
 import Kingfisher
 final class DetailPhotoRepository {
+    var likedImages = Set<String>()
+    
     func requestImage(of photographer: Photographer, completionHandler: @escaping (PhotographerData)->Void) {
         if let imageURL = photographer.profileImageURL["large"], let url = URL(string: imageURL) {
             KingfisherManager.shared.retrieveImage(with: url) { result in
@@ -26,15 +28,39 @@ final class DetailPhotoRepository {
         }
     }
     
+    private func loadLikedImages() {
+        likedImages = Set(RealmManager.shared.readAll(LikedImage.self).map {$0.id})
+    }
+    
+    func checkDataLike(_ data: UnsplashImageData) -> UnsplashImageData {
+        loadLikedImages()
+        
+        var returnData = data
+        if likedImages.contains(data.unsplashResponse.id) {
+            returnData.isLiked = true
+        } else {
+            returnData.isLiked = false
+        }
+        
+        return returnData
+    }
+    
     func toggleDataLike(_ data: UnsplashImageData) -> UnsplashImageData {
+        loadLikedImages()
+        
         var toggledData = data
         toggledData.isLiked.toggle()
         
+        realmLikeAction(toggledData)
+        return toggledData
+    }
+    
+    func realmLikeAction(_ data: UnsplashImageData) {
         do {
-            let realmImage = try makeRealmImage(with: toggledData)
-            if realmImage.isLiked {
-                try RealmManager.shared.create(realmImage)
-                FileManager.default.saveImageToDocument(image: toggledData.image, filename: realmImage.id)
+            if data.isLiked {
+                let realmImageData = try makeRealmImageData(with: data)
+                try RealmManager.shared.create(realmImageData)
+                FileManager.default.saveImageToDocument(image: data.image, filename: data.unsplashResponse.id)
             } else {
                 if let target = RealmManager.shared.readAll(LikedImage.self).filter({$0.id == data.unsplashResponse.id}).first {
                     FileManager.default.removeImageFromDocument(filename: data.unsplashResponse.id)
@@ -44,10 +70,9 @@ final class DetailPhotoRepository {
         } catch {
             print("toggle data error")
         }
-        return toggledData
     }
     
-    private func makeRealmImage(with data: UnsplashImageData) throws -> LikedImage {
+    private func makeRealmImageData(with data: UnsplashImageData) throws -> LikedImage {
         let likedImage = try LikedImage(unsplashImageData: data)
         return likedImage
     }

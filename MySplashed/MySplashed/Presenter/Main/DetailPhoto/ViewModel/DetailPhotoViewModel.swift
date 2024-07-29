@@ -72,7 +72,8 @@ final class DetailPhotoViewModel: ViewModel {
     
     private func receiveImageData<T: Equatable>(_ value: T) {
         if let value = value as? UnsplashImageData {
-            reduce(\.selectedImage.value, into: value)
+            let likeCheckedData = repository.checkDataLike(value)
+            reduce(\.selectedImage.value, into: likeCheckedData)
         }
     }
     
