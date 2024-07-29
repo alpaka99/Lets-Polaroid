@@ -92,6 +92,7 @@
 		CEFBB23D2C56F4B000454193 /* PictureCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB23C2C56F4B000454193 /* PictureCellType.swift */; };
 		CEFBB2412C578B9400454193 /* InfoLabelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2402C578B9400454193 /* InfoLabelType.swift */; };
 		CEFBB2442C578E1500454193 /* CLToaster in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB2432C578E1500454193 /* CLToaster */; };
+		CEFBB2472C57C26A00454193 /* SplashRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2462C57C26A00454193 /* SplashRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +179,7 @@
 		CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingMode.swift; sourceTree = "<group>"; };
 		CEFBB23C2C56F4B000454193 /* PictureCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCellType.swift; sourceTree = "<group>"; };
 		CEFBB2402C578B9400454193 /* InfoLabelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabelType.swift; sourceTree = "<group>"; };
+		CEFBB2462C57C26A00454193 /* SplashRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -614,6 +616,7 @@
 		CEB45C932C5292CB00327314 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				CEFBB2452C57C25C00454193 /* SplashView */,
 				CEFBB2292C56941200454193 /* ProfileSetting */,
 				CEFBB2232C55892100454193 /* Like */,
 				CEB45CB62C54CFC600327314 /* DetailPhoto */,
@@ -757,6 +760,14 @@
 			path = ProfileSetting;
 			sourceTree = "<group>";
 		};
+		CEFBB2452C57C25C00454193 /* SplashView */ = {
+			isa = PBXGroup;
+			children = (
+				CEFBB2462C57C26A00454193 /* SplashRepository.swift */,
+			);
+			path = SplashView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -876,6 +887,7 @@
 				CEFBB2372C56F00C00454193 /* AlertData.swift in Sources */,
 				CEB45CAC2C543AB900327314 /* DetailPhotoViewModel.swift in Sources */,
 				CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */,
+				CEFBB2472C57C26A00454193 /* SplashRepository.swift in Sources */,
 				CEB45CB22C544A7E00327314 /* InfoView.swift in Sources */,
 				CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */,
 				CEB45BED2C4FF00800327314 /* UIButton.Configuration+.swift in Sources */,
