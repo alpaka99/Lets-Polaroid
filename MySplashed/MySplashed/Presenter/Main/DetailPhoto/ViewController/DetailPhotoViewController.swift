@@ -19,6 +19,11 @@ final class DetailPhotoViewController: BaseViewController<DetailPhotoView, Detai
     
     override func configureDataBinding() {
         super.configureDataBinding()
+        viewModel.actionBind(\.selectedImage) {[weak self] imageData in
+            if let imageData = imageData {
+                self?.baseView.configureNotConnectedData(imageData)
+            }
+        }
         
         viewModel.actionBind(\.detailPhotoData) {[weak self] value in
             if let value = value {

@@ -76,7 +76,6 @@ final class DetailPhotoView: BaseView {
     }
     
     func configureDetailData(_ detailPhotoData: DetailPhotoModel) {
-        
         setHeaderData(detailPhotoData)
         if let imageData = detailPhotoData.imageData {
             setImageData(imageData)
@@ -84,9 +83,23 @@ final class DetailPhotoView: BaseView {
         setInfoLabel(detailPhotoData)
     }
     
+    func configureNotConnectedData(_ imageData: UnsplashImageData) {
+        configureNotconnectedHeaderData(imageData)
+        setImageData(imageData)
+        setNotConnectedInfoLabel(imageData)
+    }
+    
+    
+    private func configureNotconnectedHeaderData(_ imageData: UnsplashImageData) {
+        photoHeaderView.configureNotConnectedHeaderData(imageData)
+        setImageData(imageData)
+        setNotConnectedInfoLabel(imageData)
+    }
+    
     private func setHeaderData(_ data: DetailPhotoModel) {
         photoHeaderView.configureHeaderData(data)
     }
+    
     
     private func setImageData(_ imageData: UnsplashImageData) {
         self.image.image = imageData.image
@@ -94,5 +107,9 @@ final class DetailPhotoView: BaseView {
     
     private func setInfoLabel(_ data: DetailPhotoModel) {
         infoView.configureStackView(data)
+    }
+    
+    private func setNotConnectedInfoLabel(_ data: UnsplashImageData) {
+        
     }
 }

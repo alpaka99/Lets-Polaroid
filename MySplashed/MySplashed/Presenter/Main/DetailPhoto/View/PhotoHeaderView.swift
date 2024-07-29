@@ -83,4 +83,19 @@ final class PhotoHeaderView: BaseView {
             likeButton.updateImage("heart")
         }
     }
+    
+    func configureNotConnectedHeaderData(_ imageData: UnsplashImageData) {
+        photographerProfile.image.image = UIImage(systemName: "person.fill")
+        photographerName.text = imageData.unsplashResponse.photographer.name
+        if let createdAt = DateFormatterConstant.iso8601DateFormatter.date(from: imageData.unsplashResponse.createdAt) {
+            DateFormatterConstant.dateFormatter.dateFormat = DateFormatterConstant.detailHeaderDateFormat
+            photoCreated.text = "\(DateFormatterConstant.dateFormatter.string(from: createdAt)) 게시됨"
+        }
+        
+        if imageData.isLiked {
+            likeButton.updateImage("heart.fill")
+        } else {
+            likeButton.updateImage("heart")
+        }
+    }
 }
