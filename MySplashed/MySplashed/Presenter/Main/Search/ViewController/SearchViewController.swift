@@ -31,6 +31,8 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
         baseView.collectionView.prefetchDataSource = self
         baseView.collectionView.delegate = self
         baseView.sortButton.addTarget(self, action: #selector(toggleSort), for: .touchUpInside)
+        
+        baseView.tapGestureRecognizer.addTarget(self, action: #selector(backgroundTapped))
     }
     
     override func configureDataBinding() {
@@ -62,6 +64,11 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
             CLToast(with: style, section: .top)
                 .present(in: vc.baseView)
         }
+    }
+    
+    @objc
+    private func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        baseView.endEditing(true)
     }
     
     @objc

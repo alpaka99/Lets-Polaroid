@@ -23,6 +23,8 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         baseView.deleteAccountButton.addTarget(self, action: #selector(showDeleteAlert), for: .touchUpInside)
         
         baseView.mbtiView.mbtiCollectionView.delegate = self
+        
+        baseView.tapGestureRecognizer.addTarget(self, action: #selector(backgroundTapped))
     }
     
     override func configureDataBinding() {
@@ -95,6 +97,11 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         viewModel.bind(\.accountDeleted) {[weak self] _ in
             self?.setNewViewController(nextViewController: SplashViewController(baseView: SplashView(), viewModel: SplashViewModel()), isNavigation: true)
         }
+    }
+    
+    @objc
+    private func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        baseView.endEditing(true)
     }
     
     @objc
