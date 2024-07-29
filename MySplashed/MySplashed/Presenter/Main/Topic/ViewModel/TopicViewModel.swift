@@ -15,6 +15,7 @@ final class TopicViewModel: ViewModel {
         var businessResponse: Observable<[UnsplashResponse]> = Observable([])
         var architectureResponse: Observable<[UnsplashResponse]> = Observable([])
         var tappedIndex = Observable(IndexPath(row: 0, section: 0))
+        var toastMessage = Observable("")
     }
     
     struct Output: Equatable {
@@ -26,10 +27,10 @@ final class TopicViewModel: ViewModel {
         var isMovingToProfileEditView = Observable(false)
     }
     
-    var input = Input()
-    var output = Output()
+    lazy var input = Input()
+    lazy var output = Output()
     
-    let repository = TopicRepository()
+    private let repository = TopicRepository()
     
     enum Action: String {
         case topicViewDidLoad
@@ -38,6 +39,7 @@ final class TopicViewModel: ViewModel {
         case loadLikedImages
         case cellTapped
         case profileEditButtonTapped
+        case showToastMessage
     }
     
     init() {
@@ -58,6 +60,8 @@ final class TopicViewModel: ViewModel {
             cellTapped(value)
         case .profileEditButtonTapped:
             profileEditButtonTapped()
+        case .showToastMessage:
+            showToastMessage(value)
         }
     }
     
@@ -92,37 +96,47 @@ final class TopicViewModel: ViewModel {
     
     private func loadUserData() {
         do {
-            let userData = try UserDefaults.standard.readAll(ofType: UserData.self)
+            let userData = try repository.readAllUserData()
             reduce(\.userData.value, into: userData)
         } catch {
-            print("UserData load error")
+            reduce(\.toastMessage.value, into: "사용자 데이터를 불러오는 과정에서 오류가 발생하였습니다!")
         }
     }
     
     private func loadTopics() {
         TopicType.allCases.forEach {[weak self] topic in
-            self?.repository.requestTopic(of: topic) { value in
-                switch topic {
-                case .goldenHour:
-                    self?.reduce(\.goldenHourResponse.value, into: value)
-                case .business:
-                    self?.reduce(\.businessResponse.value, into: value)
-                case .architecture:
-                    self?.reduce(\.architectureResponse.value, into: value)
+            self?.repository.requestTopic(of: topic) { topicResponse in
+                switch topicResponse {
+                case .success(let value):
+                    switch topic {
+                    case .goldenHour:
+                        self?.reduce(\.goldenHourResponse.value, into: value)
+                    case .business:
+                        self?.reduce(\.businessResponse.value, into: value)
+                    case .architecture:
+                        self?.reduce(\.architectureResponse.value, into: value)
+                    }
+                case .failure:
+                    self?.reduce(\.toastMessage.value, into: "토픽 로딩 실패ㅠㅠ")
                 }
             }
         }
     }
     
     private func loadImages(type: TopicType, with data: [UnsplashResponse]) {
-        repository.requestImage(of: data) {[weak self] value in
-            switch type {
-            case.goldenHour:
-                self?.reduce(\.goldenHourData.value, into: value)
-            case .business:
-                self?.reduce(\.businessData.value, into: value)
-            case .architecture:
-                self?.reduce(\.architectureData.value, into: value)
+        repository.requestImage(of: data) {[weak self] imageResponse in
+            switch imageResponse {
+            case .success(let value):
+                switch type {
+                case.goldenHour:
+                    self?.reduce(\.goldenHourData.value, into: value)
+                case .business:
+                    self?.reduce(\.businessData.value, into: value)
+                case .architecture:
+                    self?.reduce(\.architectureData.value, into: value)
+                }
+            case .failure:
+                self?.reduce(\.toastMessage.value, into: "토픽 이미지 로딩 실패")
             }
         }
     }
@@ -142,5 +156,11 @@ final class TopicViewModel: ViewModel {
     private func profileEditButtonTapped() {
         let toggledData = !self(\.isMovingToProfileEditView).value
         reduce(\.isMovingToProfileEditView.value, into: toggledData)
+    }
+    
+    private func showToastMessage<T: Equatable>(_ value: T) {
+        if let value = value as? String {
+            reduce(\.toastMessage.value, into: value)
+        }
     }
 }

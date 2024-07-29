@@ -7,6 +7,8 @@
 
 import UIKit
 
+import CLToaster
+
 final class SearchViewController: BaseViewController<SearchView, SearchViewModel> {
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +54,13 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
                 
                 vc.navigationController?.pushViewController(detailSearchViewController, animated: true)
             }
+        }
+        
+        viewModel.bind(\.toastMessage) {[weak self] value in
+            guard let vc = self else { return }
+            let style = CLToastStyle(title: value)
+            CLToast(with: style, section: .top)
+                .present(in: vc.baseView)
         }
     }
     

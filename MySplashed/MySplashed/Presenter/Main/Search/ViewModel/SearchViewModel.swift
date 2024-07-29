@@ -14,13 +14,13 @@ final class SearchViewModel: ViewModel {
         var isPrefetching = Observable(false)
         var total = Observable(0)
         var sortOption: Observable<SearchSortOption> = Observable(.relevant)
-        
     }
     
     struct Output: Equatable {
         var searchData: Observable<[UnsplashImageData]> = Observable([])
         var isInitialSearch = Observable(false)
         var selectedImage: Observable<UnsplashImageData?> = Observable(nil)
+        var toastMessage = Observable("")
     }
     
     lazy var input = Input()
@@ -67,11 +67,18 @@ final class SearchViewModel: ViewModel {
                 vm.repository.requestSearchImage(
                     value,
                     sortOption: vm(\.sortOption).value
-                ) { imageData in
-                    vm.reduce(\.searchData.value, into: imageData)
-                    vm.reduce(\.currentPage.value, into: 1)
-                    let toggledValue = !vm(\.isInitialSearch).value
-                    self?.reduce(\.isInitialSearch.value, into: toggledValue)
+                ) { imageResponse in
+                    
+                    switch imageResponse {
+                    case .success(let imageData):
+                        vm.reduce(\.searchData.value, into: imageData)
+                        vm.reduce(\.currentPage.value, into: 1)
+                        let toggledValue = !vm(\.isInitialSearch).value
+                        self?.reduce(\.isInitialSearch.value, into: toggledValue)
+                    case .failure:
+                        self?.reduce(\.toastMessage.value, into: "검색에 실패했어요 ㅠㅠ")
+                    }
+                    
                 }
             }
         }
@@ -83,8 +90,13 @@ final class SearchViewModel: ViewModel {
                         vm(\.searchText).value,
                         page: vm(\.currentPage).value,
                         sortOption: vm(\.sortOption).value
-                    ) { imageData in
-                        vm.prefetchComplete(imageData)
+                    ) { imageDataResponse in
+                        switch imageDataResponse {
+                        case .success(let imageData):
+                            vm.prefetchComplete(imageData)
+                        case .failure(let error):
+                            vm.reduce(\.toastMessage.value, into: "미리 불러오기 실패 ㅠㅠ")
+                        }
                     }
                 }
             }

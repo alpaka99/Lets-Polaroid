@@ -13,7 +13,7 @@ final class NetworkManager {
     static let shared = NetworkManager()
     private init() { }
     
-    func sendRequest<T: Decodable>(_ router: Router, ofType type: T.Type, completionHandler: @escaping (T)->Void) {
+    func sendRequest<T: Decodable>(_ router: Router, ofType type: T.Type, completionHandler: @escaping (Result<T, NetworkManagerError>)->Void) {
         do {
             let request = try router.asURLRequest()
             
@@ -21,10 +21,10 @@ final class NetworkManager {
                 .responseDecodable(of: type) { response in
                     switch response.result {
                         case .success(let value):
-                            completionHandler(value)
+                        completionHandler(.success(value))
                         case .failure(let error):
                         //TODO: Network Error Handling하기
-                            print("AF Request Failed", error)
+                        completionHandler(.failure(NetworkManagerError.fetchResponseFailed))
                         }
                 }
 //                .responseString { response in
@@ -40,4 +40,8 @@ final class NetworkManager {
             print(error)
         }
     }
+}
+
+enum NetworkManagerError: Error {
+    case fetchResponseFailed
 }

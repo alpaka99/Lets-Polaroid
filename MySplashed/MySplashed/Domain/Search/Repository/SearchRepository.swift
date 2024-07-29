@@ -18,31 +18,54 @@ final class SearchRepository {
         loadLikedImage()
     }
     
-    func requestSearchImage(_ searchText: String, sortOption: SearchSortOption, completionHandler: @escaping ([UnsplashImageData])->Void) {
+    func requestSearchImage(_ searchText: String, sortOption: SearchSortOption, completionHandler: @escaping (Result<[UnsplashImageData], SearchRepositoryError>)->Void) {
         NetworkManager.shared.sendRequest(.search(searchText: searchText), ofType: SearchResponse.self) {[weak self] searchResponse in
-            if let repo = self {
-                repo.requestImage(of: searchResponse.results) { imageResponse in
-                    repo.relavantImageData = []
-                    repo.latestImageData = []
-                    let imageData = repo.returnImageData(imageResponse, sortOption: sortOption)
-                    completionHandler(imageData)
+            switch searchResponse {
+            case .success(let value):
+                if let repo = self {
+                    repo.requestImage(of: value.results) { imageResponse in
+                        switch imageResponse {
+                        case .success(let imageData):
+                            repo.relavantImageData = []
+                            repo.latestImageData = []
+                            let imageData = repo.returnImageData(imageData, sortOption: sortOption)
+                            completionHandler(.success(imageData))
+                        case .failure(let error):
+                            completionHandler(.failure(.requestSearchImageError))
+                        }
+                    }
                 }
+            case .failure(let error):
+                completionHandler(.failure(.requestSearchImageError))
             }
+            
         }
     }
     
-    func prefetchImage(_ searchText: String, page: Int, sortOption: SearchSortOption, completionHandler: @escaping ([UnsplashImageData])->Void) {
+    func prefetchImage(_ searchText: String, page: Int, sortOption: SearchSortOption, completionHandler: @escaping (Result<[UnsplashImageData], SearchRepositoryError>)->Void) {
         NetworkManager.shared.sendRequest(.search(searchText: searchText, page: page), ofType: SearchResponse.self) {[weak self] searchResponse in
-            if let repo = self {
-                repo.requestImage(of: searchResponse.results) { imageResponse in
-                    let imageData = repo.returnImageData(imageResponse, sortOption: sortOption)
-                    completionHandler(imageData)
+            switch searchResponse {
+            case .success(let value):
+                if let repo = self {
+                    repo.requestImage(of: value.results) { imageResponse in
+                        switch imageResponse {
+                        case .success(let imageData):
+                            let imageData = repo.returnImageData(imageData, sortOption: sortOption)
+                            completionHandler(.success(imageData))
+                        case .failure(let error):
+                            completionHandler(.failure(.prefetchSearchImageError))
+                        }
+                        
+                    }
                 }
+            case .failure(let failure):
+                completionHandler(.failure(.prefetchSearchImageError))
             }
+            
         }
     }
     
-    private func requestImage(of data: [UnsplashResponse], completionHandler: @escaping ([UnsplashImageData])->Void) {
+    private func requestImage(of data: [UnsplashResponse], completionHandler: @escaping (Result<[UnsplashImageData], SearchRepositoryError>)->Void) {
         let dispatchGroup = DispatchGroup()
         
         var topicData: [UnsplashImageData] = []
@@ -69,7 +92,7 @@ final class SearchRepository {
         }
         
         dispatchGroup.notify(queue: .main) {
-            completionHandler(topicData)
+            completionHandler(.success(topicData))
         }
     }
     
@@ -154,4 +177,10 @@ final class SearchRepository {
         let likedImage = try LikedImage(unsplashImageData: data)
         return likedImage
     }
+}
+
+enum SearchRepositoryError: Error {
+    case requestSearchImageError
+    case prefetchSearchImageError
+    case fetchSearchImageError
 }

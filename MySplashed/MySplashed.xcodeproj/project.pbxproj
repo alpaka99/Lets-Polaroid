@@ -92,6 +92,7 @@
 		CEFBB23B2C56F40D00454193 /* ProfileSettingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */; };
 		CEFBB23D2C56F4B000454193 /* PictureCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB23C2C56F4B000454193 /* PictureCellType.swift */; };
 		CEFBB2412C578B9400454193 /* InfoLabelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2402C578B9400454193 /* InfoLabelType.swift */; };
+		CEFBB2442C578E1500454193 /* CLToaster in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB2432C578E1500454193 /* CLToaster */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +189,7 @@
 			files = (
 				CEFBB21E2C5540A400454193 /* RealmSwift in Frameworks */,
 				CEFBB21B2C553CFF00454193 /* Kingfisher in Frameworks */,
+				CEFBB2442C578E1500454193 /* CLToaster in Frameworks */,
 				CEFBB2152C553CED00454193 /* Alamofire in Frameworks */,
 				CEFBB2182C553CF600454193 /* SnapKit in Frameworks */,
 			);
@@ -779,6 +781,7 @@
 				CEFBB2172C553CF600454193 /* SnapKit */,
 				CEFBB21A2C553CFF00454193 /* Kingfisher */,
 				CEFBB21D2C5540A400454193 /* RealmSwift */,
+				CEFBB2432C578E1500454193 /* CLToaster */,
 			);
 			productName = MySplashed;
 			productReference = CEB45B762C4E3D0400327314 /* MySplashed.app */;
@@ -813,6 +816,7 @@
 				CEFBB2162C553CF600454193 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CEFBB2192C553CFF00454193 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				CEFBB21C2C5540A400454193 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				CEFBB2422C578E1500454193 /* XCRemoteSwiftPackageReference "CLToaster" */,
 			);
 			productRefGroup = CEB45B772C4E3D0400327314 /* Products */;
 			projectDirPath = "";
@@ -1174,6 +1178,14 @@
 				version = 10.52.1;
 			};
 		};
+		CEFBB2422C578E1500454193 /* XCRemoteSwiftPackageReference "CLToaster" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ValseLee/CLToaster.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1196,6 +1208,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEFBB21C2C5540A400454193 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		CEFBB2432C578E1500454193 /* CLToaster */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEFBB2422C578E1500454193 /* XCRemoteSwiftPackageReference "CLToaster" */;
+			productName = CLToaster;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

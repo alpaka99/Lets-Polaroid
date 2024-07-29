@@ -7,6 +7,8 @@
 
 import UIKit
 
+import CLToaster
+
 final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
     
     override func viewDidLoad() {
@@ -67,7 +69,15 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
                 
                 vc.navigationItem.rightBarButtonItem = rightBarButtonItem
                 vc.navigationItem.title = "Topic View"
+                
+                vc.viewModel.react(.showToastMessage, value: "안녕하세요 \(userData.nickname)님!")
             }
+        }
+        
+        viewModel.bind(\.toastMessage) {[weak self] value in
+            guard let vc = self else { return }
+            let toast = CLToast(title: value, height: 50)
+            toast.present(in: vc.baseView)
         }
         
         viewModel.bind(\.isMovingToProfileEditView) {[weak self] _ in
