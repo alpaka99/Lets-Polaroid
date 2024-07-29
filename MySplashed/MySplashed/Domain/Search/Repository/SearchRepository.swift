@@ -97,7 +97,7 @@ final class SearchRepository {
     }
     
     func returnImageData(_ imageData: [UnsplashImageData], sortOption: SearchSortOption) -> [UnsplashImageData] {
-        relavantImageData.append(contentsOf: imageData)
+        relavantImageData.append(contentsOf: imageData.sorted(by: {$0.unsplashResponse.likes >= $1.unsplashResponse.likes}))
         latestImageData = relavantImageData.sorted(by: { $0.unsplashResponse.createdAt <= $1.unsplashResponse.createdAt })
         
         switch sortOption {
