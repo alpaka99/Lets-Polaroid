@@ -83,7 +83,7 @@ final class SearchRepository {
                             }
                             topicData.append(imageData)
                         case .failure(let error):
-                            print("KingFisher ImageFetch Error", error)
+                            completionHandler(.failure(.fetchSearchImageError))
                         }
                         dispatchGroup.leave()
                     }
@@ -118,12 +118,8 @@ final class SearchRepository {
     func changeLikeStatus(of data: UnsplashImageData, sortOption: SearchSortOption) -> [UnsplashImageData] {
         loadLikedImage()
         
-        // MARK: 추후에 조금 더 효율적인 방법 생각해복
-        if likedImageId.contains(data.unsplashResponse.id) { // undo like operation
-            toggleLike(of: data, with: true)
-        } else { // do like operation
-            toggleLike(of: data, with: false)
-        }
+        // MARK: 추후에 조금 더 효율적인 방법 생각해보기
+        toggleLike(of: data, with: likedImageId.contains(data.unsplashResponse.id))
         
         switch sortOption {
         case .relevant:
@@ -153,7 +149,7 @@ final class SearchRepository {
         }
     }
     
-    func deleteDataFromLikedImage(_ imageData: UnsplashImageData, sortOption: SearchSortOption) {
+    func deleteDataFromLikedImage(_ imageData: UnsplashImageData, sortOption: SearchSortOption) throws {
         var toggledData = imageData
         toggledData.isLiked.toggle()
         
@@ -169,7 +165,7 @@ final class SearchRepository {
                 }
             }
         } catch {
-            print("toggle data error")
+            throw SearchRepositoryError.deleteDataError
         }
     }
     
@@ -197,4 +193,5 @@ enum SearchRepositoryError: Error {
     case requestSearchImageError
     case prefetchSearchImageError
     case fetchSearchImageError
+    case deleteDataError
 }

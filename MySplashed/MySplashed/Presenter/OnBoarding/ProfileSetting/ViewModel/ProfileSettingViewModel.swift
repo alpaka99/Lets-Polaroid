@@ -173,7 +173,7 @@ final class ProfileSettingViewModel: ViewModel {
             let toggledValue = !self(\.completeButtonTapped).value
             reduce(\.completeButtonTapped.value, into: toggledValue)
         } catch {
-            print(error)
+            reduce(\.toastMessage.value, into: "사용자 데이터 생성 에러")
         }
     }
     
@@ -187,8 +187,7 @@ final class ProfileSettingViewModel: ViewModel {
                 
             }
         } catch {
-            print("UserData Load Error")
-            print(error)
+            reduce(\.toastMessage.value, into: "사용자 데이터 불러오기 에러")
         }
     }
     

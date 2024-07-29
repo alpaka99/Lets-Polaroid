@@ -17,6 +17,7 @@ final class LikeViewModel: ViewModel {
     struct Output: Equatable {
         var likedImages: Observable<[UnsplashImageData]> = Observable([])
         var selectedImage: Observable<UnsplashImageData?> = Observable(nil)
+        var toastMessage = Observable("")
     }
     
     lazy var input = Input()
@@ -56,7 +57,7 @@ final class LikeViewModel: ViewModel {
                     let likedImages = try vm.repository.returnLikedUnsplashImageData(sortOption: vm(\.sortOption).value)
                     vm.reduce(\.likedImages.value, into: likedImages)
                 } catch {
-                    print(error) // MARK: Error Handling 하기(Toast Alert)라던가...
+                    vm.reduce(\.toastMessage, into: "좋아요한 사진을 불러올 수 없습니다.")
                 }
             }
         }
@@ -68,7 +69,7 @@ final class LikeViewModel: ViewModel {
                     let likedImages = try vm.repository.returnLikedUnsplashImageData(sortOption: vm(\.sortOption).value)
                     vm.reduce(\.likedImages.value, into: likedImages)
                 } catch {
-                    print(error) // MARK: Error Handling 하기(Toast Alert)라던가...
+                    vm.reduce(\.toastMessage, into: "좋아요한 사진을 불러올 수 없습니다.")
                 }
             }
         }
@@ -102,8 +103,8 @@ final class LikeViewModel: ViewModel {
                         if let imageData = try self?.repository.returnLikedUnsplashImageData(sortOption:  self?(\.sortOption).value ?? .latest) {
                             self?.reduce(\.likedImages.value, into: imageData)
                         }
-                    case .failure(let error):
-                        print(error)
+                    case .failure:
+                        self?.reduce(\.toastMessage.value, into: "좋아요 기능 오류")
                     }
                 }
         }

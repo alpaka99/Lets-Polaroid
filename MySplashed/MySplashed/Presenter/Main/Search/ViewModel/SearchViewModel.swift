@@ -117,7 +117,7 @@ final class SearchViewModel: ViewModel {
         }
     }
     
-    // prefetch action
+    
     private func prefetchImage<T: Equatable>(_ index: T) {
         if self(\.isPrefetching).value == false {
             if let index = index as? Int {
@@ -154,8 +154,12 @@ final class SearchViewModel: ViewModel {
     
     private func likeButtonTapped<T: Equatable>(_ value: T) {
         if let imageData = value as? UnsplashImageData {
-            repository.deleteDataFromLikedImage(imageData, sortOption: self(\.sortOption).value)
-            changeLikeStatus(of: imageData)
+            do {
+                try repository.deleteDataFromLikedImage(imageData, sortOption: self(\.sortOption).value)
+                changeLikeStatus(of: imageData)
+            } catch {
+                reduce(\.toastMessage.value, into: "좋아요 삭제 기능 에러")
+            }
         }
     }
     
@@ -167,7 +171,6 @@ final class SearchViewModel: ViewModel {
     }
     
     private func viewWillAppearAction() {
-        print(#function)
         repository.loadLikedImage()
         let imageData = repository.reloadImageData(sortOption: self(\.sortOption).value)
         reduce(\.searchData.value, into: imageData)

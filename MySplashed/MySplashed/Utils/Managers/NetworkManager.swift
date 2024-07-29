@@ -27,17 +27,8 @@ final class NetworkManager {
                         completionHandler(.failure(NetworkManagerError.fetchResponseFailed))
                         }
                 }
-//                .responseString { response in
-//                    print(response.response?.statusCode)
-//                    switch response.result {
-//                    case .success(let value):
-//                        print(value)
-//                    case .failure(let error):
-//                        print("AF Request Failed", error)
-//                    }
-//            }
         } catch {
-            print(error)
+            completionHandler(.failure(NetworkManagerError.fetchResponseFailed))
         }
     }
 }

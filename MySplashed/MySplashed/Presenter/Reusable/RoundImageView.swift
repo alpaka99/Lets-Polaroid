@@ -29,8 +29,6 @@ final class RoundImageView: BaseView {
         return view
     }()
     
-//    private(set) var tapGestureRecognizer = UITapGestureRecognizer()
-    
     override func configureHierarchy() {
         super.configureHierarchy()
         

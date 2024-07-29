@@ -27,9 +27,9 @@ final class LikeRepository {
         
         switch sortOption {
         case .latest:
-            unsplashImageData.sort(by: {$0.unsplashResponse.createdAt < $1.unsplashResponse.createdAt})
+            unsplashImageData.sort(by: {$0.unsplashResponse.createdAt > $1.unsplashResponse.createdAt})
         case .oldest:
-            unsplashImageData.sort(by: {$0.unsplashResponse.createdAt >= $1.unsplashResponse.createdAt})
+            unsplashImageData.sort(by: {$0.unsplashResponse.createdAt <= $1.unsplashResponse.createdAt})
         }
         
         return unsplashImageData

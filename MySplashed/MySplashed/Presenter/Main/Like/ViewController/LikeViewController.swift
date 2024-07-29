@@ -7,6 +7,7 @@
 
 import UIKit
 
+import CLToaster
 final class LikeViewController: BaseViewController<LikeView, LikeViewModel> {
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +30,13 @@ final class LikeViewController: BaseViewController<LikeView, LikeViewModel> {
             navigationController.modalPresentationStyle = .fullScreen
 
             self?.present(navigationController, animated: true)
+        }
+        
+        viewModel.bind(\.toastMessage) {[weak self] message in
+            guard let vc = self else { return }
+            var toastStyle = CLToastStyle(title: message)
+            CLToast(with: toastStyle)
+                .present(in: vc.baseView)
         }
     }
     
