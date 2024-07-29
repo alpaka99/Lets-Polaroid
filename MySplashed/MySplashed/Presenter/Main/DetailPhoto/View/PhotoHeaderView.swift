@@ -86,6 +86,7 @@ final class PhotoHeaderView: BaseView {
     
     func configureNotConnectedHeaderData(_ imageData: UnsplashImageData) {
         photographerProfile.image.image = UIImage(systemName: "person.fill")
+        photographerProfile.deselected()
         photographerName.text = imageData.unsplashResponse.photographer.name
         if let createdAt = DateFormatterConstant.iso8601DateFormatter.date(from: imageData.unsplashResponse.createdAt) {
             DateFormatterConstant.dateFormatter.dateFormat = DateFormatterConstant.detailHeaderDateFormat

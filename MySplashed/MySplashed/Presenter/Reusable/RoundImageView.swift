@@ -96,10 +96,10 @@ final class RoundImageView: BaseView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        image.layer.cornerRadius = image.frame.width / 2
+        image.layer.cornerRadius = image.frame.height / 2
         image.clipsToBounds = true
         
-        badgeBackground.layer.cornerRadius = badgeBackground.frame.width / 2
+        badgeBackground.layer.cornerRadius = badgeBackground.frame.height / 2
         badge.clipsToBounds = true
     }
 }

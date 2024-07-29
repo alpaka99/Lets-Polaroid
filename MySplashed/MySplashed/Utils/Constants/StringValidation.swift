@@ -20,17 +20,17 @@ extension StringValidationError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .isNil:
-            return "빈 값을 사용할 수 없습니다"
+            return "2글자 이상 10글자 미만으로 설정해주세요"
         case .isEmpty:
-            return "빈 값을 사용할 수 없습니다"
+            return "2글자 이상 10글자 미만으로 설정해주세요"
         case .isShort:
-            return "닉네임은 2글자 이상이어야합니다"
+            return "2글자 이상 10글자 미만으로 설정해주세요"
         case .isLong:
-            return "닉네임은 8글자 이하이어야합니다"
+            return "2글자 이상 10글자 미만으로 설정해주세요"
         case .isUsingSpecialLetter:
-            return "닉네임에 @, #, $, %는 사용할 수 없습니다"
+            return "닉네임에 @, #, $, %는 포함할 수 없어요"
         case .isUsingNumeric:
-            return "닉네임에 숫자를 사용할 수 없습니다"
+            return "닉네임에 숫자는 포함할 수 없어요"
         }
     }
 }

@@ -87,8 +87,8 @@ final class ProfileSettingViewModel: ViewModel {
             guard let vm = self else { return }
             do {
                 let nickname = try vm.validateTextInput(value)
-                vm.reduce(\.validatedNickname.value, into: nickname) //  무한루프 생기는거 아님?
-                vm.reduce(\.validationLabelText.value, into: "사용가능한 닉네임입니다")
+                vm.reduce(\.validatedNickname.value, into: nickname)
+                vm.reduce(\.validationLabelText.value, into: "사용할 수 있는 닉네임이에요")
                 vm.reduce(\.isNicknameValidated.value, into: true)
             } catch {
                 vm.reduce(\.validationLabelText.value, into: error.localizedDescription)
