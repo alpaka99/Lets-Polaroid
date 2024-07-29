@@ -52,26 +52,8 @@ final class DetailPhotoViewModel: ViewModel {
                 } else {
                     vm.reduce(\.unconnectedSelectedImage.value, into: imageData)
                     
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        vm.repository.requestImage(of: imageData.unsplashResponse.photographer) { photographerData in
-                            DispatchQueue.main.async {
-                                vm.reduce(\.photographerData.value, into: photographerData)
-                            }
-                        }
-                    }
-                    
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        vm.repository.requestStatisticsData(with: imageData) { result in
-                            switch result {
-                            case .success(let value):
-                                DispatchQueue.main.async {
-                                    vm.reduce(\.statisticsData.value, into: value)
-                                }
-                            case .failure(let error):
-                                print(error)
-                            }
-                        }
-                    }
+                    self?.asyncRequestPhotographerData(imageData)
+                    self?.asyncRequestStatisticsData(imageData)
                 }
             }
         }
@@ -122,6 +104,31 @@ final class DetailPhotoViewModel: ViewModel {
     private func likeButtonTapped() {
         let toggledValue = !self(\.likeButtonTapped).value
         reduce(\.likeButtonTapped.value, into: toggledValue)
+    }
+    
+    private func asyncRequestPhotographerData(_ imageData: UnsplashImageData) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.repository.requestImage(of: imageData.unsplashResponse.photographer) { photographerData in
+                DispatchQueue.main.async {
+                    self?.reduce(\.photographerData.value, into: photographerData)
+                }
+            }
+        }
+    }
+    
+    private func asyncRequestStatisticsData(_ imageData: UnsplashImageData) {
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            self?.repository.requestStatisticsData(with: imageData) { result in
+                switch result {
+                case .success(let value):
+                    DispatchQueue.main.async {
+                        self?.reduce(\.statisticsData.value, into: value)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
     }
 }
 
