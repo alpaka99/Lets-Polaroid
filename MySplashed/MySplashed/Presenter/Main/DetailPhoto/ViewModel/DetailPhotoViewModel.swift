@@ -17,6 +17,7 @@ final class DetailPhotoViewModel: ViewModel {
         var photographerData: Observable<PhotographerData?> = Observable(nil)
         var statisticsData: Observable<StatisticsData?> = Observable(nil)
         var detailPhotoData: Observable<DetailPhotoModel?> = Observable(nil)
+        var unconnectedSelectedImage: Observable<UnsplashImageData?> = Observable(nil)
     }
     
     lazy var input: Input = Input()
@@ -45,23 +46,30 @@ final class DetailPhotoViewModel: ViewModel {
     func configureBind() {
         bind(\.selectedImage) {[weak self] value in
             if let vm = self, let imageData = value {
-                DispatchQueue.global(qos: .userInitiated).async {
-                    vm.repository.requestImage(of: imageData.unsplashResponse.photographer) { photographerData in
-                        DispatchQueue.main.async {
-                            vm.reduce(\.photographerData.value, into: photographerData)
+                if let photographerData = vm(\.photographerData).value, let statisticsData = vm(\.statisticsData).value {
+                    let detailPhotoData = DetailPhotoModel(photographerData: photographerData, imageData: imageData, statisticsData: statisticsData)
+                    vm.reduce(\.detailPhotoData.value, into: detailPhotoData)
+                } else {
+                    vm.reduce(\.unconnectedSelectedImage.value, into: imageData)
+                    
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        vm.repository.requestImage(of: imageData.unsplashResponse.photographer) { photographerData in
+                            DispatchQueue.main.async {
+                                vm.reduce(\.photographerData.value, into: photographerData)
+                            }
                         }
                     }
-                }
-                
-                DispatchQueue.global(qos: .userInitiated).async {
-                    vm.repository.requestStatisticsData(with: imageData) { result in
-                        switch result {
-                        case .success(let value):
-                            DispatchQueue.main.async {
-                                vm.reduce(\.statisticsData.value, into: value)
+                    
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        vm.repository.requestStatisticsData(with: imageData) { result in
+                            switch result {
+                            case .success(let value):
+                                DispatchQueue.main.async {
+                                    vm.reduce(\.statisticsData.value, into: value)
+                                }
+                            case .failure(let error):
+                                print(error)
                             }
-                        case .failure(let error):
-                            print(error)
                         }
                     }
                 }

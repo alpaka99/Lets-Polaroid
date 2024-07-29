@@ -54,7 +54,10 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
                 
                 detailSearchViewController.delegate = vc
                 
-                vc.navigationController?.pushViewController(detailSearchViewController, animated: true)
+                let navigationController = UINavigationController(rootViewController: detailSearchViewController)
+                navigationController.modalPresentationStyle = .fullScreen
+                
+                vc.present(navigationController, animated: true)
             }
         }
         
