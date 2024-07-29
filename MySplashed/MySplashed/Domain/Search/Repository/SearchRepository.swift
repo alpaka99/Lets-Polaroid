@@ -98,7 +98,7 @@ final class SearchRepository {
     
     func returnImageData(_ imageData: [UnsplashImageData], sortOption: SearchSortOption) -> [UnsplashImageData] {
         relavantImageData.append(contentsOf: imageData.sorted(by: {$0.unsplashResponse.likes >= $1.unsplashResponse.likes}))
-        latestImageData = relavantImageData.sorted(by: { $0.unsplashResponse.createdAt <= $1.unsplashResponse.createdAt })
+        latestImageData = relavantImageData.sorted(by: { $0.unsplashResponse.createdAt >= $1.unsplashResponse.createdAt })
         
         switch sortOption {
         case .relevant:
@@ -176,6 +176,20 @@ final class SearchRepository {
     private func makeRealmImage(with data: UnsplashImageData) throws -> LikedImage {
         let likedImage = try LikedImage(unsplashImageData: data)
         return likedImage
+    }
+    
+    func reloadImageData(sortOption: SearchSortOption) -> [UnsplashImageData] { //TODO: inout parameter로 연산 줄일 수 있을것 같은데...
+        loadLikedImage()
+        
+        for index in 0..<relavantImageData.count {
+            var target = relavantImageData[index]
+            target.isLiked = likedImageId.contains(target.unsplashResponse.id)
+            relavantImageData[index] = target
+        }
+        
+        latestImageData = relavantImageData.sorted(by: {$0.unsplashResponse.createdAt > $1.unsplashResponse.createdAt})
+        
+        return returnImageData([], sortOption: sortOption)
     }
 }
 

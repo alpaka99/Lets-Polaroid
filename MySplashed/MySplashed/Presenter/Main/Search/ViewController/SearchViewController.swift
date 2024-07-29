@@ -13,7 +13,6 @@ final class SearchViewController: BaseViewController<SearchView, SearchViewModel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         viewModel.react(.viewWillAppear, value: true)
     }
     

@@ -94,7 +94,7 @@ final class SearchViewModel: ViewModel {
                         switch imageDataResponse {
                         case .success(let imageData):
                             vm.prefetchComplete(imageData)
-                        case .failure(let error):
+                        case .failure:
                             vm.reduce(\.toastMessage.value, into: "미리 불러오기 실패 ㅠㅠ")
                         }
                     }
@@ -167,6 +167,9 @@ final class SearchViewModel: ViewModel {
     }
     
     private func viewWillAppearAction() {
+        print(#function)
         repository.loadLikedImage()
+        let imageData = repository.reloadImageData(sortOption: self(\.sortOption).value)
+        reduce(\.searchData.value, into: imageData)
     }
 }
