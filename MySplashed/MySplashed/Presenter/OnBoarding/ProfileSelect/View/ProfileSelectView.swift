@@ -83,11 +83,6 @@ final class ProfileSelectView: BaseView {
             })
     }
     
-    func setSelectedProfile(_ profileImage: ProfileImage) {
-        var snapShot = dataSource.snapshot(for: .main)
-        
-    }
-    
     func updateSnapShot(with items: [ProfileImageData]) {
         var snapShot = NSDiffableDataSourceSnapshot<Section, ProfileImageData>()
         snapShot.appendSections([.main])

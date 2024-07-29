@@ -23,8 +23,7 @@ final class DetailPhotoRepository {
                         profileImage: image.image
                     )
                     completionHandler(.success(photographerData))
-                case .failure(let error):
-//                    print("KingFisher ImageFetch Error", error)
+                case .failure:
                     completionHandler(.failure(.photographerFetchFailure))
                 }
             }
@@ -63,10 +62,10 @@ final class DetailPhotoRepository {
             if data.isLiked {
                 let realmImageData = try makeRealmImageData(with: data)
                 try RealmManager.shared.create(realmImageData)
-                FileManager.default.saveImageToDocument(image: data.image, filename: data.unsplashResponse.id)
+                try FileManager.default.saveImageToDocument(image: data.image, filename: data.unsplashResponse.id)
             } else {
                 if let target = RealmManager.shared.readAll(LikedImage.self).filter({$0.id == data.unsplashResponse.id}).first {
-                    FileManager.default.removeImageFromDocument(filename: data.unsplashResponse.id)
+                    try FileManager.default.removeImageFromDocument(filename: data.unsplashResponse.id)
                     try RealmManager.shared.delete(target)
                 }
             }

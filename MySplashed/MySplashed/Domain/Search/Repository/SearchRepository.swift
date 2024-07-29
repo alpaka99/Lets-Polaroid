@@ -30,12 +30,12 @@ final class SearchRepository {
                             repo.latestImageData = []
                             let imageData = repo.returnImageData(imageData, sortOption: sortOption)
                             completionHandler(.success(imageData))
-                        case .failure(let error):
+                        case .failure:
                             completionHandler(.failure(.requestSearchImageError))
                         }
                     }
                 }
-            case .failure(let error):
+            case .failure:
                 completionHandler(.failure(.requestSearchImageError))
             }
             
@@ -52,13 +52,13 @@ final class SearchRepository {
                         case .success(let imageData):
                             let imageData = repo.returnImageData(imageData, sortOption: sortOption)
                             completionHandler(.success(imageData))
-                        case .failure(let error):
+                        case .failure:
                             completionHandler(.failure(.prefetchSearchImageError))
                         }
                         
                     }
                 }
-            case .failure(let failure):
+            case .failure:
                 completionHandler(.failure(.prefetchSearchImageError))
             }
             
@@ -161,10 +161,10 @@ final class SearchRepository {
             let realmImage = try makeRealmImage(with: toggledData)
             if realmImage.isLiked {
                 try RealmManager.shared.create(realmImage)
-                FileManager.default.saveImageToDocument(image: toggledData.image, filename: realmImage.id)
+                try FileManager.default.saveImageToDocument(image: toggledData.image, filename: realmImage.id)
             } else {
                 if let target = RealmManager.shared.readAll(LikedImage.self).filter({$0.id == imageData.unsplashResponse.id}).first {
-                    FileManager.default.removeImageFromDocument(filename: imageData.unsplashResponse.id)
+                    try FileManager.default.removeImageFromDocument(filename: imageData.unsplashResponse.id)
                     try RealmManager.shared.delete(target)
                 }
             }

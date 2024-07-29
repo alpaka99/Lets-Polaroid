@@ -26,6 +26,7 @@ final class ProfileSettingViewModel: ViewModel {
         var validationLabelText = Observable("")
         var isShowingDeleteAlert = Observable(false)
         var accountDeleted = Observable(false)
+        var toastMessage = Observable("")
     }
     
     lazy var input = Input()
@@ -44,7 +45,7 @@ final class ProfileSettingViewModel: ViewModel {
         case deleteAccountButtonTapped
     }
     
-    let repository = ProfileSettingRepository()
+    private let repository = ProfileSettingRepository()
     
     init() {
         configureBind()
@@ -198,11 +199,11 @@ final class ProfileSettingViewModel: ViewModel {
     
     private func deleteAccountButtonTapped() {
         do {
-            try UserDefaults.standard.deleteAll(ofType: UserData.self)
+            try repository.deleteUserData()
             let toggledData = !self(\.accountDeleted).value
             reduce(\.accountDeleted.value, into: toggledData)
         } catch {
-            print("UserDefaults delete action failed")
+            reduce(\.toastMessage.value, into: "계정 삭제 실패")
         }
     }
 }

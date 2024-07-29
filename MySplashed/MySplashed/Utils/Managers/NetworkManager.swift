@@ -22,7 +22,7 @@ final class NetworkManager {
                     switch response.result {
                         case .success(let value):
                         completionHandler(.success(value))
-                        case .failure(let error):
+                        case .failure:
                         //TODO: Network Error Handling하기
                         completionHandler(.failure(NetworkManagerError.fetchResponseFailed))
                         }

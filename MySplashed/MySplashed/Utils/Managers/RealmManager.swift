@@ -11,9 +11,7 @@ final class RealmManager {
     static let shared = RealmManager()
     private let realm = try! Realm()
     
-    private init() {
-        print(realm.configuration.fileURL)
-    }
+    private init() { }
     
     func create<T: Object>(_ data: T) throws {
         try realm.write {
