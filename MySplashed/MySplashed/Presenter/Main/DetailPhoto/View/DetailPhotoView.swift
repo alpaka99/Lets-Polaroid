@@ -31,7 +31,7 @@ final class DetailPhotoView: BaseView {
         return imageView
     }()
     
-    private let infoView = InfoView()
+    private(set) var infoView = InfoView()
     
     override func configureHierarchy() {
         super.configureHierarchy()
@@ -75,9 +75,13 @@ final class DetailPhotoView: BaseView {
         }
     }
     
-    func configureData(_ detailPhotoData: DetailPhotoModel) {
+    func configureDetailData(_ detailPhotoData: DetailPhotoModel) {
+        
         setHeaderData(detailPhotoData)
-        setImageData(detailPhotoData.imageData)
+        if let imageData = detailPhotoData.imageData {
+            setImageData(imageData)
+        }
+        setInfoLabel(detailPhotoData)
     }
     
     private func setHeaderData(_ data: DetailPhotoModel) {
@@ -86,5 +90,9 @@ final class DetailPhotoView: BaseView {
     
     private func setImageData(_ imageData: UnsplashImageData) {
         self.image.image = imageData.image
+    }
+    
+    private func setInfoLabel(_ data: DetailPhotoModel) {
+        infoView.configureStackView(data)
     }
 }

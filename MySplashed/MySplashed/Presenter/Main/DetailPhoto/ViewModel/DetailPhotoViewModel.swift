@@ -15,6 +15,7 @@ final class DetailPhotoViewModel: ViewModel {
     
     struct Output: Equatable {
         var photographerData: Observable<PhotographerData?> = Observable(nil)
+        var statisticsData: Observable<StatisticsData?> = Observable(nil)
         var detailPhotoData: Observable<DetailPhotoModel?> = Observable(nil)
     }
     
@@ -43,18 +44,51 @@ final class DetailPhotoViewModel: ViewModel {
     
     func configureBind() {
         bind(\.selectedImage) {[weak self] value in
-            if let vm = self, let photographer = value?.unsplashResponse.photographer {
-                vm.repository.requestImage(of: photographer) { photographerData in
-                    vm.reduce(\.photographerData.value, into: photographerData)
+            if let vm = self, let imageData = value {
+                DispatchQueue.global(qos: .userInitiated).async {
+                    vm.repository.requestImage(of: imageData.unsplashResponse.photographer) { photographerData in
+                        DispatchQueue.main.async {
+                            vm.reduce(\.photographerData.value, into: photographerData)
+                        }
+                    }
+                }
+                
+                DispatchQueue.global(qos: .userInitiated).async {
+                    vm.repository.requestStatisticsData(with: imageData) { result in
+                        switch result {
+                        case .success(let value):
+                            DispatchQueue.main.async {
+                                vm.reduce(\.statisticsData.value, into: value)
+                            }
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
                 }
             }
         }
         
         bind(\.photographerData) { [weak self] value in
             if let vm = self {
-                if let imageData = vm(\.selectedImage).value, let photographerData = vm(\.photographerData).value {
-                    
-                    let detailPhotoData = DetailPhotoModel(photographerData: photographerData, imageData: imageData)
+                if let imageData = vm(\.selectedImage).value, let photographerData = vm(\.photographerData).value, let statisticsData = vm(\.statisticsData).value {
+                    let detailPhotoData = DetailPhotoModel(
+                        photographerData: photographerData,
+                        imageData: imageData,
+                        statisticsData: statisticsData
+                    )
+                    vm.reduce(\.detailPhotoData.value, into: detailPhotoData)
+                }
+            }
+        }
+        
+        bind(\.statisticsData) { [weak self] value in
+            if let vm = self {
+                if let imageData = vm(\.selectedImage).value, let photographerData = vm(\.photographerData).value, let statisticsData = vm(\.statisticsData).value {
+                    let detailPhotoData = DetailPhotoModel(
+                        photographerData: photographerData,
+                        imageData: imageData,
+                        statisticsData: statisticsData
+                    )
                     vm.reduce(\.detailPhotoData.value, into: detailPhotoData)
                 }
             }

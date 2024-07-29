@@ -22,7 +22,7 @@ final class DetailPhotoViewController: BaseViewController<DetailPhotoView, Detai
         
         viewModel.actionBind(\.detailPhotoData) {[weak self] value in
             if let value = value {
-                self?.baseView.configureData(value)
+                self?.baseView.configureDetailData(value)
             }
         }
     }

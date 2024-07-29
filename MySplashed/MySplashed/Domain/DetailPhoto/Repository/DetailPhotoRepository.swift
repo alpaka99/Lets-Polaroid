@@ -7,7 +7,9 @@
 
 import Foundation
 
+import Alamofire
 import Kingfisher
+
 final class DetailPhotoRepository {
     var likedImages = Set<String>()
     
@@ -55,7 +57,7 @@ final class DetailPhotoRepository {
         return toggledData
     }
     
-    func realmLikeAction(_ data: UnsplashImageData) {
+    private func realmLikeAction(_ data: UnsplashImageData) {
         do {
             if data.isLiked {
                 let realmImageData = try makeRealmImageData(with: data)
@@ -76,4 +78,27 @@ final class DetailPhotoRepository {
         let likedImage = try LikedImage(unsplashImageData: data)
         return likedImage
     }
+    
+    func requestStatisticsData(with data: UnsplashImageData, completionHandler: @escaping (Result<StatisticsData, Error>)->Void)  {
+        let id = data.unsplashResponse.id
+        do {
+            let url = try Router.statistic(imageID: id).asURLRequest()
+            
+            AF.request(url)
+                .responseDecodable(of: StatisticsData.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        completionHandler(.success(value))
+                    case .failure(_):
+                        completionHandler(.failure(DetailRepositoryError.statisticsLoadFailure))
+                    }
+                }
+        } catch {
+            completionHandler(.failure(error))
+        }
+    }
+}
+
+enum DetailRepositoryError: Error {
+    case statisticsLoadFailure
 }

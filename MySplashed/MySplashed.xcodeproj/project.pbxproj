@@ -91,6 +91,7 @@
 		CEFBB2392C56F32A00454193 /* SearchSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2382C56F32A00454193 /* SearchSortOption.swift */; };
 		CEFBB23B2C56F40D00454193 /* ProfileSettingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */; };
 		CEFBB23D2C56F4B000454193 /* PictureCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB23C2C56F4B000454193 /* PictureCellType.swift */; };
+		CEFBB2412C578B9400454193 /* InfoLabelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2402C578B9400454193 /* InfoLabelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +178,7 @@
 		CEFBB2382C56F32A00454193 /* SearchSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSortOption.swift; sourceTree = "<group>"; };
 		CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingMode.swift; sourceTree = "<group>"; };
 		CEFBB23C2C56F4B000454193 /* PictureCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCellType.swift; sourceTree = "<group>"; };
+		CEFBB2402C578B9400454193 /* InfoLabelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabelType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +346,7 @@
 				CEFBB2382C56F32A00454193 /* SearchSortOption.swift */,
 				CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */,
 				CEFBB23C2C56F4B000454193 /* PictureCellType.swift */,
+				CEFBB2402C578B9400454193 /* InfoLabelType.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -906,6 +909,7 @@
 				CEB45C8A2C527B2700327314 /* UnsplashResponse.swift in Sources */,
 				CEB45CC02C54DBD600327314 /* DetailPhotoModel.swift in Sources */,
 				CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */,
+				CEFBB2412C578B9400454193 /* InfoLabelType.swift in Sources */,
 				CEB45BFC2C5020FB00327314 /* RoundImageView.swift in Sources */,
 				CEB45C642C5231E200327314 /* TopicViewController.swift in Sources */,
 				CEFBB2352C56B9CB00454193 /* DateFormatterConstant.swift in Sources */,

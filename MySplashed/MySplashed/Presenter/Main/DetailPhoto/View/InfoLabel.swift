@@ -13,14 +13,12 @@ final class InfoLabel: BaseView {
     private let title = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .bold)
-        label.text = "크기"
         return label
     }()
     private let content = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.textColor = .darkGray
-        label.text = "3098 x 3872"
         return label
     }()
     
@@ -47,5 +45,29 @@ final class InfoLabel: BaseView {
         }
         
         self.backgroundColor = .systemOrange
+    }
+    
+    func setLabelTitle(of type: InfoLabelType) {
+        switch type {
+        case .size:
+            title.text = "크기"
+        case .views:
+            title.text = "조회수"
+        case .downloads:
+            title.text = "다운로드"
+        }
+    }
+    
+    func setLabelContent(of type: InfoLabelType, with data: DetailPhotoModel) {
+        switch type {
+        case .size:
+            let width = data.imageData?.unsplashResponse.width.formatted() ?? ""
+            let height = data.imageData?.unsplashResponse.height.formatted() ?? ""
+            content.text = "\(width) x \(height)"
+        case .views:
+            content.text = data.statisticsData?.views.total.formatted()
+        case .downloads:
+            content.text = data.statisticsData?.downloads.total.formatted()
+        }
     }
 }
