@@ -82,7 +82,7 @@ final class SearchRepository {
                                 imageData.isLiked = isLiked
                             }
                             topicData.append(imageData)
-                        case .failure(let error):
+                        case .failure:
                             completionHandler(.failure(.fetchSearchImageError))
                         }
                         dispatchGroup.leave()

@@ -142,7 +142,10 @@ final class ProfileSettingViewModel: ViewModel {
     }
     
     private func validateMBTI() {
-        if self(\.userMBTI).value.values.count == 4 {
+        let values = self(\.userMBTI).value.values.filter {
+            $0 != .none
+        }
+        if values.count == 4 {
             reduce(\.isMBTIValidated.value, into: true)
         } else {
             reduce(\.isMBTIValidated.value, into: false)

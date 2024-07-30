@@ -19,6 +19,7 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         
         baseView.profileImage.tapGestureRecognizer.addTarget(self, action: #selector(profileImageTapped))
         baseView.nicknameTextField.addTarget(self, action: #selector(textFieldValueChanged), for: .editingChanged)
+        baseView.nicknameTextField.addTarget(self, action: #selector(textFieldReturned), for: .editingDidEndOnExit)
         baseView.completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
         baseView.deleteAccountButton.addTarget(self, action: #selector(showDeleteAlert), for: .touchUpInside)
         
@@ -115,6 +116,12 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
             viewModel.react(.textFieldInputChanged, value: text)
         }
     }
+    
+    @objc
+    private func textFieldReturned(_ sender: UITextField) {
+        baseView.endEditing(true)
+    }
+    
     @objc
     private func completeButtonTapped(_ sender: UIButton) {
         viewModel.react(.completeButtonTapped, value: true)
@@ -144,6 +151,7 @@ extension ProfileSettingViewController: ProfileSelectViewControllerDelegate {
 
 extension ProfileSettingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        baseView.endEditing(true)
         let selectedMBTI = baseView.mbtiView.dataSource.snapshot(for: .main).items[indexPath.row]
         viewModel.react(.mbtiSelected, value: selectedMBTI)
     }

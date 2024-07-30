@@ -131,7 +131,7 @@ final class DetailPhotoViewModel: ViewModel {
                     DispatchQueue.main.async {
                         self?.reduce(\.statisticsData.value, into: value)
                     }
-                case .failure(let error):
+                case .failure:
                     self?.reduce(\.toastMessage.value, into: "사진 통계 정보 불러오기 실패")
                 }
             }

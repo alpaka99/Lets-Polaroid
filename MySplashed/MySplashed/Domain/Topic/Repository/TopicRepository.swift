@@ -20,7 +20,7 @@ final class TopicRepository {
             switch result {
             case .success(let values):
                 completionHandler(.success(values))
-            case .failure(let error):
+            case .failure:
                 completionHandler(.failure(.networkManagerFetchError))
             }
         }
@@ -39,7 +39,7 @@ final class TopicRepository {
                         switch result {
                         case .success(let image):
                             topicData.append(UnsplashImageData(unsplashResponse: data[index], image: image.image))
-                        case .failure(let error):
+                        case .failure:
                             completionHandler(.failure(.kingFisherImageFetchError))
                         }
                         dispatchGroup.leave()

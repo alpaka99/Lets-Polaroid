@@ -34,7 +34,7 @@ final class LikeViewController: BaseViewController<LikeView, LikeViewModel> {
         
         viewModel.bind(\.toastMessage) {[weak self] message in
             guard let vc = self else { return }
-            var toastStyle = CLToastStyle(title: message)
+            let toastStyle = CLToastStyle(title: message)
             CLToast(with: toastStyle)
                 .present(in: vc.baseView)
         }
