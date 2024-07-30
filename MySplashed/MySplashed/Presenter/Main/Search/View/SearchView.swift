@@ -132,7 +132,7 @@ final class SearchView: BaseView {
             
             snapShot.appendSections([.main])
             snapShot.appendItems(data, toSection: .main)
-            dataSource.apply(snapShot)
+            dataSource.applySnapshotUsingReloadData(snapShot)
             setSearchedState()
         }
     }
