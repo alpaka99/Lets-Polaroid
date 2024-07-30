@@ -61,6 +61,7 @@ final class TopicViewController: BaseViewController<TopicView, TopicViewModel> {
         viewModel.bind(\.userData) {[weak self] userData in
             if let userData = userData, let vc = self {
                 let editButtonImage = RoundImageView(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
+                editButtonImage.backgroundColor = .clear
                 editButtonImage.setProfileImage(userData.profileImage)
                 editButtonImage.selected()
                 editButtonImage.tapGestureRecognizer.addTarget(vc, action: #selector(vc.profileEditButtonTapped))
