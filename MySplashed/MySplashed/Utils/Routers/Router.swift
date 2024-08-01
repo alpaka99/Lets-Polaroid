@@ -16,11 +16,11 @@ enum Router {
 }
 
 extension Router: URLRequestConvertible {
-    var baseURL: String {
+    private var baseURL: String {
         return "https://api.unsplash.com"
     }
     
-    var path: String {
+    private var path: String {
         switch self {
         case .topic(_):
             return "/topics"
@@ -31,10 +31,9 @@ extension Router: URLRequestConvertible {
         }
     }
     
-    var trailingPath: String {
+    private var trailingPath: String {
         switch self {
         case .topic(topic: let topic):
-//            return "/"+topic.rawValue + "/photos"
             return "/\(topic.rawValue)/photos"
         case .search(_, _):
             return "/photos"
@@ -43,7 +42,7 @@ extension Router: URLRequestConvertible {
         }
     }
     
-    var header: [String : String] {
+    private var header: [String : String] {
         let accessKey = Bundle.main.object(forInfoDictionaryKey: "ACCESS_KEY") as? String ?? ""
         return [
             "contentType" : "application/json",
@@ -52,7 +51,7 @@ extension Router: URLRequestConvertible {
         ]
     }
     
-    var parameters: [String:String] {
+    private var parameters: [String:String] {
         switch self {
         case .topic:
             return [:]
@@ -67,7 +66,7 @@ extension Router: URLRequestConvertible {
         }
     }
     
-    var method: HTTPMethod {
+    private var method: HTTPMethod {
         switch self {
         case .topic:
             return .get
@@ -78,7 +77,7 @@ extension Router: URLRequestConvertible {
         }
     }
     
-    var encoding: ParameterEncoding {
+    private var encoding: ParameterEncoding {
         switch self {
         case .topic:
             return URLEncoding.default

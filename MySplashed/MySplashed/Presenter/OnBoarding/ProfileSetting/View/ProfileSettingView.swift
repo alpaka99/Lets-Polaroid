@@ -22,6 +22,11 @@ final class ProfileSettingView: BaseView {
         textField.placeholder = "닉네임을 입력해주세요 :)"
         return textField
     }()
+    private let divider = {
+        let view = UIView()
+        view.backgroundColor = MSColor.lightGray.color
+        return view
+    }()
     private let validationLabel = {
         let label = UILabel()
         label.textColor = MSColor.magenta.color
@@ -55,6 +60,7 @@ final class ProfileSettingView: BaseView {
         
         self.addSubview(profileImage)
         self.addSubview(nicknameTextField)
+        self.addSubview(divider)
         self.addSubview(validationLabel)
         self.addSubview(mbtiView)
         self.addSubview(completeButton)
@@ -78,8 +84,14 @@ final class ProfileSettingView: BaseView {
             textField.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
                 .inset(16)
         }
+        divider.snp.makeConstraints { divider in
+            divider.top.equalTo(nicknameTextField.snp.bottom)
+                .offset(16)
+            divider.horizontalEdges.equalTo(nicknameTextField.snp.horizontalEdges)
+            divider.height.equalTo(1)
+        }
         validationLabel.snp.makeConstraints { label in
-            label.top.equalTo(nicknameTextField.snp.bottom)
+            label.top.equalTo(divider.snp.bottom)
                 .offset(16)
             label.horizontalEdges.equalTo(nicknameTextField.snp.horizontalEdges)
         }

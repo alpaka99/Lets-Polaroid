@@ -28,7 +28,7 @@ enum MBTIComponent: String, CaseIterable, Codable {
     static func initialMBTI() -> [MBTIGroup : MBTIComponent] {
         var mbti = [MBTIGroup:MBTIComponent]()
         MBTIGroup.allCases.forEach { group in
-            mbti[group] = .none
+            mbti[group] = MBTIComponent.none
         }
         return mbti
     }

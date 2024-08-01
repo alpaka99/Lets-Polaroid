@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 
 extension FileManager {
-    func saveImageToDocument(image: UIImage, filename: String) {
+    func saveImageToDocument(image: UIImage, filename: String) throws {
         // 1. document directory를 찾아가기
         guard let documentDirectory = FileManager.default.urls(
             for: .documentDirectory,
@@ -26,7 +26,7 @@ extension FileManager {
         do {
             try data.write(to: fileURL)
         } catch {
-            print("file save error", error)
+            throw FileManagerError.fileSaveError
         }
     }
     
@@ -47,11 +47,11 @@ extension FileManager {
         if FileManager.default.fileExists(atPath: fileURLString) {
             return UIImage(contentsOfFile: fileURLString)
         } else {
-            return UIImage(systemName: "star.fill")
+            return nil
         }
     }
     
-    func removeImageFromDocument(filename: String) {
+    func removeImageFromDocument(filename: String) throws {
         guard let documentDirectory = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask).first else { return }
@@ -66,13 +66,14 @@ extension FileManager {
         }
         
         if FileManager.default.fileExists(atPath: fileURLString) {
-            do {
-                try FileManager.default.removeItem(atPath: fileURLString)
-            } catch {
-                print("file remove error", error)
-            }
+            try FileManager.default.removeItem(atPath: fileURLString)
         } else {
-            print("file no exist")
+            throw FileManagerError.noFileError
         }
     }
+}
+
+enum FileManagerError: Error {
+    case noFileError
+    case fileSaveError
 }

@@ -14,6 +14,8 @@ final class SearchView: BaseView {
         case main
     }
     
+    weak var delegate: SearchViewDelegate?
+    
     private(set) var searchBar = UISearchBar()
     
     private(set) var sortButton = {
@@ -44,7 +46,7 @@ final class SearchView: BaseView {
         return collectionView
     }()
     
-    var dataSource: UICollectionViewDiffableDataSource<Section,UnsplashImageData>!
+    private(set) var dataSource: UICollectionViewDiffableDataSource<Section,UnsplashImageData>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,7 +55,7 @@ final class SearchView: BaseView {
         updateSnapShot([])
     }
     
-    func createLayout() -> UICollectionViewLayout {
+    private func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -105,7 +107,7 @@ final class SearchView: BaseView {
         setEmptyState()
     }
     
-    func configureDataSource() {
+    private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<PictureViewCell, UnsplashImageData> { cell, indexPath, itemIdentifier in
             cell.configureUI(.search)
             cell.setImage(UIImage(systemName: "star.fill")!)
@@ -113,8 +115,10 @@ final class SearchView: BaseView {
             cell.setLikedButton(itemIdentifier.isLiked)
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: {[weak self] collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+            cell.likeButton.tag = indexPath.row
+            cell.likeButton.addTarget(self, action: #selector(self?.likeButtonTapped), for: .touchUpInside)
             cell.setImage(itemIdentifier.image)
             return cell
         })
@@ -128,7 +132,7 @@ final class SearchView: BaseView {
             
             snapShot.appendSections([.main])
             snapShot.appendItems(data, toSection: .main)
-            dataSource.apply(snapShot)
+            dataSource.applySnapshotUsingReloadData(snapShot)
             setSearchedState()
         }
     }
@@ -150,18 +154,13 @@ final class SearchView: BaseView {
     func toggleSortOption(_ sortOption: SearchSortOption) {
         sortButton.updateTitle(sortOption.rawValue + "으로")
     }
+    
+    @objc
+    private func likeButtonTapped(_ sender: UIButton) {
+        delegate?.likeButtonTapped(sender.tag)
+    }
 }
 
-enum SearchSortOption: String {
-    case relevant = "관련순"
-    case latest = "최신순"
-    
-    var toggled: Self {
-        switch self {
-        case .relevant:
-            return .latest
-        case .latest:
-            return .relevant
-        }
-    }
+protocol SearchViewDelegate: AnyObject {
+    func likeButtonTapped(_ index: Int)
 }

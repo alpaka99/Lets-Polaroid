@@ -28,7 +28,6 @@
 		CEB45BF72C5009F500327314 /* ProfileSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BF62C5009F500327314 /* ProfileSettingViewModel.swift */; };
 		CEB45BF92C500A2F00327314 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BF82C500A2F00327314 /* ProfileSettingViewController.swift */; };
 		CEB45BFC2C5020FB00327314 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BFB2C5020FB00327314 /* RoundImageView.swift */; };
-		CEB45BFE2C50265A00327314 /* PaddingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BFD2C50265A00327314 /* PaddingImageView.swift */; };
 		CEB45C002C502A5600327314 /* InternalPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45BFF2C502A5600327314 /* InternalPadding.swift */; };
 		CEB45C292C50ECBD00327314 /* ProfileSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C282C50ECBD00327314 /* ProfileSelectView.swift */; };
 		CEB45C2B2C50ECCE00327314 /* ProfileSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB45C2A2C50ECCE00327314 /* ProfileSelectViewModel.swift */; };
@@ -86,6 +85,14 @@
 		CEFBB22B2C56941C00454193 /* ProfileSettingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB22A2C56941C00454193 /* ProfileSettingRepository.swift */; };
 		CEFBB22E2C56944900454193 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB22D2C56944900454193 /* UserData.swift */; };
 		CEFBB2322C56978500454193 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2312C56978500454193 /* UserDefaults.swift */; };
+		CEFBB2352C56B9CB00454193 /* DateFormatterConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2342C56B9CB00454193 /* DateFormatterConstant.swift */; };
+		CEFBB2372C56F00C00454193 /* AlertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2362C56F00C00454193 /* AlertData.swift */; };
+		CEFBB2392C56F32A00454193 /* SearchSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2382C56F32A00454193 /* SearchSortOption.swift */; };
+		CEFBB23B2C56F40D00454193 /* ProfileSettingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */; };
+		CEFBB23D2C56F4B000454193 /* PictureCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB23C2C56F4B000454193 /* PictureCellType.swift */; };
+		CEFBB2412C578B9400454193 /* InfoLabelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2402C578B9400454193 /* InfoLabelType.swift */; };
+		CEFBB2442C578E1500454193 /* CLToaster in Frameworks */ = {isa = PBXBuildFile; productRef = CEFBB2432C578E1500454193 /* CLToaster */; };
+		CEFBB2472C57C26A00454193 /* SplashRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFBB2462C57C26A00454193 /* SplashRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,7 +119,6 @@
 		CEB45BF62C5009F500327314 /* ProfileSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewModel.swift; sourceTree = "<group>"; };
 		CEB45BF82C500A2F00327314 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
 		CEB45BFB2C5020FB00327314 /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
-		CEB45BFD2C50265A00327314 /* PaddingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingImageView.swift; sourceTree = "<group>"; };
 		CEB45BFF2C502A5600327314 /* InternalPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalPadding.swift; sourceTree = "<group>"; };
 		CEB45C282C50ECBD00327314 /* ProfileSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectView.swift; sourceTree = "<group>"; };
 		CEB45C2A2C50ECCE00327314 /* ProfileSelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectViewModel.swift; sourceTree = "<group>"; };
@@ -167,6 +173,13 @@
 		CEFBB22A2C56941C00454193 /* ProfileSettingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingRepository.swift; sourceTree = "<group>"; };
 		CEFBB22D2C56944900454193 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		CEFBB2312C56978500454193 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		CEFBB2342C56B9CB00454193 /* DateFormatterConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterConstant.swift; sourceTree = "<group>"; };
+		CEFBB2362C56F00C00454193 /* AlertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertData.swift; sourceTree = "<group>"; };
+		CEFBB2382C56F32A00454193 /* SearchSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSortOption.swift; sourceTree = "<group>"; };
+		CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingMode.swift; sourceTree = "<group>"; };
+		CEFBB23C2C56F4B000454193 /* PictureCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCellType.swift; sourceTree = "<group>"; };
+		CEFBB2402C578B9400454193 /* InfoLabelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabelType.swift; sourceTree = "<group>"; };
+		CEFBB2462C57C26A00454193 /* SplashRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +189,7 @@
 			files = (
 				CEFBB21E2C5540A400454193 /* RealmSwift in Frameworks */,
 				CEFBB21B2C553CFF00454193 /* Kingfisher in Frameworks */,
+				CEFBB2442C578E1500454193 /* CLToaster in Frameworks */,
 				CEFBB2152C553CED00454193 /* Alamofire in Frameworks */,
 				CEFBB2182C553CF600454193 /* SnapKit in Frameworks */,
 			);
@@ -330,6 +344,11 @@
 				CEB45C9A2C539DE300327314 /* TopicType.swift */,
 				CEB45CC82C54F4AF00327314 /* JSONConstant.swift */,
 				CEFBB2272C5693DB00454193 /* StringValidation.swift */,
+				CEFBB2342C56B9CB00454193 /* DateFormatterConstant.swift */,
+				CEFBB2382C56F32A00454193 /* SearchSortOption.swift */,
+				CEFBB23A2C56F40D00454193 /* ProfileSettingMode.swift */,
+				CEFBB23C2C56F4B000454193 /* PictureCellType.swift */,
+				CEFBB2402C578B9400454193 /* InfoLabelType.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -390,7 +409,6 @@
 			isa = PBXGroup;
 			children = (
 				CEB45BFB2C5020FB00327314 /* RoundImageView.swift */,
-				CEB45BFD2C50265A00327314 /* PaddingImageView.swift */,
 				CEB45C7B2C525F6300327314 /* PictureViewCell.swift */,
 			);
 			path = Reusable;
@@ -598,6 +616,7 @@
 		CEB45C932C5292CB00327314 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				CEFBB2452C57C25C00454193 /* SplashView */,
 				CEFBB2292C56941200454193 /* ProfileSetting */,
 				CEFBB2232C55892100454193 /* Like */,
 				CEB45CB62C54CFC600327314 /* DetailPhoto */,
@@ -685,6 +704,7 @@
 				CEB45C8B2C527C5200327314 /* Photographer.swift */,
 				CEB45C962C52D4CC00327314 /* UnsplashImageData.swift */,
 				CEFBB22D2C56944900454193 /* UserData.swift */,
+				CEFBB2362C56F00C00454193 /* AlertData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -740,6 +760,14 @@
 			path = ProfileSetting;
 			sourceTree = "<group>";
 		};
+		CEFBB2452C57C25C00454193 /* SplashView */ = {
+			isa = PBXGroup;
+			children = (
+				CEFBB2462C57C26A00454193 /* SplashRepository.swift */,
+			);
+			path = SplashView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -761,6 +789,7 @@
 				CEFBB2172C553CF600454193 /* SnapKit */,
 				CEFBB21A2C553CFF00454193 /* Kingfisher */,
 				CEFBB21D2C5540A400454193 /* RealmSwift */,
+				CEFBB2432C578E1500454193 /* CLToaster */,
 			);
 			productName = MySplashed;
 			productReference = CEB45B762C4E3D0400327314 /* MySplashed.app */;
@@ -795,6 +824,7 @@
 				CEFBB2162C553CF600454193 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CEFBB2192C553CFF00454193 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				CEFBB21C2C5540A400454193 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				CEFBB2422C578E1500454193 /* XCRemoteSwiftPackageReference "CLToaster" */,
 			);
 			productRefGroup = CEB45B772C4E3D0400327314 /* Products */;
 			projectDirPath = "";
@@ -828,6 +858,7 @@
 				CEB45C4A2C51EB1A00327314 /* TabBarController.swift in Sources */,
 				CEB45C392C5139AC00327314 /* MBTIViewCell.swift in Sources */,
 				CEB45C762C52354100327314 /* LikeView.swift in Sources */,
+				CEFBB23B2C56F40D00454193 /* ProfileSettingMode.swift in Sources */,
 				CEB45CB82C54CFD400327314 /* PhotographerData.swift in Sources */,
 				CEB45BEF2C50081800327314 /* UIViewController+.swift in Sources */,
 				CEB45C712C5234A500327314 /* SearchViewModel.swift in Sources */,
@@ -853,8 +884,10 @@
 				CEB45C352C511C0800327314 /* MBTIView.swift in Sources */,
 				CEB45CB02C544A5C00327314 /* PhotoHeaderView.swift in Sources */,
 				CEB45CC72C54EBAE00327314 /* LikedImage.swift in Sources */,
+				CEFBB2372C56F00C00454193 /* AlertData.swift in Sources */,
 				CEB45CAC2C543AB900327314 /* DetailPhotoViewModel.swift in Sources */,
 				CEB45BE62C4FEBA600327314 /* MSColor.swift in Sources */,
+				CEFBB2472C57C26A00454193 /* SplashRepository.swift in Sources */,
 				CEB45CB22C544A7E00327314 /* InfoView.swift in Sources */,
 				CEB45C2D2C50ED2C00327314 /* ProfileSelectViewController.swift in Sources */,
 				CEB45BED2C4FF00800327314 /* UIButton.Configuration+.swift in Sources */,
@@ -863,6 +896,7 @@
 				CEB45C312C50F9F200327314 /* BaseCollectionViewCell.swift in Sources */,
 				CEB45CAA2C543A9400327314 /* DetailPhotoView.swift in Sources */,
 				CEB45CC92C54F4AF00327314 /* JSONConstant.swift in Sources */,
+				CEFBB2392C56F32A00454193 /* SearchSortOption.swift in Sources */,
 				CEB45C9F2C53A0CF00327314 /* SearchRepository.swift in Sources */,
 				CEB45C992C53720400327314 /* SearchView.swift in Sources */,
 				CEFBB2222C55812900454193 /* Dictionary+.swift in Sources */,
@@ -872,8 +906,8 @@
 				CEB45B982C4E4B0F00327314 /* BaseView.swift in Sources */,
 				CEFBB2262C55894300454193 /* LikeRepository.swift in Sources */,
 				CEB45BF92C500A2F00327314 /* ProfileSettingViewController.swift in Sources */,
-				CEB45BFE2C50265A00327314 /* PaddingImageView.swift in Sources */,
 				CEB45CAE2C543B1900327314 /* DetailPhotoViewController.swift in Sources */,
+				CEFBB23D2C56F4B000454193 /* PictureCellType.swift in Sources */,
 				CEB45C9B2C539DE300327314 /* TopicType.swift in Sources */,
 				CEB45C2F2C50F45100327314 /* ProfileSelectCell.swift in Sources */,
 				CEB45C662C5231EE00327314 /* TopicView.swift in Sources */,
@@ -887,8 +921,10 @@
 				CEB45C8A2C527B2700327314 /* UnsplashResponse.swift in Sources */,
 				CEB45CC02C54DBD600327314 /* DetailPhotoModel.swift in Sources */,
 				CEB45C372C511FD600327314 /* UICollectionViewLayout+.swift in Sources */,
+				CEFBB2412C578B9400454193 /* InfoLabelType.swift in Sources */,
 				CEB45BFC2C5020FB00327314 /* RoundImageView.swift in Sources */,
 				CEB45C642C5231E200327314 /* TopicViewController.swift in Sources */,
+				CEFBB2352C56B9CB00454193 /* DateFormatterConstant.swift in Sources */,
 				CEB45C7C2C525F6300327314 /* PictureViewCell.swift in Sources */,
 				CEB45C682C52320100327314 /* TopicViewModel.swift in Sources */,
 				CEFBB2322C56978500454193 /* UserDefaults.swift in Sources */,
@@ -1150,6 +1186,14 @@
 				version = 10.52.1;
 			};
 		};
+		CEFBB2422C578E1500454193 /* XCRemoteSwiftPackageReference "CLToaster" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ValseLee/CLToaster.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1172,6 +1216,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEFBB21C2C5540A400454193 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		CEFBB2432C578E1500454193 /* CLToaster */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEFBB2422C578E1500454193 /* XCRemoteSwiftPackageReference "CLToaster" */;
+			productName = CLToaster;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

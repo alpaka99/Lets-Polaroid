@@ -16,19 +16,11 @@ final class InfoView: BaseView {
         label.font = .systemFont(ofSize: 24, weight: .bold)
         return label
     }()
-    private let test1 = InfoLabel()
-    private let test2 = InfoLabel()
-    private let test3 = InfoLabel()
-    private lazy var infoStack = {[weak self] in
-        guard let view = self else { return UIStackView() }
-        let stack = UIStackView(arrangedSubviews: [
-            view.test1,
-            view.test2,
-            view.test3
-        ])
-        stack.axis = .vertical
-        
-        return stack
+    
+    private lazy var infoStack = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        return stackView
     }()
     
     override func configureHierarchy() {
@@ -50,4 +42,18 @@ final class InfoView: BaseView {
         
         self.backgroundColor = .systemBlue
     }
+    
+    func configureStackView(_ data: DetailPhotoModel) {
+        infoStack.arrangedSubviews.forEach { view in
+            infoStack.removeArrangedSubview(view)
+        }
+        
+        InfoLabelType.allCases.forEach { type in
+            let label = InfoLabel()
+            label.setLabelTitle(of: type)
+            label.setLabelContent(of: type, with: data)
+            infoStack.addArrangedSubview(label)
+        }
+    }
 }
+

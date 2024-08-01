@@ -24,6 +24,9 @@ final class ProfileSettingViewModel: ViewModel {
         var validatedNickname = Observable("")
         var userMBTI: Observable<[MBTIGroup : MBTIComponent]> = Observable(MBTIComponent.initialMBTI())
         var validationLabelText = Observable("")
+        var isShowingDeleteAlert = Observable(false)
+        var accountDeleted = Observable(false)
+        var toastMessage = Observable("")
     }
     
     lazy var input = Input()
@@ -38,9 +41,11 @@ final class ProfileSettingViewModel: ViewModel {
         case mbtiSelected
         case validateMBTI
         case checkSaveEnabled
+        case isShowingDeleteAlert
+        case deleteAccountButtonTapped
     }
     
-    let repository = ProfileSettingRepository()
+    private let repository = ProfileSettingRepository()
     
     init() {
         configureBind()
@@ -66,6 +71,10 @@ final class ProfileSettingViewModel: ViewModel {
             validateMBTI()
         case .checkSaveEnabled:
             checkSaveEnabled()
+        case .isShowingDeleteAlert:
+            isShowingDeleteAlert()
+        case .deleteAccountButtonTapped:
+            deleteAccountButtonTapped()
         }
     }
     
@@ -78,8 +87,8 @@ final class ProfileSettingViewModel: ViewModel {
             guard let vm = self else { return }
             do {
                 let nickname = try vm.validateTextInput(value)
-                vm.reduce(\.validatedNickname.value, into: nickname) //  무한루프 생기는거 아님?
-                vm.reduce(\.validationLabelText.value, into: "사용가능한 닉네임입니다")
+                vm.reduce(\.validatedNickname.value, into: nickname)
+                vm.reduce(\.validationLabelText.value, into: "사용할 수 있는 닉네임이에요")
                 vm.reduce(\.isNicknameValidated.value, into: true)
             } catch {
                 vm.reduce(\.validationLabelText.value, into: error.localizedDescription)
@@ -133,7 +142,10 @@ final class ProfileSettingViewModel: ViewModel {
     }
     
     private func validateMBTI() {
-        if self(\.userMBTI).value.values.count == 4 {
+        let values = self(\.userMBTI).value.values.filter {
+            $0 != .none
+        }
+        if values.count == 4 {
             reduce(\.isMBTIValidated.value, into: true)
         } else {
             reduce(\.isMBTIValidated.value, into: false)
@@ -164,11 +176,11 @@ final class ProfileSettingViewModel: ViewModel {
             let toggledValue = !self(\.completeButtonTapped).value
             reduce(\.completeButtonTapped.value, into: toggledValue)
         } catch {
-            print(error)
+            reduce(\.toastMessage.value, into: "사용자 데이터 생성 에러")
         }
     }
     
-    func loadUserData() {
+    private func loadUserData() {
         do {
             let userData = try repository.readUserData()
             if let userData = userData {
@@ -178,8 +190,22 @@ final class ProfileSettingViewModel: ViewModel {
                 
             }
         } catch {
-            print("UserData Load Error")
-            print(error)
+            reduce(\.toastMessage.value, into: "사용자 데이터 불러오기 에러")
+        }
+    }
+    
+    private func isShowingDeleteAlert() {
+        let toggledValue = !self(\.isShowingDeleteAlert).value
+        reduce(\.isShowingDeleteAlert.value, into: toggledValue)
+    }
+    
+    private func deleteAccountButtonTapped() {
+        do {
+            try repository.deleteUserData()
+            let toggledData = !self(\.accountDeleted).value
+            reduce(\.accountDeleted.value, into: toggledData)
+        } catch {
+            reduce(\.toastMessage.value, into: "계정 삭제 실패")
         }
     }
 }

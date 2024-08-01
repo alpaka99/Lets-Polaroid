@@ -42,7 +42,7 @@ final class LikeView: BaseView {
         return collectionView
     }()
     
-    var dataSource: UICollectionViewDiffableDataSource<Section,UnsplashImageData>!
+    private var dataSource: UICollectionViewDiffableDataSource<Section,UnsplashImageData>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

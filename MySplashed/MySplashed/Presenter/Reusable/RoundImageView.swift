@@ -29,8 +29,6 @@ final class RoundImageView: BaseView {
         return view
     }()
     
-    private(set) var tapGestureRecognizer = UITapGestureRecognizer()
-    
     override func configureHierarchy() {
         super.configureHierarchy()
         
@@ -42,8 +40,10 @@ final class RoundImageView: BaseView {
     override func configureLayout() {
         super.configureLayout()
         
-        image.snp.makeConstraints { image in
-            image.edges.equalTo(self.safeAreaLayoutGuide)
+        image.snp.makeConstraints { view in
+            view.center.equalTo(self.safeAreaLayoutGuide)
+            view.height.equalTo(self.safeAreaLayoutGuide.snp.height)
+            view.width.equalTo(image.snp.height)
         }
         badgeBackground.snp.makeConstraints { view in
             view.size.equalTo(self)
@@ -96,10 +96,10 @@ final class RoundImageView: BaseView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
+        image.layer.cornerRadius = image.frame.height / 2
         image.clipsToBounds = true
-        image.layer.cornerRadius = image.frame.width / 2
         
-        badgeBackground.layer.cornerRadius = badgeBackground.frame.width / 2
+        badgeBackground.layer.cornerRadius = badgeBackground.frame.height / 2
         badge.clipsToBounds = true
     }
 }

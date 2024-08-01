@@ -19,6 +19,21 @@ final class ProfileSettingRepository {
     }
     
     func deleteUserData() throws {
+        try deleteLikedImageData()
         try UserDefaults.standard.deleteAll(ofType: UserData.self)
     }
+    
+    private func deleteLikedImageData() throws {
+        let likedImages = RealmManager.shared.readAll(LikedImage.self)
+        try likedImages.forEach { imageData in
+            try FileManager.default.removeImageFromDocument(filename: imageData.id)
+            try RealmManager.shared.delete(imageData)
+        }
+    }
+}
+
+enum ProfileSettingError: Error {
+    case realmDeleteError
+    case photoFileDeleteError
+    case userDefaultsDeleteError
 }

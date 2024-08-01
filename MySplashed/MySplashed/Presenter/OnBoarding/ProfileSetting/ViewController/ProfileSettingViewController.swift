@@ -19,9 +19,13 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         
         baseView.profileImage.tapGestureRecognizer.addTarget(self, action: #selector(profileImageTapped))
         baseView.nicknameTextField.addTarget(self, action: #selector(textFieldValueChanged), for: .editingChanged)
+        baseView.nicknameTextField.addTarget(self, action: #selector(textFieldReturned), for: .editingDidEndOnExit)
         baseView.completeButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
+        baseView.deleteAccountButton.addTarget(self, action: #selector(showDeleteAlert), for: .touchUpInside)
         
         baseView.mbtiView.mbtiCollectionView.delegate = self
+        
+        baseView.tapGestureRecognizer.addTarget(self, action: #selector(backgroundTapped))
     }
     
     override func configureDataBinding() {
@@ -84,27 +88,58 @@ final class ProfileSettingViewController: BaseViewController<ProfileSettingView,
         viewModel.bind(\.completeButtonTapped) {[weak self] _ in
             self?.setNewViewController(nextViewController: TabBarController(), isNavigation: false)
         }
+        
+        viewModel.bind(\.isShowingDeleteAlert) {[weak self] _ in
+            self?.showAlert(alertData: [AlertData(title: "삭제", style: .destructive, closure: {
+                self?.deleteAccountButtonTapped()
+            })])
+        }
+        
+        viewModel.bind(\.accountDeleted) {[weak self] _ in
+            self?.setNewViewController(nextViewController: SplashViewController(baseView: SplashView(), viewModel: SplashViewModel()), isNavigation: true)
+        }
     }
     
     @objc
-    func profileImageTapped(_ sender: UITapGestureRecognizer) {
+    private func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        baseView.endEditing(true)
+    }
+    
+    @objc
+    private func profileImageTapped(_ sender: UITapGestureRecognizer) {
         viewModel.react(.profileImageTapped, value: true)
     }
     
     @objc
-    func textFieldValueChanged(_ sender: UITextField) {
+    private func textFieldValueChanged(_ sender: UITextField) {
         if let text = sender.text {
             viewModel.react(.textFieldInputChanged, value: text)
         }
     }
+    
     @objc
-    func completeButtonTapped(_ sender: UIButton) {
+    private func textFieldReturned(_ sender: UITextField) {
+        baseView.endEditing(true)
+    }
+    
+    @objc
+    private func completeButtonTapped(_ sender: UIButton) {
         viewModel.react(.completeButtonTapped, value: true)
     }
     
     @objc
-    func saveButtonTapped(_ sender: UIBarButtonItem) {
+    private func saveButtonTapped(_ sender: UIBarButtonItem) {
         viewModel.react(.completeButtonTapped, value: true)
+    }
+    
+    @objc
+    private func showDeleteAlert(_ sender: UIButton) {
+        viewModel.react(.isShowingDeleteAlert, value: true)
+    }
+    
+    
+    private func deleteAccountButtonTapped() {
+        viewModel.react(.deleteAccountButtonTapped, value: true)
     }
 }
 
@@ -116,12 +151,8 @@ extension ProfileSettingViewController: ProfileSelectViewControllerDelegate {
 
 extension ProfileSettingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        baseView.endEditing(true)
         let selectedMBTI = baseView.mbtiView.dataSource.snapshot(for: .main).items[indexPath.row]
         viewModel.react(.mbtiSelected, value: selectedMBTI)
     }
-}
-
-enum ProfileSettingMode: Int {
-    case onboarding = 0
-    case edit = 1
 }

@@ -22,10 +22,15 @@ final class SplashViewController: BaseViewController<SplashView, SplashViewModel
             )
             self?.navigationController?.pushViewController(profileViewController, animated: true)
         }
+        
+        viewModel.bind(\.isShowingMain) { [weak self] _ in
+            let tabBarController = TabBarController()
+            self?.setNewViewController(nextViewController: tabBarController, isNavigation: false)
+        }
     }
     
     @objc
-    func startButtonTapped(_ sender: UIButton) {
+    private func startButtonTapped(_ sender: UIButton) {
         viewModel.react(.startButtonTapped, value: true)
     }
 }

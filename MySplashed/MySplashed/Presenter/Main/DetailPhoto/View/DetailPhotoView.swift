@@ -28,11 +28,10 @@ final class DetailPhotoView: BaseView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: ProfileImage.randomProfile().rawValue)
         return imageView
     }()
     
-    private let infoView = InfoView()
+    private(set) var infoView = InfoView()
     
     override func configureHierarchy() {
         super.configureHierarchy()
@@ -67,6 +66,7 @@ final class DetailPhotoView: BaseView {
                 .offset(16)
             view.horizontalEdges.equalTo(photoHeaderView.snp.horizontalEdges)
             view.bottom.equalTo(contentView.snp.bottom)
+            view.height.equalTo(150)
         }
         
         contentView.snp.makeConstraints { view in
@@ -75,16 +75,41 @@ final class DetailPhotoView: BaseView {
         }
     }
     
-    func configureData(_ detailPhotoData: DetailPhotoModel) {
+    func configureDetailData(_ detailPhotoData: DetailPhotoModel) {
         setHeaderData(detailPhotoData)
-        setImageData(detailPhotoData.imageData)
+        if let imageData = detailPhotoData.imageData {
+            setImageData(imageData)
+        }
+        setInfoLabel(detailPhotoData)
+    }
+    
+    func configureNotConnectedData(_ imageData: UnsplashImageData) {
+        configureNotconnectedHeaderData(imageData)
+        setImageData(imageData)
+        setNotConnectedInfoLabel(imageData)
+    }
+    
+    
+    private func configureNotconnectedHeaderData(_ imageData: UnsplashImageData) {
+        photoHeaderView.configureNotConnectedHeaderData(imageData)
+        setImageData(imageData)
+        setNotConnectedInfoLabel(imageData)
     }
     
     private func setHeaderData(_ data: DetailPhotoModel) {
         photoHeaderView.configureHeaderData(data)
     }
     
+    
     private func setImageData(_ imageData: UnsplashImageData) {
         self.image.image = imageData.image
+    }
+    
+    private func setInfoLabel(_ data: DetailPhotoModel) {
+        infoView.configureStackView(data)
+    }
+    
+    private func setNotConnectedInfoLabel(_ data: UnsplashImageData) {
+        
     }
 }

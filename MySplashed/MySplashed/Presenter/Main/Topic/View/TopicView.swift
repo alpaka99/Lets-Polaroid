@@ -11,15 +11,9 @@ import Kingfisher
 import SnapKit
 
 final class TopicView: BaseView {
-    enum Section: String, CaseIterable {
-        case goldenHour = "골든 아워"
-        case business = "비즈니스 및 업무"
-        case architecture = "건축 및 인테리어"
-    }
-    
     private(set) lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, UnsplashImageData>!
+    private(set) var dataSource: UICollectionViewDiffableDataSource<TopicSection, UnsplashImageData>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,12 +73,12 @@ final class TopicView: BaseView {
         return layout
     }
     
-    func configureDataSource() {
-        var cellRegistration = UICollectionView.CellRegistration<PictureViewCell, UnsplashImageData> { cell, indexPath, itemIdentifier in
+    private func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<PictureViewCell, UnsplashImageData> { cell, indexPath, itemIdentifier in
             
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, UnsplashImageData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<TopicSection, UnsplashImageData>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             cell.configureUI(.topic)
             cell.setTotalLike(itemIdentifier.unsplashResponse.likes)
@@ -93,7 +87,7 @@ final class TopicView: BaseView {
         })
         
         let supplymentaryRegistration = UICollectionView.SupplementaryRegistration<CollectionViewHeader>(elementKind: "CollectionViewHeader") { supplementaryView, elementKind, indexPath in
-            let sectionKind = Section.allCases[indexPath.section]
+            let sectionKind = TopicSection.allCases[indexPath.section]
             supplementaryView.label.text = sectionKind.rawValue
         }
         
@@ -102,13 +96,13 @@ final class TopicView: BaseView {
         }
     }
     
-    func configureSnapShot() {
-        var snapShot = NSDiffableDataSourceSnapshot<Section, UnsplashImageData>()
-        snapShot.appendSections(Section.allCases)
+    private func configureSnapShot() {
+        var snapShot = NSDiffableDataSourceSnapshot<TopicSection, UnsplashImageData>()
+        snapShot.appendSections(TopicSection.allCases)
         dataSource.apply(snapShot)
     }
     
-    func updateSnapShot(_ data: [UnsplashImageData], sectionType: Section) {
+    func updateSnapShot(_ data: [UnsplashImageData], sectionType: TopicSection) {
         
         var snapShot = dataSource.snapshot(for: sectionType)
         
@@ -153,5 +147,19 @@ final class CollectionViewHeader: UICollectionReusableView {
     
     func configureData(_ text: String) {
         label.text = text
+    }
+}
+
+enum TopicSection: String, CaseIterable {
+    case goldenHour = "골든 아워"
+    case business = "비즈니스 및 업무"
+    case architecture = "건축 및 인테리어"
+    
+    static func intInit(_ index: Int) -> Self? {
+        let allCases = Self.allCases
+        if index < allCases.count {
+            return allCases[index]
+        }
+        return nil
     }
 }

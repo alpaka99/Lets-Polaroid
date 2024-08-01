@@ -7,6 +7,7 @@
 
 import UIKit
 
+import CLToaster
 final class LikeViewController: BaseViewController<LikeView, LikeViewModel> {
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,7 +26,17 @@ final class LikeViewController: BaseViewController<LikeView, LikeViewModel> {
             let detailViewModel = DetailPhotoViewModel()
             detailViewModel.react(.recieveImageData, value: value)
             let detailViewController = DetailPhotoViewController(baseView: DetailPhotoView(), viewModel: detailViewModel)
-            self?.navigationController?.pushViewController(detailViewController, animated: true)
+            let navigationController = UINavigationController(rootViewController: detailViewController)
+            navigationController.modalPresentationStyle = .fullScreen
+
+            self?.present(navigationController, animated: true)
+        }
+        
+        viewModel.bind(\.toastMessage) {[weak self] message in
+            guard let vc = self else { return }
+            let toastStyle = CLToastStyle(title: message)
+            CLToast(with: toastStyle)
+                .present(in: vc.baseView)
         }
     }
     
@@ -44,7 +55,7 @@ final class LikeViewController: BaseViewController<LikeView, LikeViewModel> {
     }
     
     @objc
-    func sortButtonTapped(_ sender: UIButton) {
+    private func sortButtonTapped(_ sender: UIButton) {
         viewModel.react(.toggleSortOption, value: true)
         baseView.toggleSortOption(viewModel(\.sortOption).value.toggled)
     }

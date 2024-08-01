@@ -15,13 +15,18 @@ final class TopicRepository {
     
     private var likedImages: [LikedImage] = []
     
-    func requestTopic(of topic: TopicType, completionHandler: @escaping ([UnsplashResponse])->Void) {
-        NetworkManager.shared.sendRequest(.topic(topic: topic), ofType: [UnsplashResponse].self) { value in
-            completionHandler(value)
+    func requestTopic(of topic: TopicType, completionHandler: @escaping (Result<[UnsplashResponse], TopicError>)->Void) {
+        NetworkManager.shared.sendRequest(.topic(topic: topic), ofType: [UnsplashResponse].self) { result in
+            switch result {
+            case .success(let values):
+                completionHandler(.success(values))
+            case .failure:
+                completionHandler(.failure(.networkManagerFetchError))
+            }
         }
     }
     
-    func requestImage(of data: [UnsplashResponse], completionHandler: @escaping ([UnsplashImageData])->Void) {
+    func requestImage(of data: [UnsplashResponse], completionHandler: @escaping (Result<[UnsplashImageData], TopicError>)->Void) {
         let dispatchGroup = DispatchGroup()
         
         var topicData: [UnsplashImageData] = []
@@ -34,8 +39,8 @@ final class TopicRepository {
                         switch result {
                         case .success(let image):
                             topicData.append(UnsplashImageData(unsplashResponse: data[index], image: image.image))
-                        case .failure(let error):
-                            print("KingFisher ImageFetch Error", error)
+                        case .failure:
+                            completionHandler(.failure(.kingFisherImageFetchError))
                         }
                         dispatchGroup.leave()
                     }
@@ -45,7 +50,7 @@ final class TopicRepository {
         
         dispatchGroup.notify(queue: .main) {
             topicData.sort(by: {$0.unsplashResponse.likes > $1.unsplashResponse.likes})
-            completionHandler(topicData)
+            completionHandler(.success(topicData))
         }
     }
     
@@ -64,4 +69,19 @@ final class TopicRepository {
     func loadLikedImages() {
         likedImages = RealmManager.shared.readAll(LikedImage.self)
     }
+    
+    func readAllUserData() throws -> UserData {
+        let userData =  try UserDefaults.standard.readAll(ofType: UserData.self)
+        if let userData = userData {
+            return userData
+        } else {
+            throw TopicError.nilUserData
+        }
+    }
+}
+
+enum TopicError: Error {
+    case nilUserData
+    case networkManagerFetchError
+    case kingFisherImageFetchError
 }
